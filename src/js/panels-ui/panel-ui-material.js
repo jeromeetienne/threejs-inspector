@@ -97,7 +97,35 @@ var PanelMaterial	= function(faceMaterialIndex){
 			}
 		})
 	})()
+	//////////////////////////////////////////////////////////////////////////////////
+	//		popupMenu
+	//////////////////////////////////////////////////////////////////////////////////
+	var popupMenu	= UI.PopupMenuHelper.createSelect({
+		''			: '--- Options ---',
+		'createMap'		: 'create map',
+	}, onPopupMenuChange)
+	materialSelectRow.add(popupMenu)
+	
+	function onPopupMenuChange(value){
+		var injectFunction = InspectDevTools.functionOnObject3d
+		var geometry	= editor.selected.geometry
+		
+		if( value === 'createMap' ){
+			injectFunction(function(object3d, textureType, faceMaterialIndex){
+				console.log('Geometry Vertices')
+				console.table(object3d.geometry.vertices)
+				var material = faceMaterialIndex === -1 ? object3d.material : object3d.material.materials[faceMaterialIndex]
+				var url = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 
+				material[textureType]	= THREE.ImageUtils.loadTexture( url );
+
+			}, ['map', faceMaterialIndex]);		
+		}else{
+			console.assert(false)
+		}
+
+		updateWhole()
+	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//		handle tab-material
 	//////////////////////////////////////////////////////////////////////////////////

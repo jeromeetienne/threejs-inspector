@@ -10,6 +10,7 @@ by the excelent @thespite. Check it out!
 
 
 ## History
+- added upload support for texture
 - added dragdrop support for texture
 - added "about" tab
 - added texture.sourceFile it is now possible to change texture

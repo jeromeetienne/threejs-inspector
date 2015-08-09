@@ -1,4 +1,7 @@
 ## Next steps
+- issue when dropping new texture without power of two
+  - three.js complains about filtering
+  - auto detect this case and change the filtering when setting
 - look at the loading issue
   - some pages dont load all everytime
   - boilerplate.html rarely load
