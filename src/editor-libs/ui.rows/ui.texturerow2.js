@@ -235,46 +235,39 @@ UI.TextureRow2 = function(){
 	//////////////////////////////////////////////////////////////////////////////////
 
 	container.dom.addEventListener('dragenter', function(event){
-		container.dom.style.backgroundColor	= '#153C5E'
+// console.log('texture row dragenter')
+		container.dom.style.backgroundColor	= '#ccc'
+		container.dom.style.borderRadius	= '5px'
+
 	})
 	container.dom.addEventListener('dragleave', function(event){
+// console.log('texture row dragleave')
 		container.dom.style.backgroundColor	= ''
 
 	})
 	container.dom.addEventListener('dragover', function(event){
-		container.dom.style.backgroundColor	= '#153C5E'
+// console.log('texture row dragover')
+		container.dom.style.backgroundColor	= '#ccc'
+		event.preventDefault();
 	})
 
 	container.dom.addEventListener('drop', function(event){
-		container.dom.style.backgroundColor	= 'red'
-		console.log('******* drop in Texture', event)
-return
-		var dataTransfer	= event.dataTransfer
-		if( dataTransfer.getData('type') !== 'projectFile' )	return
+// console.log('texture row drop')
+		container.dom.style.backgroundColor	= '#0066ff'
 
-		var fullName	= dataTransfer.getData('fullName')
+		event.preventDefault();
 
-		// ensure it is an image
-		var imageRegexp	= /.(jpg|png|webp)$/i
-		var isImage	= imageRegexp.test(fullName)
-		if( isImage === false )	return
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			container.dom.style.backgroundColor	= ''
 
-		// stop event propagation as we take it in charge
-		event.stopPropagation()
+			var url = event.currentTarget.result
+			// console.log('file loaded', url)
+			uiTexture.setValue(url)
+			dispatchOnChange()
+		};
+		reader.readAsDataURL( event.dataTransfer.files[ 0 ] );
 
-		var imageUrl	= game.settingsGet('baseUrl') + '/' + fullName
-		console.log('set image imageUrl', imageUrl)
-
-		THREE.ImageUtils.loadTexture(imageUrl, undefined, function(newTexture){
-			var wasInit	= value.getValue() !== null ? true : false
-			value.setValue(newTexture)
-
-			// copy the texture parameters from the ones in the UI if any existed
-			if( wasInit )	update()
-
-			updateUI()
-			update()	// TODO why do i need this one ?
-		})
 	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments

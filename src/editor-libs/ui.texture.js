@@ -60,6 +60,18 @@ UI.Texture.prototype.getValue = function () {
 UI.Texture.prototype.setValue = function(url){
 	console.log('uiTexture.setValue', url)
 	this._urlInput.value	= url
+	if( url ){
+		var image = document.createElement( 'img' );
+		image.addEventListener( 'load', function ( event ) {
+			var canvas	= this._canvas;
+			var context	= canvas.getContext( '2d' );
+			var scale	= canvas.width / image.width;
+			context.drawImage(image, 0, 0, image.width * scale, image.height * scale );		
+
+		}.bind(this), false );
+
+		image.src	= url
+	}
 }
 
 UI.Texture.prototype.onChange = function ( callback ) {

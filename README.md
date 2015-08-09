@@ -10,7 +10,8 @@ by the excelent @thespite. Check it out!
 
 
 ## History
-- added about tab
+- added dragdrop support for texture
+- added "about" tab
 - added texture.sourceFile it is now possible to change texture
   - texture needs to be on a CORS server
 - added 'visibility toggle'/'export to console' and better css on treeview

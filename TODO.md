@@ -15,6 +15,8 @@
 - stop requestAnimationFrame
   - regulate its rate 
   - https://gist.github.com/remy/36f388d72c1ef161582f
+- support camera hook
+  - in render i put my own camera
 
 ---
 ### How to make face material
