@@ -1,13 +1,15 @@
-# Three.js Extension
-three.js extension is an extension for chrome devtool. It allows you to inspect
-the three.js scene in a web page
+# Three.js Inspector
+three.js inspector is an extension for chrome devtool. It allows you to inspect
+the three.js scene in a web page. 
+You can install [three.js Inspector](https://chrome.google.com/webstore/detail/threejs-inspector/dnhjfclbfhcbcdfpjaeacomhbdfjbebi)
+from chrome webstore.
 
 It is a fork from
 [WebGL GLSL Shader Editor Extension for Google Chrome](https://github.com/spite/ShaderEditorExtension)
 by the excelent @thespite. Check it out! 
 
 
-## Changes log
+## History
 - added about tab
 - added texture.sourceFile it is now possible to change texture
   - texture needs to be on a CORS server
