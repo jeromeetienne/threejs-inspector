@@ -51,6 +51,7 @@ var PanelObject3D	= function(){
 		}else if( value === 'exportInConsole' ){
 			InspectDevTools.functionOnObject3d(function(object3d){
 				window.$object3d = object3d
+				console.log('three.js inpector: Object3D exported as $object3d')
 			})
 			return
 		}else{

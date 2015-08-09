@@ -41,6 +41,7 @@ var PanelGeometry	= function(){
 		''			: '--- Options ---',
 		'viewVertices'		: 'View Vertices',
 		'viewFaces'		: 'View Faces',
+		'exportInConsole'	: 'Export in Console',
 	}, onPopupMenuChange)
 	typeRow.add(popupMenu)
 	
@@ -58,6 +59,12 @@ var PanelGeometry	= function(){
 				console.log('Geometry Faces')
 				console.table(object3d.geometry.faces)
 			});		
+		}else if( value === 'exportInConsole' ){
+			InspectDevTools.functionOnObject3d(function(object3d){
+				window.$geometry = object3d.geometry
+				console.log('three.js inpector: Geometry exported as $geometry')
+			})
+			return
 		}else{
 			console.assert(false)
 		}

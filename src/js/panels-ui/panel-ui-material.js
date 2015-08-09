@@ -103,6 +103,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 	var popupMenu	= UI.PopupMenuHelper.createSelect({
 		''			: '--- Options ---',
 		'createMap'		: 'create map',
+		'exportInConsole'	: 'Export in Console',
 	}, onPopupMenuChange)
 	materialSelectRow.add(popupMenu)
 	
@@ -112,14 +113,19 @@ var PanelMaterial	= function(faceMaterialIndex){
 		
 		if( value === 'createMap' ){
 			injectFunction(function(object3d, textureType, faceMaterialIndex){
-				console.log('Geometry Vertices')
-				console.table(object3d.geometry.vertices)
 				var material = faceMaterialIndex === -1 ? object3d.material : object3d.material.materials[faceMaterialIndex]
 				var url = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 
 				material[textureType]	= THREE.ImageUtils.loadTexture( url );
 
 			}, ['map', faceMaterialIndex]);		
+		}else if( value === 'exportInConsole' ){
+			InspectDevTools.functionOnObject3d(function(object3d, faceMaterialIndex){
+				var material = faceMaterialIndex === -1 ? object3d.material : object3d.material.materials[faceMaterialIndex]
+				window.$material = material
+				console.log('three.js inpector: Material exported as $material')
+			}, [faceMaterialIndex])
+			return
 		}else{
 			console.assert(false)
 		}
