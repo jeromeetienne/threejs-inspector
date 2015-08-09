@@ -1,0 +1,123 @@
+## Next steps
+- look at the loading issue
+  - some pages dont load all everytime
+  - boilerplate.html rarely load
+  - related to 'load' event. if there is a texture loaded, it load
+  - otherwise it doesnt
+  - https://developer.chrome.com/extensions/devtools
+- clean up inject code
+  - split it in multiple files
+- support for pointCloudmaterial material.size/material.sizeAttenuation
+  - http://threejs.org/docs/#Reference/Materials/PointCloudMaterial
+- replace function updateUI(object3d) by updateUI() and selected
+- play with all three.js examples, you should be able to parse them
+
+- stop requestAnimationFrame
+  - regulate its rate 
+  - https://gist.github.com/remy/36f388d72c1ef161582f
+
+---
+### How to make face material
+
+
+---
+- LATER implement more geometry
+- DONE use same namespace for all devtools spacec 
+  - var InspectDevTools	= InspectDevTools	|| {}
+- DONE pass treeView in normal three.js panel implementation
+  - up to panel-ui-sceneview.js
+- DONE do a "About" tab in left sidebar
+- DONE improve texture
+  - WONTDO put a context menu
+    - export to console $texture
+    - inline help
+  - LATER visualisation of the texture in devtool
+  - set a new texture from an url
+  - same UI as three.js/editor for now
+  - reuse the code 
+  - only pass the texture.sourceFile to devtools
+  - read by url. not canvas
+  - LATER handle dragdrop ?
+- DONE material-shader is broken
+  - it doesnt handle the faceMaterialIndex
+  - port it to faceMaterialIndex
+- DONE complete uniform color
+- DONE texture image import from inspector
+  - issue with CORS
+- DONE implement facematerial
+  - panel-ui-facematerial.js
+    - visible only if object.material is facematerial
+  - at the same level of the panel-ui-material
+  - it will spawn panel-ui-material
+- DONE click on texture header = toggleCollapse
+- WONTDO enable disable texture ?
+- DONE handle material.blending
+  - DONE depthWrite/depthTest
+  - DONE .visible
+  - DONE .alphaTest
+- DONE handle texture.anisotropy
+  - http://127.0.0.1:8000/examples/webgl_materials_texture_anisotropy.html
+- DONE rewrite the facematerial panel-ui handling with a 'faceMaterialIndex'
+  - ```var material = faceMaterialIndex === -1 ? object3d.material : object3d.material.materials[faceMaterialIndex]```
+- DONE implement buffer geometry
+  - planebuffer
+  - issue in minecraft-ao
+- DONE implement pointcloud
+- DONE particles crash the inspector 
+  - http://threejs.org/examples/webgl_sprites.html
+- DONE handle texture
+  - how ? which one ? 
+  - do i get back the space3 one ?
+  - no reimplement it as a panel, no special css for now
+  - normal panel collapsible, repeat/offset/wrapX, wrapV
+  - make it collapsable
+  - to send back UI changes to the content pages
+    - notify textureRow.onChange()
+    - textureRow.getValue() returns the json object
+    - inject the json object in the content page
+    - from this json, update the THREE.Texture in the content page
+- DONE populate the extension publication with good blabla and good picture
+  - ask alejendra
+- DONE Do links to docs
+  - good to learn
+  - http://threejs.org/docs/#Reference/Objects/Mesh
+- DONE handle material.wireframeLineWidth
+- DONE handle material.shading 
+- DONE pass object3d.groundColor for hemisphere
+- DONE implement the number slider accelerator with the same meta key as devtools itself
+- DONE add 'export json' to the object3d special menu
+- DONE what about a tab on the left side
+- DONE export selected object in console as '$object3d'
+- DONE do automatic periodical updateUI
+  - aka automatically send the last object sent
+  - it might be good to put that into an option
+- DONE find a namespace for the codeinjected in the page
+  - injectedThreejsInspector.*
+- DONE mvp = my scene browser. to be published monday
+  - collaboration with @thespite would be great
+  - avoid code duplication
+- DONE remove the debug with special log, this is useless
+- DONE move his scene browser until it match the feature of your own
+- DONE rename treeView 
+- DONE mvp = my scene browser. to be published monday
+- DONE how to handle all the optional property
+  - fill the property in the three2ext object3d json object
+  - only if it exist
+  - then use this canonic format to display or not the various field
+  - this should allow to handle the camera fox/far/near
+  - allow to handle light color/intensity
+- DONE select material - change material in the panel-ui-material.js
+- DONE put signals in devtools.
+  - thus people can listen on signal like it is done on editor
+- DONE automatically select the first object on load
+- DONE automatically inject the scene
+- DONE rename panel2 into panel
+- DONE rename src2 into src 
+  - and src into src-original
+- DONE refactor the folders
+  - DONE images in images/
+  - all devtools stuff in its corner
+  - all UI editor in its corner
+- DONE make debug easier
+  - when you load panel.html as a normal webpage, try to behave
+  - use the normal mechanism to debug chrome extension 

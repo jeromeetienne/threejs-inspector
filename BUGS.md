@@ -1,0 +1,16 @@
+- FIXME should deselect if click on empty part of treeView
+- FIXME sometime the treeview doesnt reflect the selected object
+
+---
+- FIXED bounding sphere center can be modified
+- FIXED auto refresh setting not stored
+- FIXED material is pushing bad properties in injected material
+  - check if the field is visible before
+- FIXED tab material doesnt keep active
+  - select an object3d with material
+  - go to an object without material
+  - come back in the object3d with material
+  - BUG: nothing is shown, not material nor object3d
+- FIXED if change in material type, the UI isnt updated
+  - maybe to trigger a UISelect()
+- FIXED what happen if we delete the selected ?

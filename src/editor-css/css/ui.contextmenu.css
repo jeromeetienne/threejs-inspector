@@ -1,0 +1,30 @@
+.contextMenu {
+	position	: absolute;
+	z-index		: 1000;
+
+	color: #aaa;
+
+	background-color: rgba(80,80,80,0.7);
+	border		: 1px solid rgba(64,64,64, 1);
+
+	/* unselectable*/
+	-moz-user-select	: none;
+	-webkit-user-select	: none;
+	-ms-user-select		: none;
+	-o-user-select		: none;
+	user-select		: none;
+}
+.contextMenu ul{
+	margin		: 0px;
+	padding		: 0px;
+	list-style	: none;
+	list-style-type	: none;
+}
+.contextMenu li{
+	padding		: 8px;
+	padding-left	: 15px;
+	padding-right	: 15px;
+}
+.contextMenu li:hover {
+	background-color: #153C5E;
+}

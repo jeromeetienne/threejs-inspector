@@ -1,0 +1,162 @@
+/********************************************************************************/
+/********************************************************************************/
+/********************************************************************************/
+/* 										*/
+/********************************************************************************/
+/********************************************************************************/
+/********************************************************************************/
+
+#subViewports {
+	position: relative;
+	width	: 100%;
+	height	: 100%;
+	border	: 1px solid #333;
+	color	: #888;
+}
+.subViewport {
+	position: absolute;
+	border-bottom: 1px solid #333;
+	border-right: 1px solid #333;
+	width	: 50%;
+	height	: 100%;
+	outline	: none;	/* to remove focus outline */
+}
+
+/********************************************************************************/
+/********************************************************************************/
+/********************************************************************************/
+/* 		subViewport Position						*/
+/********************************************************************************/
+/********************************************************************************/
+/********************************************************************************/
+
+
+.subViewportLeft {
+	left: 0;
+}
+.subViewportRight {
+	right: 0%;
+}
+.subViewportTop {
+	top: 0%;
+}
+.subViewportBottom {
+	bottom: 0%;
+}
+
+
+/********************************************************************************/
+/********************************************************************************/
+/********************************************************************************/
+/* 		subViewport Size						*/
+/********************************************************************************/
+/********************************************************************************/
+/********************************************************************************/
+
+
+.subViewport[data-display-size="none"] {
+	display	: none;
+}
+.subViewport[data-display-size="normal"] {
+	width	: 50%;
+	height	: 50%;
+}
+.subViewport[data-display-size="doubleWidth"] {
+	width	: 100%;
+	height	: 50%;
+}
+.subViewport[data-display-size="doubleHeight"] {
+	width	: 50%;
+	height	: 100%;
+}
+.subViewport[data-display-size="doubleBoth"] {
+	width	: 100%;
+	height	: 100%;
+}
+
+/********************************************************************************/
+/********************************************************************************/
+/********************************************************************************/
+/* 		subViewport cameraMenu						*/
+/********************************************************************************/
+/********************************************************************************/
+/********************************************************************************/
+
+
+.subViewport .cameraMenu {
+	position	: absolute;
+
+	left		: 10px;
+	top		: 10px;
+	font-size	: 100%;
+
+	/* unselectable*/
+	-moz-user-select	: none;
+	-webkit-user-select	: none;
+	-ms-user-select		: none;
+	-o-user-select		: none;
+	user-select		: none;
+}
+.subViewport .cameraMenu .triggerButton {
+	background-color: rgba(64,64,64,0.5);
+	padding		: 0.2em;
+	border		: 1px solid #404040;
+}
+.subViewport .cameraMenu .triggerButton:hover {
+	background-color: #333;
+	cursor	 	: pointer;
+}
+.subViewport .cameraMenu .menuOptions {
+	background-color: rgba(64,64,64,0.5);
+	margin-top: 10px;
+	border		: 1px solid #404040;
+}
+.subViewport .cameraMenu ul{
+	margin		: 0px;
+	padding		: 0px;
+	list-style	: none;
+	list-style-type	: none;
+}
+.subViewport .cameraMenu li{
+	padding		: 0.2em;
+	padding-left	: 0.5em;
+	padding-right	: 0.5em;
+}
+.subViewport .cameraMenu li:hover {
+	background-color: #404040;
+}
+
+
+/********************************************************************************/
+/********************************************************************************/
+/********************************************************************************/
+/* 		subViewport viewportButton					*/
+/********************************************************************************/
+/********************************************************************************/
+/********************************************************************************/
+
+.subViewport .viewportButton {
+	position	: absolute;
+
+	font-size	: 100%;
+
+	padding		: 0.2em;
+	background-color: rgba(64,64,64,0.75);
+	border		: 1px solid #404040;
+}
+.subViewport .viewportButton:hover {
+	background-color: #333;
+	cursor	 	: pointer;
+}
+.subViewport .sizeButton {
+	right		: 10px;
+	top		: 10px;
+}
+.subViewport .doubleWidthButton {
+	right		: 35px;
+	top		: 10px;
+}
+.subViewport .doubleHeightButton {
+	right		: 60px;
+	top		: 10px;
+}

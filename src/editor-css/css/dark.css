@@ -1,0 +1,387 @@
+* {
+  vertical-align: middle;
+}
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+/* Webkit micro scrollbars */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: rgba(140, 140, 140, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: rgba(140, 140, 140, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 140, 140, 0.4);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(140, 140, 140, 0.5);
+}
+::-webkit-input-placeholder {
+  color: rgba(140, 140, 140, 0.4);
+}
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  overflow: hidden;
+}
+hr {
+  border: 0px;
+  border-top: 1px solid #444;
+}
+button {
+  position: relative;
+}
+.Panel {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.CollapsiblePanel .CollapsiblePanelButton {
+  display: inline-block;
+  margin-top: -0.1em;
+  font-size: 150%;
+  width: 0.7em;
+  float: left;
+}
+.CollapsiblePanel.collapsed .CollapsibleContent {
+  display: none;
+}
+.FancySelect {
+  background: #222;
+  border: 1px solid #3C3C3C;
+  padding: 0;
+  cursor: default;
+  overflow: auto;
+  outline: none;
+}
+.FancySelect .option {
+  padding: 4px;
+  white-space: nowrap;
+}
+.FancySelect .option.active {
+  background-color: #153C5E;
+}
+input.Number {
+  color: #2A75B7;
+  font-size: 12px;
+  /** TODO: Use of !important is not ideal **/
+  background-color: transparent!important;
+  /* For now this is a quick fix a rendering issue due to inherited background */
+  border: 1px solid transparent;
+  padding: 2px;
+  cursor: col-resize;
+}
+input.Number::selection {
+  background-color: #A9A9A9;
+}
+input.Input {
+  color: #666;
+  font-size: 12px;
+  background-color: #222;
+  border: 1px solid transparent;
+  padding: 2px;
+  border-radius: 3px;
+}
+button.Button {
+  font-size: 12px;
+  margin-right: 0.5em;
+  color: #888;
+  background-color: #333;
+  border: 0px;
+  border-radius: 2px;
+  outline: none;
+}
+button.Button:hover {
+  color: #aaa;
+  background-color: #444;
+  cursor: pointer;
+}
+button.Button[disabled] {
+  color: #666;
+  background-color: #222;
+}
+select.Select {
+  background-color: #222;
+  color: #666;
+  outline: none;
+}
+select.Select option {
+  color: #666;
+  background-color: #222;
+}
+.tabContainer {
+  /*height: 32px;*/
+  background-color: #111111;
+  /*background-color:#2e2e2e;*/
+  /*background-color: red;*/
+  padding: 0px;
+  margin: 0px;
+  height: auto;
+}
+.tabContainer > ul.headers {
+  color: #aaa;
+  margin: 0px;
+  height: 30px;
+  border-top: 2px solid #333;
+  border-bottom: 1px solid #333;
+  list-style: none;
+  padding: 0px;
+}
+.tabContainer > ul.headers > li {
+  padding: 7px 10px;
+  display: block;
+  float: left;
+  border-right: 1px solid #333;
+}
+.tabContainer > ul.headers > li.disabled {
+  color: #333;
+}
+.tabContainer > ul.headers > li.active {
+  background-color: #333;
+}
+.tabContainer .tabs .tab {
+  display: none;
+}
+.tabContainer .tabs .tab.active {
+  display: inherit;
+}
+#viewport {
+  position: absolute;
+  top: 32px;
+  left: 300px;
+  right: 300px;
+  bottom: 32px;
+}
+#menubar {
+  position: absolute;
+  width: 100%;
+  height: 32px;
+  background-color: #111111;
+  padding: 0px;
+  margin: 0px;
+}
+#menubar .menu {
+  float: left;
+  width: 50px;
+  cursor: pointer;
+}
+#menubar .Panel {
+  color: #888;
+}
+#menubar .menu .options {
+  z-index: 2;
+  display: none;
+  padding: 5px 0px;
+  background-color: #111111;
+  width: 140px;
+  border-top: solid 1px #1D1D1D;
+}
+#menubar .menu:hover .options {
+  display: block;
+  color: blue;
+}
+#menubar .menu .options hr {
+  border-color: #444;
+}
+#menubar .menu .options .option {
+  color: #666;
+  background-color: transparent;
+  padding: 5px 10px;
+  margin: 0px !important;
+}
+#menubar .menu .options .option:hover {
+  color: #fff;
+  background-color: #08f;
+}
+#toolbar {
+  position: absolute;
+  left: 300px;
+  right: 300px;
+  bottom: 0px;
+  height: 32px;
+  background-color: #111111;
+  color: #333;
+  border-top: 1px solid #333;
+}
+#toolbar .Panel {
+  padding: 4px;
+  color: #888;
+}
+#toolbar button {
+  margin-right: 6px;
+}
+#sidebar {
+  position: absolute;
+  right: 0px;
+  top: 32px;
+  bottom: 0px;
+  width: 300px;
+  background-color: #111111;
+  overflow: auto;
+}
+#sidebar textarea {
+  background: #ccc;
+}
+#sidebar .Panel {
+  margin-bottom: 10px;
+}
+#sidebar .Panel.collapsed {
+  margin-bottom: 0px;
+}
+#sidebar.tabContainer > .tabs > .tab > .Panel {
+  color: #888;
+  padding: 10px;
+  margin-bottom: -6px;
+}
+#sidebar.tabContainer > .tabs > .tab > .Panel:not(first-of-type) {
+  border-top: 1px solid #333;
+}
+#projectSidebar {
+  position: absolute;
+  top: 32px;
+  bottom: 0px;
+  left: 0px;
+  width: 300px;
+  z-index: -1;
+  background-color: #111111;
+  overflow: auto;
+  border-right: 1px solid #333;
+  border-left: 1px solid #333;
+}
+#projectSidebar .Panel {
+  margin-bottom: 10px;
+}
+#projectSidebar .Panel.collapsed {
+  margin-bottom: 0px;
+}
+#projectSidebar.tabContainer > .tabs > .tab > .Panel {
+  color: #888;
+  padding: 10px;
+  margin-bottom: -6px;
+}
+#projectSidebar.tabContainer > .tabs > .tab > .Panel:not(first-of-type) {
+  border-top: 1px solid #333;
+}
+#projectSidebar #assetsBrowser2 .FoldableSelect {
+  font-size: 12px;
+  height: 200px;
+  max-height: 200px;
+  /*overflow: auto;*/
+}
+#projectSidebar #assetsBrowser2 .FoldableSelect .folder {
+  color: #0cf;
+}
+#projectSidebar #assetPreview {
+  width: 270px;
+  /* position: absolute;
+	bottom: 0px;*/
+  z-index: 2;
+  background-color: #111111;
+}
+#projectSidebar #assetPreview .previewRow {
+  background-color: #222;
+  height: 200px;
+  max-height: 200px;
+  text-align: center;
+  border: 1px solid #3c3c3c;
+}
+#projectSidebar #assetPreview .previewRow .imagePreview {
+  max-height: 200px;
+  max-width: 100%;
+}
+.FoldableSelect {
+  background: #222;
+  border: 1px solid #3C3C3C;
+  padding: 0;
+  cursor: default;
+  overflow: auto;
+  outline: none;
+}
+.FoldableSelect .optionContainer {
+  line-height: 20px;
+}
+.FoldableSelect .optionContainer .optionValue {
+  padding-left: 0.2em;
+}
+.FoldableSelect .optionContainer.active > .optionValue {
+  background-color: #153C5E;
+}
+.FoldableSelect .optionContainer:not(.foldable) .optionValue span.prefix::after {
+  /*content	: "\00A0 ";*/
+  content: "- ";
+  /*color	: grey;*/
+  margin-right: 0.1em;
+}
+.FoldableSelect .optionContainer.foldable > .optionValue span.prefix::after {
+  content: "\25BE ";
+  /*color	: grey;*/
+  margin-right: 0.2em;
+}
+.FoldableSelect .optionContainer.foldable > .optionValue span.prefix::after::hover {
+  pointer: crosshair;
+}
+.FoldableSelect .optionContainer.foldable.folded > .optionValue span.prefix::after {
+  content: "\25B8 ";
+  /*color	: grey;*/
+  margin-right: 0.3em;
+}
+.FoldableSelect .optionContainer.foldable.folded .optionChildren {
+  display: none;
+}
+#gameSceneBrowser .FoldableSelect {
+  height: 400px;
+}
+#gameSceneBrowser .FoldableSelect .optionContainer .optionValue i.objectType {
+  margin-left: 5px;
+  font-size: 80%;
+}
+/***********************************************/
+/* MenuBar */
+/***********************************************/
+#tooltabs {
+  position: absolute;
+  right: 300px;
+  top: 32px;
+  left: 300px;
+  height: 32px;
+  background-color: #111;
+  padding: 0px;
+  margin: 0px;
+}
+#tooltabs .tab {
+  float: left;
+  cursor: pointer;
+}
+#tooltabs .Panel {
+  color: #888;
+}
+#tooltabs .tab .options {
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  display: none;
+  padding: 5px 0px;
+  background-color: #222;
+  /*border-top: solid 1px #1D1D1D;*/
+}
+#tooltabs .tab.active {
+  background-color: #222;
+}
+#tooltabs .tab.active .options {
+  display: block;
+}
