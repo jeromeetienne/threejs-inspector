@@ -5,8 +5,25 @@ UI.Texture = function () {
 
 	var dom		= document.createElement( 'span' );
 	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Comments
+	//////////////////////////////////////////////////////////////////////////////////
+	var input = document.createElement( 'input' );
+	input.type = 'file';
+	input.addEventListener( 'change', function ( event ) {
+		var file = event.target.files[ 0 ]
+		var reader = new FileReader();
+		reader.addEventListener( 'load', function ( event ) {
+			var url	= event.target.result 
+			console.log('url', url );
+			_this.setValue(url)
+			
+			if( _this.onChangeCallback )	_this.onChangeCallback();
 
+		}, false );
 
+		reader.readAsDataURL( file );
+	} );
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comment								//
 	//////////////////////////////////////////////////////////////////////////////////
@@ -20,9 +37,7 @@ UI.Texture = function () {
 
 	canvas.setAttribute('title', 'click to open in a new tab')
 	canvas.addEventListener('click', function(){
-		var url	= urlInput.value
-		window.open( url, '_blank' );
-		window.focus();
+		input.click();
 	})
 
 
