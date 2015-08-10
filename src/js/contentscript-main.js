@@ -74,25 +74,22 @@ Inspect3js.extractClassNames	= function() {
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
-	function reccursiveAddObject( object, parent ) {
+	Inspect3js.reccursiveAddObject	= reccursiveAddObject
+	function reccursiveAddObject( object3d, parent ) {
 		
-		addObject( object, parent );
+		addObject( object3d, parent );
 
-		object.children.forEach( function( child ) {
-			console.assert( child instanceof THREE.Object3D );
-			reccursiveAddObject( child, object  );
+		object3d.children.forEach( function( child ) {
+			reccursiveAddObject( child, object3d  );
 		} );
 
 	}
+	function reccursiveRemoveObject( object3d, parent ) {
 
-	function reccursiveRemoveObject( object, parent ) {
+		removeObject( object3d, parent );
 
-		removeObject( object, parent );
-
-		object.children.forEach( function( child ) {
-			if( child instanceof THREE.Object3D ) {
-				reccursiveRemoveObject( child, object  );
-			}
+		object3d.children.forEach( function( child ) {
+			reccursiveRemoveObject( child, object  );
 		} );
 
 	}
@@ -104,7 +101,7 @@ Inspect3js.extractClassNames	= function() {
 	 */
 	function addObject( object, parent ) {
 
-		objects_cache[ object.uuid ] = object;
+		objectsCache[ object.uuid ] = object;
 
 		var type = Inspect3js.getClassName( object );
 		
@@ -129,7 +126,7 @@ Inspect3js.extractClassNames	= function() {
 
 	function removeObject( object, parent ) {
 
-		//objects_cache[ object.uuid ] = object;
+		//objectsCache[ object.uuid ] = object;
 
 		// var type = Inspect3js.getClassName( object );
 		//console.log( '++ Removing Object ' + type + ' (' + object.uuid + ') (parent ' + ( parent?parent.uuid:'' ) + ')' );
@@ -146,18 +143,18 @@ Inspect3js.extractClassNames	= function() {
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
 
-	function instrumentWebGLRendererInstance( renderer ) {
-
-		var oldRender = renderer.render;
-		renderer.render = function() {
-			oldRender.apply( renderer, arguments );
-
-			var scene = arguments[ 0 ];
-			var camera = arguments[ 1 ];
+	Inspect3js.instrumentWebGLRenderer	= function(renderer){
+		var previousFunction = renderer.render;
+		renderer.render = function(scene, camera) {
+			previousFunction.apply( renderer, arguments );
+			
+			
+			// reccursiveAddObject(scene)
+			
 			window.postMessage({
-				source: 'ThreejsEditor', 
-				method: 'render', 
-				sceneId: scene.uuid, 
+				source	: 'ThreejsEditor', 
+				method	: 'render', 
+				sceneId	: scene.uuid, 
 				cameraId: camera.uuid
 			}, '*');
 		}
@@ -168,14 +165,14 @@ Inspect3js.extractClassNames	= function() {
 
 	Inspect3js.instrumentObject	= function(object){
 		if( object instanceof THREE.WebGLRenderer ) {
-			instrumentWebGLRendererInstance( object );			
+			Inspect3js.instrumentWebGLRenderer( object );			
 		}else if( object instanceof THREE.Object3D ) {
 			reccursiveAddObject( object );
 		}
 	}
 
 	/**
-	 * instrument instanced objects_cache WebGLRenderer/Object3D in window.*
+	 * instrument instanced objectsCache WebGLRenderer/Object3D in window.*
 	 * - aka totally ignore any others in closure or elsewhere ...
 	 */
 	Inspect3js.instrumentWindowGlobals	= function() {
@@ -196,7 +193,7 @@ Inspect3js.extractClassNames	= function() {
 	/**
 	 * Modify three.js to intercept calls
 	 */
-	function instrument() {
+	function injectInThreejs() {
 
 		Inspect3js.extractClassNames()
 
@@ -205,60 +202,48 @@ Inspect3js.extractClassNames	= function() {
 		//////////////////////////////////////////////////////////////////////////////////
 		//		THREE.WebGLRenderer
 		//////////////////////////////////////////////////////////////////////////////////
+
 		// post process on constructor		
 		THREE.WebGLRenderer = Inspect3js.overloadPostProcess( THREE.WebGLRenderer, function() {
-			// console.log( '++ NEW WebGLRenderer' );
-			instrumentWebGLRendererInstance( this );
-		} );
-		
-		THREE.WebGLRenderer.prototype.render = Inspect3js.overloadPostProcess( THREE.WebGLRenderer.prototype.render, function() {
-			console.log('ddd')
-			var scene = arguments[ 0 ];
-			var camera = arguments[ 1 ];
-			reccursiveAddObject( scene );			
-		} );
+			Inspect3js.instrumentWebGLRenderer( this );
+		});
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		THREE.Object3D
 		//////////////////////////////////////////////////////////////////////////////////
 
 		var oldObject3D = THREE.Object3D;
+		// post process on constructor
 		THREE.Object3D = Inspect3js.overloadPostProcess( THREE.Object3D, function() {
-			// console.log( '++ NEW Object3D' );
 			addObject( this );
 		} );
+		// copy prototype
 		THREE.Object3D.prototype = oldObject3D.prototype;
+		// add all static properties of THREE.Object3D
 		for( var j in oldObject3D ) { 
 			if( oldObject3D.hasOwnProperty( j ) ) {
 				THREE.Object3D[ j ] = oldObject3D[ j ];
 			} 
 		}
 
-		THREE.Object3D.prototype.add = Inspect3js.overloadPostProcess( THREE.Object3D.prototype.add, function() {
-			
+		// post process on object3d.add()
+		THREE.Object3D.prototype.add = Inspect3js.overloadPostProcess( THREE.Object3D.prototype.add, function(returnValue, args) {
 			var parent = this;
-			if( !parent.uuid ) parent.uuid = generateUUID();
-			for( var j = 0; j < arguments[ 1 ].length; j++ ) {
-				// console.log( '++ Object3D.add' );
-				var object = arguments[ 1 ][ j ];
-				if( !object.uuid ) object.uuid = generateUUID();
+console.log('object3d.add')
+			for( var j = 0; j < args.length; j++ ) {
+				var object = args[ j ];
 				reccursiveAddObject( object, parent );
 			}
-
 		} );
-
-		THREE.Object3D.prototype.remove = Inspect3js.overloadPostProcess( THREE.Object3D.prototype.remove, function() {
-			
+	
+		// post process on object3d.remove()
+		THREE.Object3D.prototype.remove = Inspect3js.overloadPostProcess( THREE.Object3D.prototype.remove, function(returnValue, args) {			
 			var parent = this;
-			for( var j = 0; j < arguments[ 1 ].length; j++ ) {
-				// console.log( '++ Object3D.remove' );
-				var object = arguments[ 1 ][ j ];
+			for( var j = 0; j < args.length; j++ ) {
+				var object = args[ j ];
 				reccursiveRemoveObject( object, parent );
 			}
-
 		} );
-
-
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////
@@ -296,7 +281,7 @@ Inspect3js.extractClassNames	= function() {
 		return this.getObjectByUuid(uuid)
 	}
 	Inspect3js.getObjectByUuid	= function(uuid){
-		var object = objects_cache[uuid]
+		var object = objectsCache[uuid]
 		if( object === undefined )	return null
 		return object
 	}	
@@ -321,7 +306,7 @@ Inspect3js.extractClassNames	= function() {
 		}
 	
 	
-		var object = objects_cache[ uuid ];		
+		var object = objectsCache[ uuid ];		
 
 		var data = {
 			sniffType: Inspect3js.getClassName(object),
@@ -563,7 +548,7 @@ Inspect3js.extractClassNames	= function() {
 	 */
 	Inspect3js.ChangeProperty = function( object3dUUID, data ) {
 		// console.log('ChangeProperty', data.property, 'to', data.value)
-		var object3d = objects_cache[ object3dUUID ];
+		var object3d = objectsCache[ object3dUUID ];
 		var curObject = object3d;
 		
 		var fields = data.property.split( '.' );
@@ -597,7 +582,7 @@ Inspect3js.extractClassNames	= function() {
 	 */
 	Inspect3js.ChangeObject3dFunction = function( object3dUUID, fct, args ) {
 		// console.log('ChangeObject3dFunction', fct.toString(), args)
-		var object3d = objects_cache[ object3dUUID ];
+		var object3d = objectsCache[ object3dUUID ];
 		console.assert(object3d instanceof THREE.Object3D)
 		var newArgs	= args.slice(0)
 		newArgs.unshift(object3d); 
@@ -608,7 +593,8 @@ Inspect3js.extractClassNames	= function() {
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
-	var objects_cache = {};
+	var objectsCache = {};
+	Inspect3js._objectsCache = objectsCache
 	
 	function checkThreeJs() {
 		var isThreejsPresent = (window.THREE && window.THREE.REVISION) ? true : false
@@ -621,7 +607,7 @@ Inspect3js.extractClassNames	= function() {
 
 		console.log('three.js inpector: Injected in THREE.js', window.THREE.REVISION)
 		
-		instrument();
+		injectInThreejs();
 	}
 
 	checkThreeJs();
