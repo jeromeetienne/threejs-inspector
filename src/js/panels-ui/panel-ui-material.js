@@ -114,6 +114,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 		if( value === 'createMap' ){
 			injectFunction(function(object3d, textureType, faceMaterialIndex){
 				var material = faceMaterialIndex === -1 ? object3d.material : object3d.material.materials[faceMaterialIndex]
+				// default image
 				var url = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 
 				material[textureType]	= THREE.ImageUtils.loadTexture( url );

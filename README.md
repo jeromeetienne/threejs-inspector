@@ -10,6 +10,8 @@ by the excelent @thespite. Check it out!
 
 
 ## History
+- added ability to create a texture from material popup menu
+- added export-in-console for material and geometry
 - added upload support for texture
 - added dragdrop support for texture
 - added "about" tab
