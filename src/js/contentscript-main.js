@@ -69,78 +69,18 @@ Inspect3js.extractClassNames	= function() {
 		}, '*');
 	});
 
-	
-	//////////////////////////////////////////////////////////////////////////////////
-	//		Comments
-	//////////////////////////////////////////////////////////////////////////////////
-	var generateUUID = ( function() {
-		// http://www.broofa.com/Tools/Math.uuid.htm
 
-		var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split( '' );
-		var uuid = new Array( 36 );
-		var rnd = 0, r;
 
-		return function () {
-
-			for ( var i = 0; i < 36; i ++ ) {
-
-				if ( i == 8 || i == 13 || i == 18 || i == 23 ) {
-
-					uuid[ i ] = '-';
-
-				} else if ( i == 14 ) {
-
-					uuid[ i ] = '4';
-
-				} else {
-
-					if ( rnd <= 0x02 ) rnd = 0x2000000 + ( Math.random() * 0x1000000 ) | 0;
-					r = rnd & 0xf;
-					rnd = rnd >> 4;
-					uuid[ i ] = chars[ ( i == 19 ) ? ( r & 0x3 ) | 0x8 : r ];
-
-				}
-			}
-
-			return uuid.join( '' );
-
-		};
-
-	} )();
-
-	//////////////////////////////////////////////////////////////////////////////////
-	//		Comments
-	//////////////////////////////////////////////////////////////////////////////////
-	var objects_cache = {};
-	
-	function checkThreeJs() {
-		var isThreejsPresent = (window.THREE && window.THREE.REVISION) ? true : false
-
-		if( isThreejsPresent === false ) {
-			console.log('three.js not present', window.THREE.REVISION)
-			setTimeout( checkThreeJs, 10 );
-			return
-		}
-
-		console.log('three.js inpector: Injected in THREE.js', window.THREE.REVISION)
-		
-		instrument();
-	}
-
-	checkThreeJs();
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
 	function reccursiveAddObject( object, parent ) {
-
-		if( !object.uuid ) object.uuid = generateUUID();
 		
 		addObject( object, parent );
 
 		object.children.forEach( function( child ) {
-			if( child instanceof THREE.Object3D ) {
-				reccursiveAddObject( child, object  );
-			}
+			console.assert( child instanceof THREE.Object3D );
+			reccursiveAddObject( child, object  );
 		} );
 
 	}
@@ -164,8 +104,9 @@ Inspect3js.extractClassNames	= function() {
 	 */
 	function addObject( object, parent ) {
 
-		var type = Inspect3js.getClassName( object );
 		objects_cache[ object.uuid ] = object;
+
+		var type = Inspect3js.getClassName( object );
 		
 		if( parent && ( type === 'PerspectiveCamera' || type === 'OrthographicCamera' ) ) {
 			if( Inspect3js.getClassName( parent ) === 'Scene' ) {
@@ -225,30 +166,29 @@ Inspect3js.extractClassNames	= function() {
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
 
+	Inspect3js.instrumentObject	= function(object){
+		if( object instanceof THREE.WebGLRenderer ) {
+			instrumentWebGLRendererInstance( object );			
+		}else if( object instanceof THREE.Object3D ) {
+			reccursiveAddObject( object );
+		}
+	}
+
 	/**
 	 * instrument instanced objects_cache WebGLRenderer/Object3D in window.*
 	 * - aka totally ignore any others in closure or elsewhere ...
 	 */
-	function instrumentLate() {
-
+	Inspect3js.instrumentWindowGlobals	= function() {
 		var propertiesToIgnore = [ 'webkitStorageInfo', 'webkitIndexedDB' ];
 
 		for( var property in window ) { 
 			if( propertiesToIgnore.indexOf( property ) >= 0 ) continue;
-			if( window[ property ] instanceof THREE.WebGLRenderer ) {
-				// console.log( '++ Existing WebGLRenderer' );
-				var object = window[ property ];
-				instrumentWebGLRendererInstance( object );			
-			}
-		 	if( window[ property ] instanceof THREE.Object3D ) {
-				// console.log( '++ Existing Object3D' );
-				var object = window[ property ];
-				
-				reccursiveAddObject( object );
-			}
-		}
-	
+			Inspect3js.instrumentObject( window[property] )
+		}	
 	}
+	
+	
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
@@ -260,21 +200,32 @@ Inspect3js.extractClassNames	= function() {
 
 		Inspect3js.extractClassNames()
 
-		// console.log( 'INSTRUMENT LATE' )
-		instrumentLate();
-		// console.log( 'DONE' );
+		Inspect3js.instrumentWindowGlobals();
 
+		//////////////////////////////////////////////////////////////////////////////////
+		//		THREE.WebGLRenderer
+		//////////////////////////////////////////////////////////////////////////////////
+		// post process on constructor		
 		THREE.WebGLRenderer = Inspect3js.overloadPostProcess( THREE.WebGLRenderer, function() {
 			// console.log( '++ NEW WebGLRenderer' );
 			instrumentWebGLRendererInstance( this );
 		} );
 		
+		THREE.WebGLRenderer.prototype.render = Inspect3js.overloadPostProcess( THREE.WebGLRenderer.prototype.render, function() {
+			console.log('ddd')
+			var scene = arguments[ 0 ];
+			var camera = arguments[ 1 ];
+			reccursiveAddObject( scene );			
+		} );
+
+		//////////////////////////////////////////////////////////////////////////////////
+		//		THREE.Object3D
+		//////////////////////////////////////////////////////////////////////////////////
+
 		var oldObject3D = THREE.Object3D;
 		THREE.Object3D = Inspect3js.overloadPostProcess( THREE.Object3D, function() {
 			// console.log( '++ NEW Object3D' );
-			var object = this;
-			if( !object.uuid ) object.uuid = generateUUID();
-			addObject( object );
+			addObject( this );
 		} );
 		THREE.Object3D.prototype = oldObject3D.prototype;
 		for( var j in oldObject3D ) { 
@@ -307,11 +258,6 @@ Inspect3js.extractClassNames	= function() {
 
 		} );
 
-		THREE.WebGLRenderer.prototype.render = Inspect3js.overloadPostProcess( THREE.WebGLRenderer.prototype.render, function() {
-
-			reccursiveAddObject( object, parent );			
-
-		} );
 
 	}
 	
@@ -658,4 +604,25 @@ Inspect3js.extractClassNames	= function() {
 		
 		fct.apply(null, newArgs)
 	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Comments
+	//////////////////////////////////////////////////////////////////////////////////
+	var objects_cache = {};
+	
+	function checkThreeJs() {
+		var isThreejsPresent = (window.THREE && window.THREE.REVISION) ? true : false
+
+		if( isThreejsPresent === false ) {
+			console.log('three.js not present', window.THREE.REVISION)
+			setTimeout( checkThreeJs, 10 );
+			return
+		}
+
+		console.log('three.js inpector: Injected in THREE.js', window.THREE.REVISION)
+		
+		instrument();
+	}
+
+	checkThreeJs();
 }
