@@ -77,7 +77,7 @@ var PanelActions	= function(){
 		var material = new THREE.MeshNormalMaterial()
 		var mesh = new THREE.Mesh(geometry, material)
 
-		var parent = injected3jsInspect.getSelected()
+		var parent = Inspect3js.getSelected()
 		parent.add(mesh)
 	}
 
@@ -148,7 +148,7 @@ var PanelActions	= function(){
 		}
 
 
-		var parent = injected3jsInspect.getSelected()
+		var parent = Inspect3js.getSelected()
 		parent.add(light)
 		
 		updateMaterials()
