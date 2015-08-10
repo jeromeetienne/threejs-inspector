@@ -8,10 +8,6 @@ UI.TextureRow2 = function(){
 	var container	= this
 	var textureJson	= null
 	
-		// TODO open in a new tab
-		// var url	= urlInput.value
-		// window.open( url, '_blank' );
-		// window.focus();
 	//////////////////////////////////////////////////////////////////////////////////
 	//		handle onChange
 	//////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +32,25 @@ UI.TextureRow2 = function(){
 		foldToggle()
 	})
 	
-
+	//////////////////////////////////////////////////////////////////////////////////
+	//		popupMenu
+	//////////////////////////////////////////////////////////////////////////////////
+	var popupMenu	= UI.PopupMenuHelper.createSelect({
+		''			: '--- Options ---',
+		'openInTab'		: 'Open in Tab',
+	}, onPopupMenuChange)
+	typeRow.add(popupMenu)
+	
+	function onPopupMenuChange(value){
+		if( value === 'openInTab' ){
+			var url	= uiTexture.getValue()
+			window.open( url, '_blank' );
+			window.focus();
+			return
+		}else{
+			console.assert(false)
+		}
+	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comment								//
 	//////////////////////////////////////////////////////////////////////////////////
@@ -88,9 +102,7 @@ UI.TextureRow2 = function(){
 	var label	= new UI.Text( '- image' ).setWidth( '90px' )
 	imageRow.add( label );
 
-	var uiTexture	= new UI.Texture().onChange(function(){
-		dispatchOnChange()
-	});
+	var uiTexture	= new UI.Texture().onChange(dispatchOnChange);
 	imageRow.add( uiTexture );
 	container.uiTexture	= uiTexture;
 	
@@ -240,24 +252,20 @@ UI.TextureRow2 = function(){
 	//////////////////////////////////////////////////////////////////////////////////
 
 	container.dom.addEventListener('dragenter', function(event){
-// console.log('texture row dragenter')
 		container.dom.style.backgroundColor	= '#ccc'
 		container.dom.style.borderRadius	= '5px'
 
 	})
 	container.dom.addEventListener('dragleave', function(event){
-// console.log('texture row dragleave')
 		container.dom.style.backgroundColor	= ''
 
 	})
 	container.dom.addEventListener('dragover', function(event){
-// console.log('texture row dragover')
 		container.dom.style.backgroundColor	= '#ccc'
 		event.preventDefault();
 	})
 
 	container.dom.addEventListener('drop', function(event){
-// console.log('texture row drop')
 		container.dom.style.backgroundColor	= '#0066ff'
 
 		event.preventDefault();

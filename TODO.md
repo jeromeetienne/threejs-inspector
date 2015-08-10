@@ -26,6 +26,7 @@
 
 
 ---
+- DONE when creating a texture, the material.needsUpdate = true
 - LATER implement more geometry
 - DONE use same namespace for all devtools spacec 
   - var InspectDevTools	= InspectDevTools	|| {}

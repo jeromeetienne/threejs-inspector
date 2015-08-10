@@ -102,7 +102,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 	//////////////////////////////////////////////////////////////////////////////////
 	var popupMenu	= UI.PopupMenuHelper.createSelect({
 		''			: '--- Options ---',
-		'createMap'		: 'create map',
+		'createMap'		: 'Create Map Texture',
 		'exportInConsole'	: 'Export in Console',
 	}, onPopupMenuChange)
 	materialSelectRow.add(popupMenu)
@@ -118,7 +118,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 				var url = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 
 				material[textureType]	= THREE.ImageUtils.loadTexture( url );
-
+				material.needsUpdate = true;
 			}, ['map', faceMaterialIndex]);		
 		}else if( value === 'exportInConsole' ){
 			InspectDevTools.functionOnObject3d(function(object3d, faceMaterialIndex){
@@ -172,6 +172,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 
 	var opacityRow	= new UI.NumberRow()
 	opacityRow.setLabel('Opacity').onChange(update)
+	opacity.value.setRange(0,1.0)
 	container.add( opacityRow );
 
 	var transparentRow	= new UI.CheckboxRow()
@@ -233,7 +234,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 	container.add( depthWriteRow );
 
 	var alphaTestRow	= new UI.NumberRow().setTitle('To enable alphaTest')
-	alphaTestRow.value.setRange(0,0.9999)
+	alphaTestRow.value.setRange(0,1.0)
 	alphaTestRow.setLabel('alphaTest').onChange(update)
 	container.add( alphaTestRow );
 
@@ -256,7 +257,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 	
 	function updateTexture(materialProperty, textureJson){
 		InspectDevTools.functionOnObject3d(function(object3d, materialProperty, textureJson, faceMaterialIndex){
-			var material = faceMaterialIndex === -1 ? object3d.material : object3d.material.materials[faceMaterialIndex]
+			var material	= faceMaterialIndex === -1 ? object3d.material : object3d.material.materials[faceMaterialIndex]
 			var texture	= material[materialProperty]
 
 			if( textureJson.uuid !== undefined )		texture.uuid = textureJson.uuid
@@ -278,7 +279,6 @@ var PanelMaterial	= function(faceMaterialIndex){
 				});
 				texture.sourceFile = textureJson.sourceFile;
 			}
-			
 			
 			texture.needsUpdate	= true;
 		}, [materialProperty, textureJson, faceMaterialIndex]);		
