@@ -38,9 +38,9 @@ var PanelSettings	= function(){
 		// update auto-refresh
 		InspectDevTools.plainFunction(function(autoRefresh){
 			if( autoRefresh ){
-				injected3jsInspect.autoRefreshStart()
+				Inspect3js.autoRefreshStart()
 			}else{
-				injected3jsInspect.autoRefreshStop()				
+				Inspect3js.autoRefreshStop()				
 			}
 		}, [autoRefreshRow.getValue()]);			
 	}

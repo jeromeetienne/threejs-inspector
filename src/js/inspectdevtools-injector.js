@@ -11,7 +11,7 @@ InspectDevTools.propertyOnObject3d	= function(property, value){
 		value	: value
 	}
 	
-	var jsCode	= 'injected3jsInspect.ChangeProperty( "' + editor.selected.uuid + '",' + JSON.stringify(data) + ' )'
+	var jsCode	= 'Inspect3js.ChangeProperty( "' + editor.selected.uuid + '",' + JSON.stringify(data) + ' )'
 	chrome.devtools.inspectedWindow.eval( jsCode );		
 }
 
@@ -41,7 +41,7 @@ InspectDevTools.plainFunction	= function(fct, args){
 InspectDevTools.functionOnObject3d	= function(fct, args){
 	if( args === undefined ) args = []
 	
-	var jsCode	= 'injected3jsInspect.ChangeObject3dFunction'
+	var jsCode	= 'Inspect3js.ChangeObject3dFunction'
 			+ '('
 				+ JSON.stringify(editor.selected.uuid)
 			+ ', '

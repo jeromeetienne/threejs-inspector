@@ -8,6 +8,8 @@ function injectMain() {
 	
 var Inspect3js	= Inspect3js	|| {}
 
+window.Inspect3js	= Inspect3js
+
 //////////////////////////////////////////////////////////////////////////////////
 //		Wrap function with postCall
 //////////////////////////////////////////////////////////////////////////////////
@@ -50,31 +52,6 @@ Inspect3js.extractClassNames	= function() {
 //////////////////////////////////////////////////////////////////////////////////
 //		Comments
 //////////////////////////////////////////////////////////////////////////////////
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	// console.assert(window.__Injected === undefined)
 	// if( window.__Injected === true )	return
@@ -134,37 +111,7 @@ Inspect3js.extractClassNames	= function() {
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
-	var threejsClassNames = [];
-	function sniffType( object ) {
-
-		for( var j in threejsClassNames ) {
-			if( object instanceof THREE[ threejsClassNames[ j ] ] ) {
-				var result = threejsClassNames[j]
-				return result;
-			}
-		}
-
-		debugger; // dafuc?
-
-	}
-	function sniffType(object){
-		return Inspect3js.getClassName(object)
-	}
-	/**
-	 * extract all constructors functions name from three.js
-	 */
-	function extractTypesFromThreejs() {
-		for( var property in THREE ){
-			if( typeof THREE[ property ] !== 'function' )	continue
-			// NOTE: unshift is key here to get proper inheritance
-			// - https://github.com/spite/ThreeJSEditorExtension/issues/9
-			threejsClassNames.unshift( property );
-		}
-	}
-	//////////////////////////////////////////////////////////////////////////////////
-	//		Comments
-	//////////////////////////////////////////////////////////////////////////////////
-	var objects = {};
+	var objects_cache = {};
 	
 	function checkThreeJs() {
 		var isThreejsPresent = (window.THREE && window.THREE.REVISION) ? true : false
@@ -217,11 +164,11 @@ Inspect3js.extractClassNames	= function() {
 	 */
 	function addObject( object, parent ) {
 
-		var type = sniffType( object );
-		objects[ object.uuid ] = object;
+		var type = Inspect3js.getClassName( object );
+		objects_cache[ object.uuid ] = object;
 		
 		if( parent && ( type === 'PerspectiveCamera' || type === 'OrthographicCamera' ) ) {
-			if( sniffType( parent ) === 'Scene' ) {
+			if( Inspect3js.getClassName( parent ) === 'Scene' ) {
 				return;
 			}
 		}
@@ -241,9 +188,9 @@ Inspect3js.extractClassNames	= function() {
 
 	function removeObject( object, parent ) {
 
-		//objects[ object.uuid ] = object;
+		//objects_cache[ object.uuid ] = object;
 
-		// var type = sniffType( object );
+		// var type = Inspect3js.getClassName( object );
 		//console.log( '++ Removing Object ' + type + ' (' + object.uuid + ') (parent ' + ( parent?parent.uuid:'' ) + ')' );
 		window.postMessage( {
 			source	: 'ThreejsEditor', 
@@ -279,7 +226,7 @@ Inspect3js.extractClassNames	= function() {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * instrument instanced objects WebGLRenderer/Object3D in window.*
+	 * instrument instanced objects_cache WebGLRenderer/Object3D in window.*
 	 * - aka totally ignore any others in closure or elsewhere ...
 	 */
 	function instrumentLate() {
@@ -312,7 +259,6 @@ Inspect3js.extractClassNames	= function() {
 	function instrument() {
 
 		Inspect3js.extractClassNames()
-		extractTypesFromThreejs();
 
 		// console.log( 'INSTRUMENT LATE' )
 		instrumentLate();
@@ -370,12 +316,6 @@ Inspect3js.extractClassNames	= function() {
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////
-	//		Comments
-	//////////////////////////////////////////////////////////////////////////////////
-	
-	window.injected3jsInspect = Inspect3js
-	
-	//////////////////////////////////////////////////////////////////////////////////
 	//		handle autoRefresh
 	//////////////////////////////////////////////////////////////////////////////////
 	
@@ -410,7 +350,7 @@ Inspect3js.extractClassNames	= function() {
 		return this.getObjectByUuid(uuid)
 	}
 	Inspect3js.getObjectByUuid	= function(uuid){
-		var object = objects[uuid]
+		var object = objects_cache[uuid]
 		if( object === undefined )	return null
 		return object
 	}	
@@ -435,10 +375,10 @@ Inspect3js.extractClassNames	= function() {
 		}
 	
 	
-		var object = objects[ uuid ];		
+		var object = objects_cache[ uuid ];		
 
 		var data = {
-			sniffType: sniffType(object),
+			sniffType: Inspect3js.getClassName(object),
 	
 			uuid: object.uuid,
 			id: object.id,
@@ -499,7 +439,7 @@ Inspect3js.extractClassNames	= function() {
 
 			if( geometry === undefined )	return
 
-			var sniffedType	= sniffType(geometry)
+			var sniffedType	= Inspect3js.getClassName(geometry)
 
 			data.geometry = {
 				sniffType	: sniffedType,
@@ -552,7 +492,7 @@ Inspect3js.extractClassNames	= function() {
 			if( material === null )	return undefined
 			
 			var data = {
-				sniffType	: sniffType(material),
+				sniffType	: Inspect3js.getClassName(material),
 				uuid		: material.uuid,
 			}
 			if( material.name !== undefined )		data.name	= material.name
@@ -640,7 +580,7 @@ Inspect3js.extractClassNames	= function() {
 			if( texture === null )	return undefined
 			
 			var data = {
-				sniffType	: sniffType(texture),
+				sniffType	: Inspect3js.getClassName(texture),
 				uuid		: texture.uuid,
 				name		: texture.name,
 			}
@@ -677,7 +617,7 @@ Inspect3js.extractClassNames	= function() {
 	 */
 	Inspect3js.ChangeProperty = function( object3dUUID, data ) {
 		// console.log('ChangeProperty', data.property, 'to', data.value)
-		var object3d = objects[ object3dUUID ];
+		var object3d = objects_cache[ object3dUUID ];
 		var curObject = object3d;
 		
 		var fields = data.property.split( '.' );
@@ -711,7 +651,7 @@ Inspect3js.extractClassNames	= function() {
 	 */
 	Inspect3js.ChangeObject3dFunction = function( object3dUUID, fct, args ) {
 		// console.log('ChangeObject3dFunction', fct.toString(), args)
-		var object3d = objects[ object3dUUID ];
+		var object3d = objects_cache[ object3dUUID ];
 		console.assert(object3d instanceof THREE.Object3D)
 		var newArgs	= args.slice(0)
 		newArgs.unshift(object3d); 
