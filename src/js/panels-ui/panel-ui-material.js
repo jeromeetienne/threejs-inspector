@@ -172,7 +172,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 
 	var opacityRow	= new UI.NumberRow()
 	opacityRow.setLabel('Opacity').onChange(update)
-	opacity.value.setRange(0,1.0)
+	opacityRow.value.setRange(0,1.0)
 	container.add( opacityRow );
 
 	var transparentRow	= new UI.CheckboxRow()

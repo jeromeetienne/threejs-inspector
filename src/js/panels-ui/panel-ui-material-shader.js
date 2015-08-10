@@ -16,7 +16,7 @@ var PanelMaterialShader	= function(faceMaterialIndex){
 	container.add( new UI.HorizontalRule() )
 
 	var typeRow = new UI.TextRow()
-	typeRow.setLabel('Type')
+	typeRow.setLabel('Uniforms')
 	container.add( typeRow );
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@ var PanelMaterialShader	= function(faceMaterialIndex){
 		var injectProperty = InspectDevTools.propertyOnObject3d;
 		var injectFunction = InspectDevTools.functionOnObject3d
 
-		typeRow.updateUI( material.sniffType )
+		// typeRow.updateUI( 'Uniforms' )
 
 		console.assert(material.fragmentShader)
 		console.assert(material.vertexShader)
