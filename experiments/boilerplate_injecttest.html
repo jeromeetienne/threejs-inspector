@@ -1,13 +1,59 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<script src='vendor/three.js/build/three.min.js'></script>
-<script src='vendor/three.js/examples/js/controls/OrbitControls.js'></script>
+<script src='../examples/vendor/three.js/build/three.min.js'></script>
+<script src='../examples/vendor/three.js/examples/js/controls/OrbitControls.js'></script>
 <div style='position: absolute; top: 0px; width: 100%;font-family:arial; font-weight: bolder; padding-top: 5px;'>
 	<a href="https://github.com/jeromeetienne/threejs-boilerplate" target="_blank">Boilerplate</a>
 	for
 	<a href="http://threejs.org" target="_blank">three.js</a>
 	- works on desktop and mobile
-</div><body style='margin: 0px; overflow: hidden; text-align:center;'><script>
+</div><body style='margin: 0px; overflow: hidden; text-align:center;'>
+	
+<script src='./inspect3js.js'></script>
+<script>
+	Inspect3js.extractClassNames();
+	
+	// so Inspect3js.overloadPostProcess() on a constructor is run after the new
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		WebGLRenderer
+	//////////////////////////////////////////////////////////////////////////////////
+	// post process on constructor
+	THREE.WebGLRenderer = Inspect3js.overloadPostProcess( THREE.WebGLRenderer, function() {
+		console.trace( 'New THREE.WebGLRenderer' );
+	} );
+
+	// post process on .render()
+	THREE.WebGLRenderer.prototype.render = Inspect3js.overloadPostProcess( THREE.WebGLRenderer.prototype.render, function() {
+		console.log('webglRender.render()')
+	} );
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		THREE.Object3D
+	//////////////////////////////////////////////////////////////////////////////////
+	var oldObject3D = THREE.Object3D;
+	// post process on constructor
+	THREE.Object3D = Inspect3js.overloadPostProcess( THREE.Object3D, function() {
+		console.trace( 'New THREE.Object3D' );
+	} );
+	// copy prototype
+	THREE.Object3D.prototype = oldObject3D.prototype;
+	// add all static properties of THREE.Object3D
+	for( var j in oldObject3D ) { 
+		if( oldObject3D.hasOwnProperty( j ) ) {
+			THREE.Object3D[ j ] = oldObject3D[ j ];
+		} 
+	}
+
+	// post process on object3d.add()
+	THREE.Object3D.prototype.add = Inspect3js.overloadPostProcess( THREE.Object3D.prototype.add, function(returnValue, args) {
+		var parent	= this;
+		var child	= args[0]
+		// var returnValue = arguments
+		console.log('parent.uuid', parent.uuid)
+		console.log('child.uuid', child.uuid)
+	});
+</script><script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////

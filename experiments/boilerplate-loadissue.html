@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <body style='margin: 0px; overflow: hidden; text-align:center;'>
-<script src="vendor/three.js/build/three.min.js"></script>
+<script src="../examples/vendor/three.js/build/three.min.js"></script>
 <script>
 
 	var camera, scene, renderer;
@@ -28,7 +28,7 @@ setTimeout(function(){
 
 		var geometry = new THREE.BoxGeometry( 200, 200, 200 );
 
-		var texture = THREE.ImageUtils.loadTexture( 'textures/crate.gif' );
+		var texture = THREE.ImageUtils.loadTexture( '../examples/textures/crate.gif' );
 		// texture.anisotropy = renderer.getMaxAnisotropy();
 		// texture.repeat.set(5, 4)
 		// texture.offset.set(0.5, 0.4)
