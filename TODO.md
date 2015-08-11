@@ -1,4 +1,8 @@
 ## Next steps
+- hide actions when no object3d is selected
+  - change the title to 'add child geometry'
+  - 'add child light'
+  - delete/clone
 - do a context popup menu in scene-brower
   - reinject - do a ```Inspect3js.injectInThreejs()```
   - collapse all - 
