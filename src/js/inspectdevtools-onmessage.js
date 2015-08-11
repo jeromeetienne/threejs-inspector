@@ -12,7 +12,9 @@ InspectDevTools._onMessage	= function(msg){
 			console.log( '>> inject' );
 			InspectDevTools.initAllUI();
 			
-			chrome.devtools.inspectedWindow.eval( '(' + injectMain.toString() + ')()' )	
+			chrome.devtools.inspectedWindow.eval( '(' + inject_00_InstrumentTools.toString() + ')()' )	
+			chrome.devtools.inspectedWindow.eval( '(' + inject_99_Main.toString() + ')()' )	
+			chrome.devtools.inspectedWindow.eval( '(' + inject_99_OnLoad.toString() + ')()' )	
 			break;
 		case 'init':
 			if( isInitialised === true )	break;

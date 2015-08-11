@@ -1,56 +1,15 @@
 /**
  * code to inject into the inspected page
  */
-function injectMain() {
+function inject_99_Main() {
 	
 	
 	
-	
-var Inspect3js	= Inspect3js	|| {}
-
-window.Inspect3js	= Inspect3js
-
-//////////////////////////////////////////////////////////////////////////////////
-//		Wrap function with postCall
-//////////////////////////////////////////////////////////////////////////////////
-Inspect3js.overloadPostProcess	= function( originalFunction, postProcessFct ) {
-	return function() {
-		var returnValue = originalFunction.apply( this, arguments );
-		returnValue = postProcessFct.apply( this, [ returnValue, arguments ] ) || returnValue;
-		return returnValue;
-	}
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////
-//		Comments
-//////////////////////////////////////////////////////////////////////////////////
-Inspect3js._classNames = [];
-
-Inspect3js.getClassName		= function( object ) {
-	for( var j in Inspect3js._classNames ) {
-		if( object instanceof THREE[ Inspect3js._classNames[ j ] ] ) {
-			var result = Inspect3js._classNames[j]
-			return result;
-		}
-	}
-
-	debugger; // dafuc?
-}	
 /**
- * extract all constructors functions name from three.js
+ * define content script namespace
+ * @type {Object}
  */
-Inspect3js.extractClassNames	= function() {
-	for( var property in THREE ){
-		if( typeof THREE[ property ] !== 'function' )	continue
-		// NOTE: unshift is key here to get proper inheritance
-		// - https://github.com/spite/ThreeJSEditorExtension/issues/9
-		Inspect3js._classNames.unshift( property );
-	}
-}
-
-
-
+window.Inspect3js	= window.Inspect3js	|| {}
 
 //////////////////////////////////////////////////////////////////////////////////
 //		Comments
@@ -82,7 +41,7 @@ function reccursiveRemoveObject( object3d, parent ) {
  */
 function addObject( object, parent ) {
 
-	objectsCache[ object.uuid ] = object;
+	Inspect3js._objectsCache[ object.uuid ] = object;
 
 	var type = Inspect3js.getClassName( object );
 	
@@ -107,7 +66,7 @@ function addObject( object, parent ) {
 
 function removeObject( object, parent ) {
 
-	//objectsCache[ object.uuid ] = object;
+	//Inspect3js._objectsCache[ object.uuid ] = object;
 
 	// var type = Inspect3js.getClassName( object );
 	//console.log( '++ Removing Object ' + type + ' (' + object.uuid + ') (parent ' + ( parent?parent.uuid:'' ) + ')' );
@@ -128,7 +87,6 @@ Inspect3js.instrumentWebGLRenderer	= function(renderer){
 	var previousFunction = renderer.render;
 	renderer.render = function(scene, camera) {
 		previousFunction.apply( renderer, arguments );
-		
 		
 		// reccursiveAddObject(scene)
 		
@@ -170,11 +128,11 @@ Inspect3js.instrumentWindowGlobals	= function() {
 //////////////////////////////////////////////////////////////////////////////////
 //		Comments
 //////////////////////////////////////////////////////////////////////////////////
-Inspect3js.injectInThreejs	= injectInThreejs
+
 /**
  * Modify three.js to intercept calls
  */
-function injectInThreejs() {
+Inspect3js.injectInThreejs = function() {
 
 	Inspect3js.extractClassNames()
 
@@ -261,7 +219,7 @@ Inspect3js.getSelected	= function(){
 	return this.getObjectByUuid(uuid)
 }
 Inspect3js.getObjectByUuid	= function(uuid){
-	var object = objectsCache[uuid]
+	var object = Inspect3js._objectsCache[uuid]
 	if( object === undefined )	return null
 	return object
 }	
@@ -286,7 +244,7 @@ Inspect3js.UISelect = function( uuid ) {
 	}
 
 
-	var object = objectsCache[ uuid ];		
+	var object = Inspect3js._objectsCache[ uuid ];		
 
 	var data = {
 		sniffType: Inspect3js.getClassName(object),
@@ -528,7 +486,7 @@ Inspect3js.UISelect = function( uuid ) {
  */
 Inspect3js.ChangeProperty = function( object3dUUID, data ) {
 	// console.log('ChangeProperty', data.property, 'to', data.value)
-	var object3d = objectsCache[ object3dUUID ];
+	var object3d = Inspect3js._objectsCache[ object3dUUID ];
 	var curObject = object3d;
 	
 	var fields = data.property.split( '.' );
@@ -562,7 +520,7 @@ Inspect3js.ChangeProperty = function( object3dUUID, data ) {
  */
 Inspect3js.ChangeObject3dFunction = function( object3dUUID, fct, args ) {
 	// console.log('ChangeObject3dFunction', fct.toString(), args)
-	var object3d = objectsCache[ object3dUUID ];
+	var object3d = Inspect3js._objectsCache[ object3dUUID ];
 	console.assert(object3d instanceof THREE.Object3D)
 	var newArgs	= args.slice(0)
 	newArgs.unshift(object3d); 
@@ -573,8 +531,8 @@ Inspect3js.ChangeObject3dFunction = function( object3dUUID, fct, args ) {
 //////////////////////////////////////////////////////////////////////////////////
 //		Comments
 //////////////////////////////////////////////////////////////////////////////////
-var objectsCache = {};
-Inspect3js._objectsCache = objectsCache
+
+Inspect3js._objectsCache = {}
 
 function checkThreeJs() {
 	var isThreejsPresent = (window.THREE && window.THREE.REVISION) ? true : false
@@ -587,34 +545,10 @@ function checkThreeJs() {
 
 	console.log('three.js inpector: Injected in THREE.js', window.THREE.REVISION)
 	
-	injectInThreejs();
+	Inspect3js.injectInThreejs();
 }
 
 checkThreeJs();
-//////////////////////////////////////////////////////////////////////////////////
-//		Comments
-//////////////////////////////////////////////////////////////////////////////////
-
-// console.assert(window.__Injected === undefined)
-// if( window.__Injected === true )	return
-
-window.__Injected = true;
-
-function onLoad(){
-	window.postMessage({
-		source: 'ThreejsEditor', 
-		method: 'init'
-	}, '*');	
-}
-/** 
- * signal devtool panel that the injection is completed
- */
-window.addEventListener( 'load', onLoad)
-
-// if window already got loaded, 
-if( document.readyState === 'complete' ){
-	onLoad()
-}
 
 
 
