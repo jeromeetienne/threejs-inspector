@@ -16,6 +16,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 	}else{
 		var container	= UI.CollapsiblePanelHelper.createContainer('Material '+(faceMaterialIndex+1), 'sidebarMaterial'+(faceMaterialIndex === -1 ? '' : '_'+faceMaterialIndex, true))
 	}
+	container.setDisplay( 'none' );
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		signals

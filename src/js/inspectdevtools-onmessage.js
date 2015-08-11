@@ -16,6 +16,7 @@ InspectDevTools._onMessage	= function(msg){
 			chrome.devtools.inspectedWindow.eval( '(' + inject_10_ChangeFromDevtools.toString() + ')()' )	
 			chrome.devtools.inspectedWindow.eval( '(' + inject_20_Select.toString() + ')()' )	
 			chrome.devtools.inspectedWindow.eval( '(' + inject_30_AutoRefresh.toString() + ')()' )	
+			chrome.devtools.inspectedWindow.eval( '(' + inject_30_Object3dToJSON.toString() + ')()' )	
 			chrome.devtools.inspectedWindow.eval( '(' + inject_99_Instrumentation.toString() + ')()' )	
 			chrome.devtools.inspectedWindow.eval( '(' + inject_99_OnLoad.toString() + ')()' )	
 			break;

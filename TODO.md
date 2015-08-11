@@ -1,15 +1,9 @@
 ## Next steps
+- contentscript-select to extract object3dtojson function and put it in its own file
+- put all contentscript files in their own directories
 - this code helps too ```Inspect3js.injectInThreejs()```
   - when it is past the reload splash but wihtout scene
-- this code pasted in console. unblock the 'reload-to-death
-```
-	window.postMessage({
-		source: 'ThreejsEditor', 
-		method: 'init'
-	}, '*');
-```        
-- split the contentscript-main.js into smaller one
-  - try again you understand it better now
+  - e.g. http://127.0.0.1:8000/examples/webgl_geometry_minecraft.html
 - issue when dropping large Texture
   - limitation of url length ?
 - issue when dropping new texture without power of two
@@ -34,11 +28,17 @@
 - support camera hook
   - in render i put my own camera
 
----
-### How to make face material
-
 
 ---
+- DONE split the contentscript-main.js into smaller one
+  - try again you understand it better now
+- DONE this code pasted in console. unblock the 'reload-to-death
+```
+	window.postMessage({
+		source: 'ThreejsEditor', 
+		method: 'init'
+	}, '*');
+```        
 - DONE when creating a texture, the material.needsUpdate = true
 - LATER implement more geometry
 - DONE use same namespace for all devtools spacec 
