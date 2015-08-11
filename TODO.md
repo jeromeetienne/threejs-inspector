@@ -1,6 +1,10 @@
 ## Next steps
-- contentscript-select to extract object3dtojson function and put it in its own file
-- put all contentscript files in their own directories
+- do a context popup menu in scene-brower
+  - reinject - do a ```Inspect3js.injectInThreejs()```
+  - collapse all - 
+  - uncollapse all - 
+- DONE contentscript-select to extract object3dtojson function and put it in its own file
+- DONE put all contentscript files in their own directories
 - this code helps too ```Inspect3js.injectInThreejs()```
   - when it is past the reload splash but wihtout scene
   - e.g. http://127.0.0.1:8000/examples/webgl_geometry_minecraft.html

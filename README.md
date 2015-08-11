@@ -10,6 +10,7 @@ by the excelent @thespite. Check it out!
 
 
 ## History
+- improved tab css for visibility
 - improved scene capture, support more demo
 - massive cleanup of the scene capture code
 - added range limit to material.opacity
