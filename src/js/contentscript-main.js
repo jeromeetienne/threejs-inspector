@@ -600,24 +600,21 @@ checkThreeJs();
 
 window.__Injected = true;
 
-/** 
- * signal devtool panel that the injection is completed
- */
-window.addEventListener( 'load', function(){
-	console.log('POST INIT',arguments)
-	// window.postMessage({
-	// 	source: 'ThreejsEditor', 
-	// 	method: 'init'
-	// }, '*');
-
-});
-
-setInterval(function(){	
+function onLoad(){
 	window.postMessage({
 		source: 'ThreejsEditor', 
 		method: 'init'
-	}, '*');
-}, 100)
+	}, '*');	
+}
+/** 
+ * signal devtool panel that the injection is completed
+ */
+window.addEventListener( 'load', onLoad)
+
+// if window already got loaded, 
+if( document.readyState === 'complete' ){
+	onLoad()
+}
 
 
 
