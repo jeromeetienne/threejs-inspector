@@ -13,7 +13,10 @@ InspectDevTools._onMessage	= function(msg){
 			InspectDevTools.initAllUI();
 			
 			chrome.devtools.inspectedWindow.eval( '(' + inject_00_InstrumentTools.toString() + ')()' )	
-			chrome.devtools.inspectedWindow.eval( '(' + inject_99_Main.toString() + ')()' )	
+			chrome.devtools.inspectedWindow.eval( '(' + inject_10_ChangeFromDevtools.toString() + ')()' )	
+			chrome.devtools.inspectedWindow.eval( '(' + inject_20_Select.toString() + ')()' )	
+			chrome.devtools.inspectedWindow.eval( '(' + inject_30_AutoRefresh.toString() + ')()' )	
+			chrome.devtools.inspectedWindow.eval( '(' + inject_99_Instrumentation.toString() + ')()' )	
 			chrome.devtools.inspectedWindow.eval( '(' + inject_99_OnLoad.toString() + ')()' )	
 			break;
 		case 'init':

@@ -13,6 +13,25 @@ window.Inspect3js	= window.Inspect3js	|| {}
 //////////////////////////////////////////////////////////////////////////////////
 //		Comments
 //////////////////////////////////////////////////////////////////////////////////
+function checkThreeJs() {
+	var isThreejsPresent = (window.THREE && window.THREE.REVISION) ? true : false
+
+	if( isThreejsPresent === false ) {
+		console.log('three.js not present', window.THREE.REVISION)
+		setTimeout( checkThreeJs, 10 );
+		return
+	}
+
+	console.log('three.js inpector: Injected in THREE.js', window.THREE.REVISION)
+	
+	Inspect3js.injectInThreejs();
+}
+
+checkThreeJs();
+
+//////////////////////////////////////////////////////////////////////////////////
+//		Comments
+//////////////////////////////////////////////////////////////////////////////////
 
 // console.assert(window.__Injected === undefined)
 // if( window.__Injected === true )	return
