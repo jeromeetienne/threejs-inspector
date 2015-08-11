@@ -1,4 +1,17 @@
 ## Next steps
+- this code helps too ```Inspect3js.injectInThreejs()```
+  - when it is past the reload splash but wihtout scene
+- this code pasted in console. unblock the 'reload-to-death
+```
+	window.postMessage({
+		source: 'ThreejsEditor', 
+		method: 'init'
+	}, '*');
+```        
+- split the contentscript-main.js into smaller one
+  - try again you understand it better now
+- issue when dropping large Texture
+  - limitation of url length ?
 - issue when dropping new texture without power of two
   - three.js complains about filtering
   - auto detect this case and change the filtering when setting

@@ -1,6 +1,8 @@
 var InspectDevTools	= InspectDevTools	|| {}
 
 
+var isInitialised	= false
+
 InspectDevTools._onMessage	= function(msg){
 
 	// console.log( '>> MESSAGE', JSON.stringify(msg) );
@@ -13,7 +15,11 @@ InspectDevTools._onMessage	= function(msg){
 			chrome.devtools.inspectedWindow.eval( '(' + injectMain.toString() + ')()' )	
 			break;
 		case 'init':
+			if( isInitialised === true )	break;
+			isInitialised	= true
+			
 			console.log( '>> init' );
+
 			info.style.display = 'none';
 			container.style.display = 'block';
 

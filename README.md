@@ -10,6 +10,7 @@ by the excelent @thespite. Check it out!
 
 
 ## History
+- massive cleanup of the scene capture code
 - added range limit to material.opacity
 - added ability to create a texture from material popup menu
 - added export-in-console for material and geometry
