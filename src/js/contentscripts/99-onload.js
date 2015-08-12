@@ -22,8 +22,6 @@ function checkThreeJs() {
 		return
 	}
 
-	console.log('three.js inpector: Injected in THREE.js', window.THREE.REVISION)
-	
 	Inspect3js.injectInThreejs();
 }
 

@@ -1,4 +1,5 @@
 ## Next steps
+- put the add/remove of threeviewitem into the proper place... not in .onMessage
 - hide actions when no object3d is selected
   - change the title to 'add child geometry'
   - 'add child light'

@@ -111,6 +111,32 @@ TreeViewItem.prototype._toggleCollapse = function () {
 	this._updateCollapseIcon()
 }
 
+TreeViewItem.prototype.collapseAll = function () {
+ 	var isCollapsed	= this.liElement.classList.contains('collapsed')
+	var hasChildren = this.liElement.querySelector('ul li') ? true : false
+
+	if( isCollapsed === false && hasChildren === true ){
+		this.liElement.classList.add( 'collapsed' );
+	}
+
+	this.children.forEach(function(child){
+		child.collapseAll()
+	})
+}
+
+TreeViewItem.prototype.expandAll = function () {
+ 	var isCollapsed	= this.liElement.classList.contains('collapsed')
+	var hasChildren = this.liElement.querySelector('ul li') ? true : false
+
+	if( isCollapsed === true && hasChildren === true ){
+		this.liElement.classList.remove( 'collapsed' );
+	}
+
+	this.children.forEach(function(child){
+		child.expandAll()
+	})
+}
+
 TreeViewItem.prototype._updateCollapseIcon = function () {
 	var isCollapsed	= this.liElement.classList.contains('collapsed')
 	var hasChildren = this.liElement.querySelector('ul li') ? true : false

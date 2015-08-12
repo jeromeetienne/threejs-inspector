@@ -10,6 +10,7 @@ by the excelent @thespite. Check it out!
 
 
 ## History
+- ability to manually content scripts - more robust
 - improved tab css for visibility
 - improved scene capture, support more demo
 - massive cleanup of the scene capture code

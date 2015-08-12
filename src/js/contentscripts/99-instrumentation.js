@@ -133,6 +133,9 @@ Inspect3js.instrumentWindowGlobals	= function() {
  * Modify three.js to intercept calls
  */
 Inspect3js.injectInThreejs = function() {
+	console.assert( window.THREE !== undefined )
+
+	console.log('three.js inspector: Injected in THREE.js', window.THREE.REVISION)	
 
 	Inspect3js.extractClassNames()
 

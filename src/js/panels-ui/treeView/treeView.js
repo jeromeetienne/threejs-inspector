@@ -29,6 +29,7 @@ TreeView.prototype.clearActive = function() {
 
 }
 
+
 /**
  * return the root item
  * @return {threeViewItem} the root item
