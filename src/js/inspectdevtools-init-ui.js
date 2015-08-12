@@ -25,7 +25,7 @@ InspectDevTools.initRightSideBar	= function(){
 	tabContainer.addTab('OBJECT3D', object3dTab)
 	object3dTab.add( new PanelObject3D() )
 	object3dTab.add( new PanelNoObject3D() )
-	object3dTab.add( new PanelActions() )
+	object3dTab.add( new PanelObject3DActions() )
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		geometryTab

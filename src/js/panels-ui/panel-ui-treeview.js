@@ -8,8 +8,9 @@ var PanelTreeView	= function(){
 	var signals	= editor.signals
 	// var container	= new UI.Panel()
 	
-	var container	= UI.CollapsiblePanelHelper.createContainer('Browser', 'leftSidebarSceneBrowser', false)
-	
+	var container	= UI.CollapsiblePanelHelper.createContainer('BROWSER', 'leftSidebarSceneBrowser', false)
+
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		popupMenu
 	//////////////////////////////////////////////////////////////////////////////////

@@ -3,12 +3,23 @@
  *
  * @constructor
  */
-var PanelActions	= function(){
+var PanelObject3DActions	= function(){
 	
 	var signals	= editor.signals
 	
-	var container	= UI.CollapsiblePanelHelper.createContainer('ACTIONS', 'sidebarActions', false)
-	
+	var container	= UI.CollapsiblePanelHelper.createContainer('ACTIONS', 'sidebarObject3DActions', false)
+	container.setDisplay( 'none' );
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Comments
+	//////////////////////////////////////////////////////////////////////////////////
+	editor.signals.objectSelected.add(function( object3d ){
+		if( object3d !== null ){
+			container.setDisplay( 'inherit' );
+		}else{
+			container.setDisplay( 'none' );
+		}
+	})
 	//////////////////////////////////////////////////////////////////////////////////
 	//		handle tab-object3d
 	//////////////////////////////////////////////////////////////////////////////////
@@ -172,6 +183,7 @@ var PanelActions	= function(){
 })()
 
 
+	container.dom.appendChild( document.createElement('br') )
 
 ;(function(){
 	var button = new UI.Button('delete')

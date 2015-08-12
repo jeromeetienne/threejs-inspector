@@ -18,5 +18,5 @@ backgroundPageConnection.postMessage({
 });
 
 backgroundPageConnection.onMessage.addListener(function(msg) {
-        console.log( 'devtools.js', msg );
+        // console.log( 'devtools.js', msg );
 });

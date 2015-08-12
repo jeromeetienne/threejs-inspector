@@ -10,6 +10,7 @@ by the excelent @thespite. Check it out!
 
 
 ## History
+- added a popup menu in scene-brower
 - ability to manually content scripts - more robust
 - improved tab css for visibility
 - improved scene capture, support more demo

@@ -47,7 +47,7 @@ Inspect3js.UISelect = function( uuid ) {
 		window.postMessage( {
 			source: 'ThreejsEditor', 
 			method: 'objectSelected', 
-			id: null, 
+			object3dUuid: null, 
 		}, '*');
 		return
 	}
@@ -59,8 +59,8 @@ Inspect3js.UISelect = function( uuid ) {
 	window.postMessage( {
 		source: 'ThreejsEditor', 
 		method: 'objectSelected', 
-		id: uuid, 
-		data: JSON.stringify( data )
+		object3dUuid: uuid, 
+		data: data	// JSON.stringify( data )
 	}, '*');
 }
 

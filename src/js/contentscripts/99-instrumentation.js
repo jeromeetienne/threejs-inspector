@@ -57,8 +57,8 @@ function addObject( object, parent ) {
 	window.postMessage( { 
 		source: 'ThreejsEditor', 
 		method: 'addObject', 
-		id: object.uuid, 
-		parentId: parent ? parent.uuid : null, 
+		object3dUuid: object.uuid, 
+		parentUuid: parent ? parent.uuid : null, 
 		type: type, 
 		label: label }
 	, '*');
@@ -73,8 +73,8 @@ function removeObject( object, parent ) {
 	window.postMessage( {
 		source	: 'ThreejsEditor', 
 		method	: 'removeObject', 
-		id	: object.uuid, 
-		parentId: parent ? parent.uuid : null
+		object3dUuid	: object.uuid, 
+		parentUuid: parent ? parent.uuid : null
 	}, '*');						
 }
 

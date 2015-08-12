@@ -3,11 +3,11 @@ var InspectDevTools	= InspectDevTools	|| {}
 
 var isInitialised	= false
 
-InspectDevTools._onMessage	= function(msg){
+InspectDevTools._onMessage	= function(message){
 
-	// console.log( '>> MESSAGE', JSON.stringify(msg) );
+	// console.log( '>> MESSAGE', JSON.stringify(message) );
 
-	switch( msg.method ) {
+	switch( message.method ) {
 		case 'inject':
 			console.log( '>> inject' );
 			InspectDevTools.initAllUI();
@@ -35,34 +35,28 @@ InspectDevTools._onMessage	= function(msg){
 			editor.signals.objectSelected.dispatch(null)
 			break;
 		case 'addObject':
-			console.log('addObject', msg)
-			var objectUuid = msg.id
-			var parentUuid = msg.parentId
+			console.log('addObject', message)
+			var objectUuid = message.object3dUuid
+			var parentUuid = message.parentUuid
 			
 			// create object if needed
-			if( objects[ objectUuid ] === undefined ) {
+			if( objects[ objectUuid ] === undefined ){
 				// create the dom element
-				var treeViewItem = new TreeViewItem( msg.label, objectUuid );
+				var treeViewItem = new TreeViewItem( message.label, objectUuid );
 
-				var data = {
-					type: msg.type,
-					viewItem: treeViewItem
-				}
-			
 				objects[ objectUuid ] = {
-					id: objectUuid,
-					parent: parentUuid,
-					data: data
+					id	: objectUuid,
+					parent	: parentUuid,
+					data	: {
+						type	: message.type,
+						viewItem: treeViewItem
+					}
 				}
-			} 
+			}
 			var object = objects[ objectUuid ]
-			console.assert(object !== undefined )
+			console.assert( object !== undefined )
 
 			if( parentUuid ) {
-				// if current object got a parentItem, remove it from there
-				if( object.data.viewItem.parentItem ){
-					object.data.viewItem.parentItem.removeChild( object.data.viewItem );
-				}
 				// add current object to the proper parent
 				objects[ parentUuid ].data.viewItem.appendChild( object.data.viewItem );
 				object.parent = parentUuid;
@@ -75,29 +69,21 @@ InspectDevTools._onMessage	= function(msg){
 
 			break;
 		case 'removeObject':
-			var objectUuid = msg.id
+			var objectUuid = message.object3dUuid
 
-			// console.log( '>> REMOVE OBJECT', msg.id );
+			// console.log( '>> REMOVE OBJECT', message.object3dUuid );
 			//console.log( ' -- OBJECTS RIGHT NOW: ', JSON.stringify( objects ) );
 			if( objects[ objectUuid ] !== undefined ) {
 				var object = objects[ objectUuid ]
-				if( object.data.viewItem.parentItem ){
-					object.data.viewItem.parentItem.removeChild( object.data.viewItem );
-				}
+				object.data.viewItem.detach()
 				objects[ objectUuid ] = undefined;
 				//console.log( '>> REMOVED' );
 			} else {
 				//console.log( '  -- CACHED' );
 			}
-			/*if( msg.parentId ) {
-				console.log( '>> CONNECT #', objects[ msg.parentId ], '#', objects[ msg.id ], '#' );
-				g.setEdge( msg.parentId, msg.id, { lineInterpolate: 'basis', arrowhead: 'normal' } );
-				objects[ msg.id ].parent = parentId;
-			}*/
-			// console.log( '>> DONE' );
 			break;
 		case 'objectSelected':
-			var objectUuid = msg.id
+			var objectUuid = message.object3dUuid
 			if( objectUuid === null ){
 				console.log( '>> OBJECT DESELECTED');
 				editor.selected = null
@@ -105,22 +91,20 @@ InspectDevTools._onMessage	= function(msg){
 				break;
 			}
 
-			// console.log( '>> OBJECT SELECTED', msg.data );
-			var data = JSON.parse( msg.data );
-			editor.selected = data
+			editor.selected = message.data
 
-			editor.signals.objectSelected.dispatch(data)
+			editor.signals.objectSelected.dispatch( editor.selected )
 			break;
 		case 'render':
 			// console.log( 'RENDER RENDER' );
-			/*g.setEdge( msg.cameraId, msg.sceneId, { 
+			/*g.setEdge( message.cameraId, message.sceneId, { 
 				lineInterpolate: 'basis', 
 				arrowhead: 'normal', 
 				style: "stroke-dasharray: 5, 5;",
 			} );*/
 			break;
 		case 'log':
-			console.log( msg.arguments );
+			console.log( message.arguments );
 			break;
 	}	
 }
