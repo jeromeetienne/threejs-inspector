@@ -1,4 +1,10 @@
 ## Next steps
+- FOCUS ON SCENE GRABBING
+  - normal scene graph
+  - large program without the usual render not at the same place
+  - if i intercept renderer.render(scene, camera)
+  - i got everything
+  - iframe ? 
 - put the add/remove of threeviewitem into the proper place... not in .onMessage
 - hide actions when no object3d is selected
   - change the title to 'add child geometry'
