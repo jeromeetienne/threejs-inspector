@@ -7,4 +7,7 @@
 ### how to test if it works
 - write a test code
 - contentscript within a bookmarlet
+  - see http://stackoverflow.com/questions/106425/load-external-js-from-bookmarklet
 - if it works, backport the whole system in three.js inspector
+- provide a .js to include just after you load the three.js
+  - cooperating with the author of the page

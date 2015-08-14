@@ -29,22 +29,31 @@ function onPostRender(renderer, scene, camera){
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-//		Comments
+//		THREE.WebGLRenderer
 //////////////////////////////////////////////////////////////////////////////////
 
-Inspect3js.instrumentWebGLRenderer	= function(renderer){
-	var previousFunction = renderer.render;
+// THREE.WebGLRenderer = Inspect3js.overloadPostProcess( THREE.WebGLRenderer, function() {
+// 	Inspect3js.instrumentWebGLRendererInstance( this );
+// });
+
+Inspect3js.instrumentWebGLRendererInstance	= function(renderer){
+	var previousFct = renderer.render;
 	renderer.render = function(scene, camera) {
-		previousFunction.apply( renderer, arguments );
+		previousFct.apply( renderer, arguments );
 		
 		onPostRender(renderer, scene, camera)
 	}
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////
+//		Comments
+//////////////////////////////////////////////////////////////////////////////////
+
 Inspect3js.instrumentObject	= function(object){
 	if( object instanceof THREE.WebGLRenderer ) {
-		Inspect3js.instrumentWebGLRenderer( object );			
-	}else if( object instanceof THREE.Object3D ) {
-		// reccursiveAddObject( object );
+		console.log('dddd')
+		Inspect3js.instrumentWebGLRendererInstance( object );			
 	}
 }
 
@@ -59,7 +68,9 @@ Inspect3js.instrumentWindowGlobals	= function() {
 	var propertiesToIgnore = [ 'webkitStorageInfo', 'webkitIndexedDB' ];
 
 	for( var property in window ) { 
-		if( propertiesToIgnore.indexOf( property ) >= 0 ) continue;
+		var toBeIgnored = propertiesToIgnore.indexOf( property ) >= 0 ? true : false
+		if( toBeIgnored === true ) continue;
+
 		Inspect3js.instrumentObject( window[property] )
 	}	
 }

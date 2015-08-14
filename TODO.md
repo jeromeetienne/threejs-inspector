@@ -5,11 +5,7 @@
   - if i intercept renderer.render(scene, camera)
   - i got everything
   - iframe ? 
-- put the add/remove of threeviewitem into the proper place... not in .onMessage
-- hide actions when no object3d is selected
-  - change the title to 'add child geometry'
-  - 'add child light'
-  - delete/clone
+- put 'show three.js help' in context menu
 - issue when dropping large Texture
   - limitation of url length ?
 - issue when dropping new texture without power of two
@@ -26,6 +22,11 @@
 
 
 ---
+- INVALID put the add/remove of threeviewitem into the proper place... not in .onMessage
+- DONE hide actions when no object3d is selected
+  - change the title to 'add child geometry'
+  - 'add child light'
+  - delete/clone
 - DONE look at the loading issue
   - some pages dont load all everytime
   - boilerplate.html rarely load
