@@ -76,6 +76,12 @@ var PanelAbout	= function(){
 	domElement.target	= '_blank'	
 	domElement.style.color = '#888'
 	feedbackRow.appendChild(domElement)
+
+	container.dom.appendChild( document.createElement('br') )
+
+	var versionRow	= document.createElement('div')
+	versionRow.innerHTML	= 'Work better with the last version of three.js (r71 atm) '
+	container.dom.appendChild(versionRow)
 	
 	container.dom.appendChild( document.createElement('br') )
 
