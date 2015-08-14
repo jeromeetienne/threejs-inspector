@@ -1,5 +1,5 @@
 // chrome.devtools calls
-chrome.devtools.panels.create( "Three.js",
+chrome.devtools.panels.create( "Three.js Inspector",
         "images/icon_48.png",
         "panel.html",
         function(panel) {
