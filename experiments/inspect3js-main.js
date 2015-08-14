@@ -1,0 +1,27 @@
+//////////////////////////////////////////////////////////////////////////////////
+//		Comments
+//////////////////////////////////////////////////////////////////////////////////
+
+
+// post process on constructor		
+THREE.WebGLRenderer = Inspect3js.overloadPostProcess( THREE.WebGLRenderer, function() {
+	Inspect3js.instrumentWebGLRendererInstance( this );
+});
+	
+// Inspect3js.instrumentWebGLRendererInstance(renderer)
+
+
+//////////////////////////////////////////////////////////////////////////////////
+//		Comments
+//////////////////////////////////////////////////////////////////////////////////
+
+var countRendering	= 0
+
+var inspectRaf	= new Inspect3js.Raf()
+inspectRaf.setPrePostFunctions(function(){
+	// console.log('before')
+	countRendering	= 0
+}, function(){
+	console.log('rendering per frame', countRendering)
+	// console.log('after')
+})

@@ -49,6 +49,10 @@
 	var mesh	= new THREE.Mesh( geometry, material );
 	mesh.name	= 'torus knot'
 	scene.add( mesh );
+	
+	onRenderFcts.push(function(delta){
+		mesh.rotation.y += delta * Math.PI
+	})
 
 	// // add a torus	
 	// var geometry	= new THREE.SphereGeometry(0.5);
@@ -79,6 +83,7 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
+// console.log('requestAnimationFrame', requestAnimationFrame, nowMsec)
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
@@ -89,5 +94,7 @@
 		})
 	})
 </script>
-<script src="inspect3js.js"></script>
+<script>
+(function(){document.body.appendChild(document.createElement('script')).src='http://127.0.0.1:8080/experiments/inspect3js-core.js';document.body.appendChild(document.createElement('script')).src='http://127.0.0.1:8080/experiments/inspect3js-raf.js';document.body.appendChild(document.createElement('script')).src='http://127.0.0.1:8080/experiments/inspect3js-main.js';})();
+</script>
 </body>

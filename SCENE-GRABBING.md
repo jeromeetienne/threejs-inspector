@@ -11,3 +11,5 @@
 - if it works, backport the whole system in three.js inspector
 - provide a .js to include just after you load the three.js
   - cooperating with the author of the page
+
+javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://127.0.0.1:8080/experiments/build/inspect3js.js';})();

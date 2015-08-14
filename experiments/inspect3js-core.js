@@ -12,19 +12,15 @@ Inspect3js.overloadPostProcess	= function( originalFunction, postProcessFct ) {
 	}
 }
 
+
 //////////////////////////////////////////////////////////////////////////////////
-//		Comments
+//		Wrap function with postCall
 //////////////////////////////////////////////////////////////////////////////////
-
-
-var renderings	= {}
-
-function onPostRender(renderer, scene, camera){
-	// record this rendering
-	var key	= scene.uuid + '-' + camera.uuid
-	renderings[key]	= {
-		scene	: scene,
-		camera	: camera,
+Inspect3js.overloadPreProcess	= function( originalFunction, preProcessFct ) {
+	return function() {
+		preProcessFct.apply( this, arguments )
+		var returnValue = originalFunction.apply( this, arguments );
+		return returnValue;
 	}
 }
 
@@ -32,16 +28,16 @@ function onPostRender(renderer, scene, camera){
 //		THREE.WebGLRenderer
 //////////////////////////////////////////////////////////////////////////////////
 
-// THREE.WebGLRenderer = Inspect3js.overloadPostProcess( THREE.WebGLRenderer, function() {
-// 	Inspect3js.instrumentWebGLRendererInstance( this );
-// });
-
 Inspect3js.instrumentWebGLRendererInstance	= function(renderer){
 	var previousFct = renderer.render;
+console.log('instrumentWebGLRendererInstance', renderer)
 	renderer.render = function(scene, camera) {
 		previousFct.apply( renderer, arguments );
 		
-		onPostRender(renderer, scene, camera)
+countRendering++;
+// console.trace()
+		// PUT your code here
+		console.log('render')
 	}
 }
 
@@ -52,7 +48,6 @@ Inspect3js.instrumentWebGLRendererInstance	= function(renderer){
 
 Inspect3js.instrumentObject	= function(object){
 	if( object instanceof THREE.WebGLRenderer ) {
-		console.log('dddd')
 		Inspect3js.instrumentWebGLRendererInstance( object );			
 	}
 }
@@ -64,7 +59,7 @@ Inspect3js.instrumentObject	= function(object){
  * instrument instanced objectsCache WebGLRenderer/Object3D in window.*
  * - aka totally ignore any others in closure or elsewhere ...
  */
-Inspect3js.instrumentWindowGlobals	= function() {
+Inspect3js.instrumentGlobalObjects	= function() {
 	var propertiesToIgnore = [ 'webkitStorageInfo', 'webkitIndexedDB' ];
 
 	for( var property in window ) { 
@@ -74,5 +69,3 @@ Inspect3js.instrumentWindowGlobals	= function() {
 		Inspect3js.instrumentObject( window[property] )
 	}	
 }
-
-Inspect3js.instrumentWindowGlobals()
