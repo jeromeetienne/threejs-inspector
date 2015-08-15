@@ -6,6 +6,7 @@
 
 ### how to test if it works
 - write a test code
+  - put the tree in a json object
 - contentscript within a bookmarlet
   - see http://stackoverflow.com/questions/106425/load-external-js-from-bookmarklet
 - if it works, backport the whole system in three.js inspector
