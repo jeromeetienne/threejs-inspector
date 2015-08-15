@@ -23,6 +23,31 @@ var PanelSettings	= function(){
 	autoRefreshRow.setValue(editor.config.getKey('autoRefresh'))
 	container.add( autoRefreshRow )
 
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		handle autoRefresh
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var rafEnabledRow	= new UI.CheckboxRow()
+	rafEnabledRow.setTitle('Enable RequestAnimationFrame hijackinglected object')
+	rafEnabledRow.setLabel('RAF. Enabled').onChange(function(){
+		editor.config.setKey('rafEnabled', rafEnabledRow.getValue())
+		
+		update()
+	})
+	rafEnabledRow.setValue(editor.config.getKey('rafEnabled'))
+	container.add( rafEnabledRow )
+
+	var rafFpsRow = new UI.NumberRow().onChange(function(){
+		editor.config.setKey('rafFps', rafFpsRow.getValue())
+		
+		update()
+	})
+	rafFpsRow.setLabel('RAF. fps')
+	rafFpsRow.value.setRange(1.0,60.0).setPrecision(0).setStep(10)
+	rafFpsRow.value.setValue(editor.config.getKey('rafFps'))
+	container.add( rafFpsRow );
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		signals
 	//////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +67,19 @@ var PanelSettings	= function(){
 			}else{
 				Inspect3js.autoRefreshStop()				
 			}
-		}, [autoRefreshRow.getValue()]);			
+		}, [autoRefreshRow.getValue()]);
+		
+		InspectDevTools.plainFunction(function(rafEnabled, fps){
+			var rafHijacker	= Inspect3js.rafHijacker
+console.log('update rafHijacker', arguments)
+			if( rafEnabled !== true ){
+				rafHijacker.fps = -1
+			}else{
+				rafHijacker.fps = fps
+			}
+
+		}, [rafEnabledRow.getValue(), rafFpsRow.getValue()]);
+		
 	}
 
 

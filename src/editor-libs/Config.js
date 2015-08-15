@@ -8,6 +8,8 @@ var Config = function () {
 
 	var storage = {
 		'autoRefresh': false,
+		'rafEnabled'	: false,
+		'rafFps'	: 10,
 	}
 
 	if ( window.localStorage[ name ] === undefined ) {

@@ -12,13 +12,29 @@ InspectDevTools._onMessage	= function(message){
 			console.log( '>> inject' );
 			InspectDevTools.initAllUI();
 			
-			chrome.devtools.inspectedWindow.eval( '(' + inject_00_InstrumentTools.toString() + ')()' )	
-			chrome.devtools.inspectedWindow.eval( '(' + inject_10_ChangeFromDevtools.toString() + ')()' )	
-			chrome.devtools.inspectedWindow.eval( '(' + inject_20_Select.toString() + ')()' )	
-			chrome.devtools.inspectedWindow.eval( '(' + inject_30_AutoRefresh.toString() + ')()' )	
-			chrome.devtools.inspectedWindow.eval( '(' + inject_30_Object3dToJSON.toString() + ')()' )	
-			chrome.devtools.inspectedWindow.eval( '(' + inject_99_Instrumentation.toString() + ')()' )	
-			chrome.devtools.inspectedWindow.eval( '(' + inject_99_OnLoad.toString() + ')()' )	
+			injectFile('js/libs/rafHijacker.js')
+			injectFunction( inject_00_InstrumentTools )	
+			injectFunction( inject_10_ChangeFromDevtools )	
+			injectFunction( inject_20_Select )	
+			injectFunction( inject_30_AutoRefresh )	
+			injectFunction( inject_30_Object3dToJSON )	
+			injectFunction( inject_99_Instrumentation )	
+			injectFunction( inject_99_OnLoad )
+			function injectFile(url){
+				var request = new XMLHttpRequest();
+				request.open('GET', url, false);  // `false` makes the request synchronous
+				request.send(null);
+				console.assert(request.status === 200)
+  				var content = request.responseText
+				
+				chrome.devtools.inspectedWindow.eval( content )
+			}
+			function injectFunctionAsFile(fct){
+				chrome.devtools.inspectedWindow.eval( '(' + fct.toString() + ')()' )
+			}
+			function injectFunction(fct){
+				chrome.devtools.inspectedWindow.eval( '(' + fct.toString() + ')()' )
+			}
 			break;
 		case 'init':
 			if( isInitialised === true )	break;

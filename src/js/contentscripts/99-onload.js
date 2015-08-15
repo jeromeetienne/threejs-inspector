@@ -10,6 +10,8 @@ function inject_99_OnLoad() {
 window.Inspect3js	= window.Inspect3js	|| {}
 
 
+Inspect3js.rafHijacker	= new RafHijacker()
+
 //////////////////////////////////////////////////////////////////////////////////
 //		Comments
 //////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +53,9 @@ window.addEventListener( 'load', onLoad)
 if( document.readyState === 'complete' ){
 	onLoad()
 }
+
+
+
 
 
 } // End of the containing function

@@ -12,7 +12,10 @@ by the excelent @thespite. Check it out!
 javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://127.0.0.1:8080/experiments/build/inspect3js.js';})();
 
 
-## History
+## History 1.2.6
+- added requestAnimationFrame force rate in setting tabs
+
+## History 1.2.5
 - added a popup menu in scene-brower
 - ability to manually content scripts - more robust
 - improved tab css for visibility

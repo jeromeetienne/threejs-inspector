@@ -19,7 +19,7 @@ var countRendering	= 0
 
 var rafHijacker	= new RafHijacker()
 rafHijacker.fps = 10
-rafHijacker.actAsTimer()
+// rafHijacker.startAsTimer()
 rafHijacker.preFunction = function(){
 	console.log('before')
 	// countRendering	= 0

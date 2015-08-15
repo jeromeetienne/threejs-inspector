@@ -49,6 +49,11 @@
 	var mesh	= new THREE.Mesh( geometry, material );
 	mesh.name	= 'torus knot'
 	scene.add( mesh );
+	
+	onRenderFcts.push(function(delta){
+		mesh.rotation.y += delta * Math.PI
+	})
+
 
 	// // add a torus	
 	// var geometry	= new THREE.SphereGeometry(0.5);
