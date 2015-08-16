@@ -98,6 +98,12 @@ function TreeViewItem( label, id ) {
 		event.stopPropagation()
 	}.bind( this ) );
 
+	containerDiv.addEventListener( 'dblclick', function( event ) {
+		this._toggleCollapse()
+
+		// event.preventDefault();
+		event.stopPropagation()
+	}.bind( this ));
 }
 
 TreeViewItem.prototype.createRootNode = function() {
