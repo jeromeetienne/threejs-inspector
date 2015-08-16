@@ -16,6 +16,20 @@ window.Inspect3js	= window.Inspect3js	|| {}
 
 Inspect3js._objectsCache = {}
 
+Inspect3js.purgeObsoleteObjects	= function(){
+	Object.keys(Inspect3js._objectsCache).forEach(function(objectUuid){
+		var object3d	= Inspect3js._objectsCache[objectUuid]
+		console.assert( object3d instanceof THREE.Object3D === true )
+		if( object3d.parent )	return
+		if( object3d instanceof THREE.Scene )	return
+		if( object3d instanceof THREE.Camera )	return
+		console.log('no parent object3d', object3d, object3d.name)
+		Inspect3js.reccursiveRemoveObject(object3d)
+	})
+}
+
+
+
 //////////////////////////////////////////////////////////////////////////////////
 //		Inspect3js.UISelect
 //////////////////////////////////////////////////////////////////////////////////

@@ -15,6 +15,7 @@ window.Inspect3js	= window.Inspect3js	|| {}
 //		Comments
 //////////////////////////////////////////////////////////////////////////////////
 Inspect3js.reccursiveAddObject	= reccursiveAddObject
+Inspect3js.reccursiveRemoveObject	= reccursiveRemoveObject
 function reccursiveAddObject( object3d, parent ) {
 
 	addObject( object3d, parent );

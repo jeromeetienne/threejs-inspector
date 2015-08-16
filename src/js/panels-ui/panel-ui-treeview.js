@@ -19,6 +19,7 @@ var PanelTreeView	= function(){
 		'collapseAll'		: 'Collapse All',
 		'expandAll'		: 'Expand All',
 		'injectInThreejs'	: 'InjectInThreejs',
+		'purgeObsoleteObjects'	: 'purgeObsoleteObjects',
 	}, onPopupMenuChange)
 	container.titleElement.add(popupMenu)
 	container.dom.appendChild( document.createElement('br') )
@@ -35,6 +36,10 @@ var PanelTreeView	= function(){
 		}else if( value === 'injectInThreejs' ){
 			InspectDevTools.plainFunction(function(){
 				Inspect3js.injectInThreejs()
+			})
+		}else if( value === 'purgeObsoleteObjects' ){
+			InspectDevTools.plainFunction(function(){
+				Inspect3js.purgeObsoleteObjects()
 			})
 		}else{
 			console.assert(false)

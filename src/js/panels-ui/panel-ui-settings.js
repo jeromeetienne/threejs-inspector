@@ -71,7 +71,6 @@ var PanelSettings	= function(){
 		
 		InspectDevTools.plainFunction(function(rafEnabled, fps){
 			var rafThrottler	= Inspect3js.rafThrottler
-console.log('update rafThrottler', arguments)
 			if( rafEnabled !== true ){
 				rafThrottler.fps = -1
 			}else{

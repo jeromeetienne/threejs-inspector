@@ -167,7 +167,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 	container.add( wireframeRow );
 
 	var wireframeLinewidthRow	= new UI.NumberRow()
-	wireframeLinewidthRow.value.setPrecision(0)
+	wireframeLinewidthRow.value.setPrecision(0).setStep(10).setRange(0, 128)
 	wireframeLinewidthRow.setLabel('wireframe width').onChange(update)
 	container.add( wireframeLinewidthRow );
 
@@ -212,6 +212,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 	})
 	
 	var linewidthRow = new UI.NumberRow().onChange(update)
+	linewidthRow.value.setPrecision(0).setStep(10).setRange(0, 128)
 	linewidthRow.setLabel('Line Width')
 	container.add( linewidthRow );
 

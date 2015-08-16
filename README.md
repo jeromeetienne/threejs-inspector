@@ -14,6 +14,7 @@ javascript:(function(){document.body.appendChild(document.createElement('script'
 
 ## History 1.2.6
 - added requestAnimationFrame force rate in setting tabs
+- source cleanup
 
 ## History 1.2.5
 - added a popup menu in scene-brower
