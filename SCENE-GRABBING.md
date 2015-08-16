@@ -13,4 +13,18 @@
 - provide a .js to include just after you load the three.js
   - cooperating with the author of the page
 
-javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://127.0.0.1:8080/experiments/build/inspect3js.js';})();
+---
+# Notes
+- currently there is two sidebars
+- the left with object selector
+- the right with the inspector
+
+## How to present the selector
+- able to select renderer
+  - renderer isnt an object3d. 
+  - currently the item sidebar assume UISelect will give a object3d
+- on selector, you pass all renderings info at the root
+- if an object got no parent for a while, remove it
+- 
+
+## What can be selected
