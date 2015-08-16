@@ -19,7 +19,7 @@ Inspect3js.autoRefreshStart	= function(delay){
 
 	this._autoRefreshTimer	= setInterval(function(){
 		Inspect3js.UISelect(Inspect3js._lastSelectedUuid)
-	}, 0.5 * 1000);			
+	}, 0.5 * 1000);		
 }
 
 Inspect3js.autoRefreshStop	= function(){
