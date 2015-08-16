@@ -8,11 +8,8 @@ It is a fork from
 [WebGL GLSL Shader Editor Extension for Google Chrome](https://github.com/spite/ShaderEditorExtension)
 by the excelent @thespite. Check it out! 
 
-
-javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://127.0.0.1:8080/experiments/build/inspect3js.js';})();
-
-
 ## History 1.2.6
+- started refactoring the scene grabbing
 - added requestAnimationFrame force rate in setting tabs
 - added 'purge obsolete objects' in treeview popup menu - better scene capture
 - source cleanup

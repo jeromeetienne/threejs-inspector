@@ -1,4 +1,7 @@
 ## Next steps
+- add a "tilt" button
+  - do the 2 workarounds
+  - add title='Press this button if your scene is not properly loaded.'
 - FOCUS ON SCENE GRABBING
   - normal scene graph
   - large program without the usual render not at the same place
