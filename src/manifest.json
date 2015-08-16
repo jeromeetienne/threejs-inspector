@@ -1,7 +1,7 @@
 {
 	"name": "Three.js Inspector",
 	"short_name": "3jsInspect",
-	"version": "1.2.5",
+	"version": "1.2.7",
 	"minimum_chrome_version": "10.0",
 	"devtools_page": "devtools.html",
 	"icons": {

@@ -24,7 +24,7 @@ var PanelAbout	= function(){
 	container.dom.appendChild(domElement)
 	
 	var domElement	= document.createElement('div')
-	domElement.innerHTML	= 'v ' + '1.2.5'	
+	domElement.innerHTML	= 'v ' + '1.2.7'	
 	domElement.style.color = '#888'
 	container.dom.appendChild(domElement)
 
