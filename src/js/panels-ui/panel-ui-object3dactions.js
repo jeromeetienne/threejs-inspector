@@ -141,8 +141,8 @@ var PanelObject3DActions	= function(){
 			var exponent = 10;
 
 			var light = new THREE.DirectionalLight( color, intensity, distance, angle, exponent );
-			light.name = 'SpotLight ' + ( ++ lightCount );
-			light.target.name = 'SpotLight ' + ( lightCount ) + ' Target';
+			light.name = 'DirectionalLight ' + ( ++ lightCount );
+			light.target.name = 'DirectionalLight ' + ( lightCount ) + ' Target';
 		}else if( type === 'HemisphereLight' ){
 			var skyColor = 0x00aaff;
 			var groundColor = 0xffaa00;

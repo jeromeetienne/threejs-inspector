@@ -14,13 +14,14 @@ javascript:(function(){document.body.appendChild(document.createElement('script'
 
 ## History 1.2.6
 - added requestAnimationFrame force rate in setting tabs
+- added 'purge obsolete objects' in treeview popup menu - better scene capture
 - source cleanup
 
 ## History 1.2.5
 - added a popup menu in scene-brower
 - ability to manually content scripts - more robust
 - improved tab css for visibility
-- improved scene capture, support more demo
+- added 'inject in three.js' in treeview popup menu - better scene capture
 - massive cleanup of the scene capture code
 - added range limit to material.opacity
 - added ability to create a texture from material popup menu

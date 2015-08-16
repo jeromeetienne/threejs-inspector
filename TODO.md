@@ -1,7 +1,4 @@
 ## Next steps
-- in contentscripts/* load it by files, not by functions
-  - cleanup. no polution of namespace
-- put src/js/panels-ui/treeview into src/js/libs/
 - FOCUS ON SCENE GRABBING
   - normal scene graph
   - large program without the usual render not at the same place
@@ -25,6 +22,9 @@
 
 
 ---
+- DONE in contentscripts/* load it by files, not by functions
+  - cleanup. no polution of namespace
+- DONE put src/js/panels-ui/treeview into src/js/libs/
 - INVALID put the add/remove of threeviewitem into the proper place... not in .onMessage
 - DONE hide actions when no object3d is selected
   - change the title to 'add child geometry'
