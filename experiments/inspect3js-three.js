@@ -1,3 +1,6 @@
+var Inspect3js	= Inspect3js || {}
+
+
 /**
  * instrument instanced objectsCache WebGLRenderer/Object3D in window.*
  * - aka totally ignore any others in closure or elsewhere ...
