@@ -8,7 +8,7 @@ var RafThrottler	= function(){
 	var _this	= this
 	this.preFunction	= null
 	this.postFunction	= null
-	this.fps		= -1	// -1 is no throttle, > 0 is number of frame per second
+	this.fps		= -1	// -1 is no throttle, === 0 for still, > 0 is number of frame per second
 
 	// 
 	requestAnimationFrame	= function(callback){
@@ -20,6 +20,12 @@ var RafThrottler	= function(){
 			setTimeout(function(){
 				onAnimationFrame(callback, performance.now())
 			}, 1000 / _this.fps)
+		}else if( _this.fps === 0 ){
+			var intervalId = setInterval(function(){
+				if( _this.fps === 0 )	return
+				clearInterval(intervalId)
+				onAnimationFrame(callback, performance.now())	
+			}, 100)
 		}else {
 			console.assert(false)
 		}

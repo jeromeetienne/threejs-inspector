@@ -8,7 +8,10 @@ It is a fork from
 [WebGL GLSL Shader Editor Extension for Google Chrome](https://github.com/spite/ShaderEditorExtension)
 by the excelent @thespite. Check it out! 
 
-## History 1.2.6
+## History 1.2.8
+- able to fully stop requestAnimationFrame in setting tabs
+
+## History 1.2.7
 - started refactoring the scene grabbing
 - added requestAnimationFrame force rate in setting tabs
 - added 'purge obsolete objects' in treeview popup menu - better scene capture

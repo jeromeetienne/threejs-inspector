@@ -44,7 +44,7 @@ var PanelSettings	= function(){
 		update()
 	})
 	rafFpsRow.setLabel('RAF. fps')
-	rafFpsRow.value.setRange(1.0,60.0).setPrecision(0).setStep(10)
+	rafFpsRow.value.setRange(0.0,60.0).setPrecision(0).setStep(10)
 	rafFpsRow.value.setValue(editor.config.getKey('rafFps'))
 	container.add( rafFpsRow );
 	

@@ -1,6 +1,6 @@
 # SCENE GRABBING
 - hook THREE.WebGLRenderer.prototype.render(scene, camera)
-- hook requestAnimationFrame
+- DONE hook requestAnimationFrame
   - allow you to count the number of render
 
 
