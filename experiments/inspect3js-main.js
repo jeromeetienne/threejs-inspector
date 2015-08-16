@@ -45,13 +45,13 @@ Inspect3js.instrumentGlobalObjects()
 
 var countRendering	= 0
 
-var rafHijacker	= new RafHijacker()
+var rafThrottler	= new RafThrottler()
 
-// rafHijacker.startAsTimer()
-rafHijacker.preFunction = function(){
+// rafThrottler.startAsTimer()
+rafThrottler.preFunction = function(){
 	// console.log('before')
 }
-rafHijacker.postFunction = function(){
+rafThrottler.postFunction = function(){
 	if( countRendering ){
 		console.log('rendering per frame', countRendering)
 	}
