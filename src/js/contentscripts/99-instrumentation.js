@@ -16,7 +16,7 @@ window.Inspect3js	= window.Inspect3js	|| {}
 //////////////////////////////////////////////////////////////////////////////////
 Inspect3js.reccursiveAddObject	= reccursiveAddObject
 function reccursiveAddObject( object3d, parent ) {
-	
+
 	addObject( object3d, parent );
 
 	object3d.children.forEach( function( child ) {
@@ -40,7 +40,7 @@ function reccursiveRemoveObject( object3d, parent ) {
  * @param {THREE.Object3D=} parent [description]
  */
 function addObject( object, parent ) {
-
+	// if( Inspect3js._objectsCache[ object.uuid ] !== undefined ) return
 	Inspect3js._objectsCache[ object.uuid ] = object;
 
 	var type = Inspect3js.getClassName( object );
@@ -162,27 +162,27 @@ Inspect3js.injectInThreejs = function() {
 	// copy prototype
 	THREE.Object3D.prototype = oldObject3D.prototype;
 	// add all static properties of THREE.Object3D
-	for( var j in oldObject3D ) { 
-		if( oldObject3D.hasOwnProperty( j ) ) {
-			THREE.Object3D[ j ] = oldObject3D[ j ];
+	for( var property in oldObject3D ) { 
+		if( oldObject3D.hasOwnProperty( property ) ) {
+			THREE.Object3D[ property ] = oldObject3D[ property ];
 		} 
 	}
 
 	// post process on object3d.add()
 	THREE.Object3D.prototype.add = Inspect3js.overloadPostProcess( THREE.Object3D.prototype.add, function(returnValue, args) {
 		var parent = this;
-		for( var j = 0; j < args.length; j++ ) {
-			var object = args[ j ];
-			reccursiveAddObject( object, parent );
+		for( var i = 0; i < args.length; i++ ) {
+			var object3d = args[ i ];
+			reccursiveAddObject( object3d, parent );
 		}
 	} );
 
 	// post process on object3d.remove()
 	THREE.Object3D.prototype.remove = Inspect3js.overloadPostProcess( THREE.Object3D.prototype.remove, function(returnValue, args) {			
 		var parent = this;
-		for( var j = 0; j < args.length; j++ ) {
-			var object = args[ j ];
-			reccursiveRemoveObject( object, parent );
+		for( var i = 0; i < args.length; i++ ) {
+			var object3d = args[ i ];
+			reccursiveRemoveObject( object3d, parent );
 		}
 	} );
 }

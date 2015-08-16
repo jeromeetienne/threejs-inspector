@@ -10,7 +10,7 @@ function inject_99_OnLoad() {
 window.Inspect3js	= window.Inspect3js	|| {}
 
 
-Inspect3js.rafHijacker	= new RafHijacker()
+Inspect3js.rafThrottler	= new RafThrottler()
 
 //////////////////////////////////////////////////////////////////////////////////
 //		Comments

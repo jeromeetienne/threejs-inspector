@@ -70,12 +70,12 @@ var PanelSettings	= function(){
 		}, [autoRefreshRow.getValue()]);
 		
 		InspectDevTools.plainFunction(function(rafEnabled, fps){
-			var rafHijacker	= Inspect3js.rafHijacker
-console.log('update rafHijacker', arguments)
+			var rafThrottler	= Inspect3js.rafThrottler
+console.log('update rafThrottler', arguments)
 			if( rafEnabled !== true ){
-				rafHijacker.fps = -1
+				rafThrottler.fps = -1
 			}else{
-				rafHijacker.fps = fps
+				rafThrottler.fps = fps
 			}
 
 		}, [rafEnabledRow.getValue(), rafFpsRow.getValue()]);

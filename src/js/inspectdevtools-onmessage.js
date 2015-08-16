@@ -12,10 +12,10 @@ InspectDevTools._onMessage	= function(message){
 			console.log( '>> inject' );
 			InspectDevTools.initAllUI();
 			
-			injectFile('js/libs/rafHijacker.js')
+			injectFile('js/libs/raf-throttler.js')
 			injectFunction( inject_00_InstrumentTools )	
 			injectFunction( inject_10_ChangeFromDevtools )	
-			injectFunction( inject_20_Select )	
+			injectFunction( inject_20_Select )
 			injectFunction( inject_30_AutoRefresh )	
 			injectFunction( inject_30_Object3dToJSON )	
 			injectFunction( inject_99_Instrumentation )	

@@ -3,13 +3,14 @@
  * 
  * @constructor
  */
-var RafHijacker	= function(){
+var RafThrottler	= function(){
 	var originalFct	= requestAnimationFrame
 	var _this	= this
 	this.preFunction	= null
 	this.postFunction	= null
-	this.fps		= -1
-	
+	this.fps		= -1	// -1 is no throttle, > 0 is number of frame per second
+
+	// 
 	requestAnimationFrame	= function(callback){
 		if( _this.fps === -1 ){
 			originalFct(function(timestamp){
@@ -22,6 +23,13 @@ var RafHijacker	= function(){
 		}else {
 			console.assert(false)
 		}
+	}
+	
+	/**
+	 * restore the original requestAnimationFrame function
+	 */
+	this.restore	= function(){
+		requestAnimationFrame	= originalFct
 	}
 	
 	return
