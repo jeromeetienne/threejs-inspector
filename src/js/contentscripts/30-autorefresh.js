@@ -1,9 +1,4 @@
 /**
- * code to inject into the inspected page
- */
-// function inject_30_AutoRefresh() {
-
-/**
  * define content script namespace
  * @type {Object}
  */
@@ -33,6 +28,3 @@ Inspect3js.autoRefreshStop	= function(){
 	clearInterval(this._autoRefreshTimer)
 	this._autoRefreshTimer = null
 }
-
-
-// } // End of the containing function

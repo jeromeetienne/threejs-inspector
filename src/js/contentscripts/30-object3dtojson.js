@@ -1,9 +1,4 @@
 /**
- * code to inject into the inspected page
- */
-// function inject_30_Object3dToJSON() {
-
-/**
  * define content script namespace
  * @type {Object}
  */
@@ -233,7 +228,3 @@ Inspect3js._object3dToJSON	= function(object){
 		return data
 	}
 }
-
-
-
-// } // End of the containing function

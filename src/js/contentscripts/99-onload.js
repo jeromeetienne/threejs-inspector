@@ -1,7 +1,6 @@
 /**
  * code to inject into the inspected page
  */
-// function inject_99_OnLoad() {
 ;(function(){
 	
 /**
@@ -59,5 +58,3 @@ if( document.readyState === 'complete' ){
 
 
 })()
-
-// } // End of the containing function

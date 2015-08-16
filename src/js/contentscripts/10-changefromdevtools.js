@@ -1,9 +1,4 @@
 /**
- * code to inject into the inspected page
- */
-// function inject_10_ChangeFromDevtools() {
-
-/**
  * define content script namespace
  * @type {Object}
  */
@@ -67,7 +62,3 @@ Inspect3js.ChangeObject3dFunction = function( object3dUUID, fct, args ) {
 	
 	fct.apply(null, newArgs)
 }
-
-
-
-// } // End of the containing function

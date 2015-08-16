@@ -1,7 +1,6 @@
 /**
  * code to inject into the inspected page
  */
-// function inject_99_Instrumentation() {
 ;(function(){
 	
 	
@@ -192,5 +191,3 @@ Inspect3js.injectInThreejs = function() {
 
 	
 })()
-
-// } // End of the containing function

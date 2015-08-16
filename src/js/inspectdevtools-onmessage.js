@@ -14,20 +14,12 @@ InspectDevTools._onMessage	= function(message){
 			
 			injectFile('js/libs/raf-throttler.js')
 			injectFile('js/contentscripts/00-instrumenttools.js')
-			// injectFunction( inject_00_InstrumentTools )	
 			injectFile('js/contentscripts/10-changefromdevtools.js')
-			// injectFunction( inject_10_ChangeFromDevtools )	
 			injectFile('js/contentscripts/20-select.js')
-			// injectFunction( inject_20_Select )
-
 			injectFile('js/contentscripts/30-autorefresh.js')
-			// injectFunction( inject_30_AutoRefresh )	
 			injectFile('js/contentscripts/30-object3dtojson.js')
-			// injectFunction( inject_30_Object3dToJSON )
 			injectFile('js/contentscripts/99-instrumentation.js')
-			// injectFunction( inject_99_Instrumentation )
 			injectFile('js/contentscripts/99-onload.js')
-			// injectFunction( inject_99_OnLoad )
 			function injectFile(url){
 				var request = new XMLHttpRequest();
 				request.open('GET', url, false);  // `false` makes the request synchronous
@@ -36,12 +28,6 @@ InspectDevTools._onMessage	= function(message){
   				var content = request.responseText
 				
 				chrome.devtools.inspectedWindow.eval( content )
-			}
-			function injectFunctionAsFile(fct){
-				chrome.devtools.inspectedWindow.eval( '(' + fct.toString() + ')()' )
-			}
-			function injectFunction(fct){
-				chrome.devtools.inspectedWindow.eval( '(' + fct.toString() + ')()' )
 			}
 			break;
 		case 'init':

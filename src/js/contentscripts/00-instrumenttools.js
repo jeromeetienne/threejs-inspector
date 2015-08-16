@@ -1,9 +1,4 @@
 /**
- * code to inject into the inspected page
- */
-// function inject_00_InstrumentTools() {
-
-/**
  * define content script namespace
  * @type {Object}
  */
@@ -48,6 +43,3 @@ Inspect3js.extractClassNames	= function() {
 		Inspect3js._classNames.unshift( property );
 	}
 }
-
-
-// } // End of the containing function

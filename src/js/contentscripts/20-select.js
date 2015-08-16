@@ -1,9 +1,4 @@
 /**
- * code to inject into the inspected page
- */
-// function inject_20_Select() {
-
-/**
  * define content script namespace
  * @type {Object}
  */
@@ -77,7 +72,3 @@ Inspect3js.UISelect = function( uuid ) {
 		data: data	// JSON.stringify( data )
 	}, '*');
 }
-
-
-
-// } // End of the containing function
