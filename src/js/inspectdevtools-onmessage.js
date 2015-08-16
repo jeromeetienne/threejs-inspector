@@ -23,9 +23,11 @@ InspectDevTools._onMessage	= function(message){
 			injectFile('js/contentscripts/30-autorefresh.js')
 			// injectFunction( inject_30_AutoRefresh )	
 			injectFile('js/contentscripts/30-object3dtojson.js')
-			// injectFunction( inject_30_Object3dToJSON )	
-			injectFunction( inject_99_Instrumentation )	
-			injectFunction( inject_99_OnLoad )
+			// injectFunction( inject_30_Object3dToJSON )
+			injectFile('js/contentscripts/99-instrumentation.js')
+			// injectFunction( inject_99_Instrumentation )
+			injectFile('js/contentscripts/99-onload.js')
+			// injectFunction( inject_99_OnLoad )
 			function injectFile(url){
 				var request = new XMLHttpRequest();
 				request.open('GET', url, false);  // `false` makes the request synchronous

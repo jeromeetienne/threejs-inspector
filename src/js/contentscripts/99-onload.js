@@ -1,8 +1,9 @@
 /**
  * code to inject into the inspected page
  */
-function inject_99_OnLoad() {
-
+// function inject_99_OnLoad() {
+;(function(){
+	
 /**
  * define content script namespace
  * @type {Object}
@@ -57,5 +58,6 @@ if( document.readyState === 'complete' ){
 
 
 
+})()
 
-} // End of the containing function
+// } // End of the containing function

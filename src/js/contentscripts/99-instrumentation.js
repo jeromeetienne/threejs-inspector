@@ -1,8 +1,8 @@
 /**
  * code to inject into the inspected page
  */
-function inject_99_Instrumentation() {
-	
+// function inject_99_Instrumentation() {
+;(function(){
 	
 	
 /**
@@ -14,7 +14,7 @@ window.Inspect3js	= window.Inspect3js	|| {}
 //////////////////////////////////////////////////////////////////////////////////
 //		Comments
 //////////////////////////////////////////////////////////////////////////////////
-Inspect3js.reccursiveAddObject	= reccursiveAddObject
+Inspect3js.reccursiveAddObject		= reccursiveAddObject
 Inspect3js.reccursiveRemoveObject	= reccursiveRemoveObject
 function reccursiveAddObject( object3d, parent ) {
 
@@ -190,5 +190,7 @@ Inspect3js.injectInThreejs = function() {
 
 
 
+	
+})()
 
-} // End of the containing function
+// } // End of the containing function
