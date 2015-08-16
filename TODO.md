@@ -1,6 +1,7 @@
 ## Next steps
 - in contentscripts/* load it by files, not by functions
   - cleanup. no polution of namespace
+- put src/js/panels-ui/treeview into src/js/libs/
 - FOCUS ON SCENE GRABBING
   - normal scene graph
   - large program without the usual render not at the same place

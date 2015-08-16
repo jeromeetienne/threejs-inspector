@@ -36,6 +36,7 @@ function TreeViewItem( label, id ) {
 		this._toggleCollapse()
 
 		event.preventDefault()
+		event.stopPropagation()
 	}.bind(this))
 	
 	// add label
