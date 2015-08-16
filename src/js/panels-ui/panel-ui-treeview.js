@@ -14,12 +14,11 @@ var PanelTreeView	= function(){
 	//////////////////////////////////////////////////////////////////////////////////
 	//		popupMenu
 	//////////////////////////////////////////////////////////////////////////////////
+	
 	var popupMenu	= UI.PopupMenuHelper.createSelect({
 		''			: '--- Options ---',
 		'collapseAll'		: 'Collapse All',
 		'expandAll'		: 'Expand All',
-		'injectInThreejs'	: 'InjectInThreejs',
-		'purgeObsoleteObjects'	: 'purgeObsoleteObjects',
 	}, onPopupMenuChange)
 	container.titleElement.add(popupMenu)
 	container.dom.appendChild( document.createElement('br') )
@@ -33,18 +32,26 @@ var PanelTreeView	= function(){
 			threeViewItem.children.forEach(function(child){
 				child.expandAll()
 			})
-		}else if( value === 'injectInThreejs' ){
-			InspectDevTools.plainFunction(function(){
-				Inspect3js.injectInThreejs()
-			})
-		}else if( value === 'purgeObsoleteObjects' ){
-			InspectDevTools.plainFunction(function(){
-				Inspect3js.purgeObsoleteObjects()
-			})
 		}else{
 			console.assert(false)
 		}
 	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		tiltButton
+	//////////////////////////////////////////////////////////////////////////////////
+	var tiltButton	= new UI.FontAwesomeIcon()
+	tiltButton.setTitle('Medkit to repair three.js inspector. push it in case of panic :)')
+	tiltButton.dom.classList.add('fa-bolt')
+	tiltButton.dom.style.cssFloat = 'right'
+	tiltButton.onClick(function(){
+		InspectDevTools.plainFunction(function(){
+			Inspect3js.injectInThreejs()
+			Inspect3js.purgeObsoleteObjects()
+			console.log('Tried to tilt three.js inspector in this page. I hope it works better...')
+		})		
+	})
+	container.titleElement.add(tiltButton)
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments

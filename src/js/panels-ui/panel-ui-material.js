@@ -80,7 +80,8 @@ var PanelMaterial	= function(faceMaterialIndex){
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	;(function(){
-		var helpButton = new UI.Button('?').setTitle('Open three.js documentation')
+		var helpButton = new UI.FontAwesomeIcon().setTitle('Open three.js documentation')
+		helpButton.dom.classList.add('fa-info-circle')
 		materialSelectRow.add(helpButton)
 		helpButton.onClick(function(){
 			console.log('help button clicked', editor.selected.material.sniffType)

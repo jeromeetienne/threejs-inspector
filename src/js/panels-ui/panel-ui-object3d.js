@@ -74,7 +74,9 @@ var PanelObject3D	= function(){
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	;(function(){
-		var helpButton = new UI.Button('?').setTitle('Open three.js documentation')
+	
+		var helpButton = new UI.FontAwesomeIcon().setTitle('Open three.js documentation')
+		helpButton.dom.classList.add('fa-info-circle')
 		titleRow.add(helpButton)
 		helpButton.onClick(function(){
 			console.log('help button clicked', editor.selected.sniffType)
