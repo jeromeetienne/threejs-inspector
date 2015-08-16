@@ -13,11 +13,17 @@ InspectDevTools._onMessage	= function(message){
 			InspectDevTools.initAllUI();
 			
 			injectFile('js/libs/raf-throttler.js')
-			injectFunction( inject_00_InstrumentTools )	
-			injectFunction( inject_10_ChangeFromDevtools )	
-			injectFunction( inject_20_Select )
-			injectFunction( inject_30_AutoRefresh )	
-			injectFunction( inject_30_Object3dToJSON )	
+			injectFile('js/contentscripts/00-instrumenttools.js')
+			// injectFunction( inject_00_InstrumentTools )	
+			injectFile('js/contentscripts/10-changefromdevtools.js')
+			// injectFunction( inject_10_ChangeFromDevtools )	
+			injectFile('js/contentscripts/20-select.js')
+			// injectFunction( inject_20_Select )
+
+			injectFile('js/contentscripts/30-autorefresh.js')
+			// injectFunction( inject_30_AutoRefresh )	
+			injectFile('js/contentscripts/30-object3dtojson.js')
+			// injectFunction( inject_30_Object3dToJSON )	
 			injectFunction( inject_99_Instrumentation )	
 			injectFunction( inject_99_OnLoad )
 			function injectFile(url){

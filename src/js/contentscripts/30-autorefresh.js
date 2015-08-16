@@ -1,7 +1,7 @@
 /**
  * code to inject into the inspected page
  */
-function inject_30_AutoRefresh() {
+// function inject_30_AutoRefresh() {
 
 /**
  * define content script namespace
@@ -35,4 +35,4 @@ Inspect3js.autoRefreshStop	= function(){
 }
 
 
-} // End of the containing function
+// } // End of the containing function

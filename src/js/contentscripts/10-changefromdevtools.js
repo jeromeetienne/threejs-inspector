@@ -1,7 +1,7 @@
 /**
  * code to inject into the inspected page
  */
-function inject_10_ChangeFromDevtools() {
+// function inject_10_ChangeFromDevtools() {
 
 /**
  * define content script namespace
@@ -70,4 +70,4 @@ Inspect3js.ChangeObject3dFunction = function( object3dUUID, fct, args ) {
 
 
 
-} // End of the containing function
+// } // End of the containing function

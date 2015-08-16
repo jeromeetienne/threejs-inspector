@@ -1,7 +1,7 @@
 /**
  * code to inject into the inspected page
  */
-function inject_20_Select() {
+// function inject_20_Select() {
 
 /**
  * define content script namespace
@@ -80,4 +80,4 @@ Inspect3js.UISelect = function( uuid ) {
 
 
 
-} // End of the containing function
+// } // End of the containing function
