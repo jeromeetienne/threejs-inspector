@@ -33,11 +33,6 @@ checkThreeJs();
 //		Comments
 //////////////////////////////////////////////////////////////////////////////////
 
-// console.assert(window.__Injected === undefined)
-// if( window.__Injected === true )	return
-
-window.__Injected = true;
-
 function onLoad(){
 	window.postMessage({
 		source: 'ThreejsEditor', 
@@ -49,7 +44,7 @@ function onLoad(){
  */
 window.addEventListener( 'load', onLoad)
 
-// if window already got loaded, 
+// if window already got loaded, call onLoad() manually
 if( document.readyState === 'complete' ){
 	onLoad()
 }

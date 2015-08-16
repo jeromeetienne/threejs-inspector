@@ -7,12 +7,12 @@ var InspectDevTools	= InspectDevTools	|| {}
  */
 function Editor(){
 	this.signals	= {
-		objectSelected: new SIGNALS.Signal(),
+		objectSelected	: new SIGNALS.Signal(),
 
-		objectAdded: new SIGNALS.Signal(),
-		objectRemoved: new SIGNALS.Signal(),
+		objectAdded	: new SIGNALS.Signal(),
+		objectRemoved	: new SIGNALS.Signal(),
 		
-		initialized: new SIGNALS.Signal(),		
+		initialized	: new SIGNALS.Signal(),		
 	}
 	
 	this.config	= new Config()
