@@ -7,6 +7,7 @@
   - this implies to put a string in the panel texture, the string is related to an Object3D
   - like '.material.map' or 'material.uniforms.diffuse'
   - it is evaluated with eval() 
+  - STATUS started in panel-ui-texture.js
   
 
 - FOCUS ON SCENE GRABBING
@@ -24,8 +25,11 @@
 
 
 ---
+<<<<<<< HEAD
 - LATER support camera hook
   - in render i put my own camera
+=======
+>>>>>>> d01b4219febf7f9ff6cd38fb01da72c8dd448b4b
 - DONE put 'show three.js help' in context menu
 - DONE support normalMap and normalScale
 - DONE support material.bumpScale
