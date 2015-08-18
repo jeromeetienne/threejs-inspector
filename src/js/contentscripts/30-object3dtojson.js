@@ -131,8 +131,8 @@ Inspect3js._object3dToJSON	= function(object){
 		if( material.map !== undefined )		data.map	= textureToJSON(material.map)
 		if( material.bumpMap !== undefined )		data.bumpMap	= textureToJSON(material.bumpMap)
 		if( material.bumpScale !== undefined )		data.bumpScale	= material.bumpScale
-		// if( material.normalMap !== undefined )		data.normalMap	= textureToJSON(material.normalMap)
-		// if( material.normalScale !== undefined )	data.normalScale= {x: material.normalScale.x, y: material.normalScale.y}
+		if( material.normalMap !== undefined )		data.normalMap	= textureToJSON(material.normalMap)
+		if( material.normalScale !== undefined )	data.normalScale= {x: material.normalScale.x, y: material.normalScale.y}
 		
 		// colors
 		if( material.color !== undefined )		data.color	= material.color.getHexString()
