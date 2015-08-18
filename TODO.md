@@ -1,7 +1,13 @@
 ## Next steps
-- support normalMap and normalScale
 - support for texture in shader material uniforms
   - good example http://127.0.0.1:8000/examples/webgl_materials_bumpmap_skin.html
+  - currently the texture is read in the inspector
+  - the inspector can not yet write in the texture
+  - it is due to the localisation of the texture variable in the inspected page
+  - this implies to put a string in the panel texture, the string is related to an Object3D
+  - like '.material.map' or 'material.uniforms.diffuse'
+  - it is evaluated with eval() 
+  
 
 - FOCUS ON SCENE GRABBING
   - normal scene graph
@@ -9,7 +15,6 @@
   - if i intercept renderer.render(scene, camera)
   - i got everything
   - iframe ? 
-- put 'show three.js help' in context menu
 - issue when dropping large Texture
   - limitation of url length ?
 - issue when dropping new texture without power of two
@@ -21,6 +26,8 @@
 
 
 ---
+- DONE put 'show three.js help' in context menu
+- DONE support normalMap and normalScale
 - DONE support material.bumpScale
 - DONE support for pointCloudmaterial material.size/material.sizeAttenuation
   - http://threejs.org/docs/#Reference/Materials/PointCloudMaterial

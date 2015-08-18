@@ -370,8 +370,8 @@ var PanelMaterial	= function(faceMaterialIndex){
 
 		if( material.bumpScale !== undefined ) injectProperty(propertyPrefix+'.bumpScale', bumpScaleRow.getValue())
 		if( material.normalMap !== undefined ){
-			injectProperty(propertyPrefix+'.normalMap.x', normalMapRow.valueX.getValue())
-			injectProperty(propertyPrefix+'.normalMap.y', normalMapRow.valueY.getValue())			
+			injectProperty(propertyPrefix+'.normalScale.x', normalScaleRow.valueX.getValue())
+			injectProperty(propertyPrefix+'.normalScale.y', normalScaleRow.valueY.getValue())			
 		}
 		
 		
@@ -426,6 +426,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 		normalMapRow.updateUI(material.normalMap)
 		normalScaleRow.updateUI(material.normalScale)
 		normalScaleRow.setDisplay(material.normalMap !== undefined ? '' : 'none')
+
 		//////////////////////////////////////////////////////////////////////////////////
 		//		MeshFaceMaterial
 		//////////////////////////////////////////////////////////////////////////////////
