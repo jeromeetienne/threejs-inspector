@@ -72,10 +72,15 @@ UI.TextureRow2 = function(){
 	function foldSyncDisplay(){
 		// actually display or not depending on current state
 		var display	= isFolded() ? 'none'	: ''
-		imageRow.setDisplay(display)
 		uuidRow.setDisplay(display)
 		nameRow.setDisplay(display)
+
+		imageRow.setDisplay(display)
 		anisotropyRow.setDisplay(display)
+
+		magFilterRow.setDisplay(display)
+		minFilterRow.setDisplay(display)
+
 		wrapRow.setDisplay(display)
 		repeatRow.setDisplay(display)
 		offsetRow.setDisplay(display)
@@ -121,6 +126,24 @@ UI.TextureRow2 = function(){
 	anisotropyRow.value.setRange(0.1,128).setPrecision(0)
 	container.add( anisotropyRow );
 
+	var filterOptions	= {
+		'1003'	: 'Nearest',
+		'1004'	: 'NearestMipMapNearest',
+		'1005'	: 'NearestMipMapLinear',
+		'1006'	: 'Linear',
+		'1007'	: 'LinearMipMapNearest',
+		'1008'	: 'LinearMipMapLinear',
+	}
+	
+	
+	var magFilterRow = new UI.SelectRow().setDisplay('none').setLabel('- mag filter').onChange(dispatchOnChange)
+	magFilterRow.value.setOptions(filterOptions)
+	container.add( magFilterRow );
+	
+	var minFilterRow = new UI.SelectRow().setDisplay('none').setLabel('- min filter').onChange(dispatchOnChange)
+	minFilterRow.value.setOptions(filterOptions)
+	container.add( minFilterRow );
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		wrapRow
 	//////////////////////////////////////////////////////////////////////////////////
@@ -131,9 +154,9 @@ UI.TextureRow2 = function(){
 	wrapRow.add( new UI.Text('- wrap').setWidth( '90px' ) );
 
 	var wrapOptions	= {
-		1001	: 'ClampToEdge',
-		1000	: 'Repeat',
-		1002	: 'MirroredRepeat',
+		'1001'	: 'ClampToEdge',
+		'1000'	: 'Repeat',
+		'1002'	: 'MirroredRepeat',
 	}
 	wrapRow.add( new UI.Text('S:') );
 	var wrapS = new UI.Select().setOptions(wrapOptions).onChange(function(){
@@ -200,6 +223,9 @@ UI.TextureRow2 = function(){
 		if( textureJson.name !== undefined )	textureJson.name	= nameRow.getValue()
 		if( textureJson.anisotropy !== undefined )	textureJson.anisotropy	= anisotropyRow.getValue()
 
+		if( textureJson.magFilter !== undefined )	textureJson.magFilter	= parseInt(magFilterRow.getValue(), 10)
+		if( textureJson.minFilter !== undefined )	textureJson.minFilter	= parseInt(minFilterRow.getValue(), 10)
+
 		if( textureJson.wrapS !== undefined )	textureJson.wrapS	= parseInt(wrapS.getValue(), 10)
 		if( textureJson.wrapT !== undefined )	textureJson.wrapT	= parseInt(wrapT.getValue(), 10)
 		
@@ -213,7 +239,7 @@ UI.TextureRow2 = function(){
 			textureJson.offset.y	= offsetRow.valueY.getValue()
 		}
 		
-		console.log('texture getValue', textureJson)
+		// console.log('texture getValue', textureJson)
 		
 		return textureJson
 	}
@@ -236,6 +262,9 @@ UI.TextureRow2 = function(){
 		uuidRow.setValue( textureJson.uuid )
 		nameRow.setValue( textureJson.name )
 		anisotropyRow.setValue( textureJson.anisotropy )
+
+		magFilterRow.setValue( textureJson.magFilter )
+		minFilterRow.setValue( textureJson.minFilter )
 
 		wrapS.setValue( textureJson.wrapS )
 		wrapT.setValue( textureJson.wrapT )
