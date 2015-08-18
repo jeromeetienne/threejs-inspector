@@ -259,6 +259,8 @@ var PanelMaterial	= function(faceMaterialIndex){
 		updateTexture('map', textureJson)
 	})
 	container.add( mapRow );
+	
+	// var mapPanel	= new Pane
 
 	var bumpMapRow = new UI.TextureRow2().setLabel('Bump map').onChange(function(){
 		var textureJson = bumpMapRow.getValue();

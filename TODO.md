@@ -7,6 +7,7 @@
   - this implies to put a string in the panel texture, the string is related to an Object3D
   - like '.material.map' or 'material.uniforms.diffuse'
   - it is evaluated with eval() 
+  - STATUS started in panel-ui-texture.js
   
 
 - FOCUS ON SCENE GRABBING
