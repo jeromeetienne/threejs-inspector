@@ -212,6 +212,15 @@ var PanelMaterial	= function(faceMaterialIndex){
 		5	: 'Custom',
 	})
 	
+	var sizeRow = new UI.NumberRow().onChange(update)
+	sizeRow.value.setPrecision(0)
+	sizeRow.setLabel('Size')
+	container.add( sizeRow );
+	
+	var sizeAttenuationRow = new UI.CheckboxRow().onChange(update)
+	sizeAttenuationRow.setLabel('Size attenuation')
+	container.add( sizeAttenuationRow );
+
 	var linewidthRow = new UI.NumberRow().onChange(update)
 	linewidthRow.value.setPrecision(0).setStep(10).setRange(0, 128)
 	linewidthRow.setLabel('Line Width')
@@ -253,11 +262,24 @@ var PanelMaterial	= function(faceMaterialIndex){
 
 	var bumpMapRow = new UI.TextureRow2().setLabel('Bump map').onChange(function(){
 		var textureJson = bumpMapRow.getValue();
-		updateTexture('map', textureJson)
+		updateTexture('bumpmap', textureJson)
 	})
 	container.add( bumpMapRow );
 
+	var bumpScaleRow = new UI.NumberRow().onChange(update)
+	bumpScaleRow.setLabel('bumpScale')
+	container.add( bumpScaleRow );
 	
+	var normalMapRow = new UI.TextureRow2().setLabel('Normal map').onChange(function(){
+		var textureJson = normalMapRow.getValue();
+		updateTexture('normalMap', textureJson)
+	})
+	container.add( normalMapRow );
+	
+	var normalScaleRow = new UI.Vector2Row().onChange(update)
+	normalScaleRow.setLabel('normalScale')
+	container.add( normalScaleRow );
+
 	function updateTexture(materialProperty, textureJson){
 		InspectDevTools.functionOnObject3d(function(object3d, materialProperty, textureJson, faceMaterialIndex){
 			var material	= faceMaterialIndex === -1 ? object3d.material : object3d.material.materials[faceMaterialIndex]
@@ -335,6 +357,9 @@ var PanelMaterial	= function(faceMaterialIndex){
 		if( material.shading !== undefined ) injectProperty(propertyPrefix+'.shading', parseInt(shadingRow.getValue(),10))
 		if( material.blending !== undefined ) injectProperty(propertyPrefix+'.blending', parseInt(blendingRow.getValue(),10))
 
+		if( material.size !== undefined ) injectProperty(propertyPrefix+'.size', sizeRow.getValue())
+		if( material.sizeAttenuation !== undefined ) injectProperty(propertyPrefix+'.sizeAttenuation', sizeAttenuationRow.getValue())
+
 		if( material.linewidth !== undefined ) injectProperty(propertyPrefix+'.linewidth', linewidthRow.getValue())
 		if( material.dashSize !== undefined ) injectProperty(propertyPrefix+'.dashSize', dashSizeRow.getValue())
 
@@ -342,6 +367,13 @@ var PanelMaterial	= function(faceMaterialIndex){
 		if( material.depthTest !== undefined ) injectProperty(propertyPrefix+'.depthTest', depthTestRow.getValue())
 		if( material.depthWrite !== undefined ) injectProperty(propertyPrefix+'.depthWrite', depthWriteRow.getValue())
 		if( material.alphaTest !== undefined ) injectProperty(propertyPrefix+'.alphaTest', alphaTestRow.getValue())
+
+		if( material.bumpScale !== undefined ) injectProperty(propertyPrefix+'.bumpScale', bumpScaleRow.getValue())
+		if( material.normalMap !== undefined ){
+			injectProperty(propertyPrefix+'.normalMap.x', normalMapRow.valueX.getValue())
+			injectProperty(propertyPrefix+'.normalMap.y', normalMapRow.valueY.getValue())			
+		}
+		
 		
 		injectProperty(propertyPrefix+'.needsUpdate', true)
 	}
@@ -374,6 +406,9 @@ var PanelMaterial	= function(faceMaterialIndex){
 		shadingRow.updateUI( material.shading )
 		blendingRow.updateUI( material.blending )
 
+		sizeRow.updateUI( material.size )
+		sizeAttenuationRow.updateUI( material.sizeAttenuation )
+
 		linewidthRow.updateUI(material.linewidth)
 		dashSizeRow.updateUI(material.dashSize)
 
@@ -383,8 +418,14 @@ var PanelMaterial	= function(faceMaterialIndex){
 		alphaTestRow.updateUI(material.alphaTest)
 
 		mapRow.updateUI(material.map)
-		bumpMapRow.updateUI(material.bumpMap)
 
+		bumpMapRow.updateUI(material.bumpMap)
+		bumpScaleRow.updateUI(material.bumpScale)
+		bumpScaleRow.setDisplay(material.bumpMap !== undefined ? '' : 'none')
+
+		normalMapRow.updateUI(material.normalMap)
+		normalScaleRow.updateUI(material.normalScale)
+		normalScaleRow.setDisplay(material.normalMap !== undefined ? '' : 'none')
 		//////////////////////////////////////////////////////////////////////////////////
 		//		MeshFaceMaterial
 		//////////////////////////////////////////////////////////////////////////////////

@@ -92,6 +92,14 @@ var PanelMaterialShader	= function(faceMaterialIndex){
 					numberRow.onChange(function(){
 						injectProperty(propertyPrefix+'.uniforms.'+name+'.value', numberRow.getValue())
 					})
+				}else if( data.type === 'i' ){
+					var numberRow = new UI.NumberRow()
+					numberRow.value.setPrecision(0)
+					numberRow.setLabel(name).setValue(data.value)
+					container.add( numberRow );
+					numberRow.onChange(function(){
+						injectProperty(propertyPrefix+'.uniforms.'+name+'.value', numberRow.getValue())
+					})
 				}else if( data.type === 'v2' ){
 					var vector2Row = new UI.Vector2Row()
 					vector2Row.setLabel(name).updateUI(data.value)
@@ -119,6 +127,12 @@ var PanelMaterialShader	= function(faceMaterialIndex){
 							material.uniforms[uniformName].value.set(colorHexValue)
 						}, [colorRow.value.getHexValue(), name, faceMaterialIndex]);
 					})
+				}else if( data.type === 't' ){
+					var mapRow = new UI.TextureRow2().setLabel(name).onChange(function(){
+						alert('change on texture uniform is not yet implemented')
+					})
+					mapRow.updateUI(data.value)
+					container.add( mapRow );
 				}else {
 					console.log('unhandled uniforms type', data.type)
 				}

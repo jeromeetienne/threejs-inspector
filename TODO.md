@@ -1,7 +1,8 @@
 ## Next steps
-- add a "tilt" button
-  - do the 2 workarounds
-  - add title='Press this button if your scene is not properly loaded.'
+- support normalMap and normalScale
+- support for texture in shader material uniforms
+  - good example http://127.0.0.1:8000/examples/webgl_materials_bumpmap_skin.html
+
 - FOCUS ON SCENE GRABBING
   - normal scene graph
   - large program without the usual render not at the same place
@@ -14,17 +15,21 @@
 - issue when dropping new texture without power of two
   - three.js complains about filtering
   - auto detect this case and change the filtering when setting
-- support for pointCloudmaterial material.size/material.sizeAttenuation
-  - http://threejs.org/docs/#Reference/Materials/PointCloudMaterial
 
-- stop requestAnimationFrame
-  - regulate its rate 
-  - https://gist.github.com/remy/36f388d72c1ef161582f
 - support camera hook
   - in render i put my own camera
 
 
 ---
+- DONE support material.bumpScale
+- DONE support for pointCloudmaterial material.size/material.sizeAttenuation
+  - http://threejs.org/docs/#Reference/Materials/PointCloudMaterial
+- DONE stop requestAnimationFrame
+  - regulate its rate 
+  - https://gist.github.com/remy/36f388d72c1ef161582f
+- DONE add a "tilt" button
+  - do the 2 workarounds
+  - add title='Press this button if your scene is not properly loaded.'
 - DONE in contentscripts/* load it by files, not by functions
   - cleanup. no polution of namespace
 - DONE put src/js/panels-ui/treeview into src/js/libs/

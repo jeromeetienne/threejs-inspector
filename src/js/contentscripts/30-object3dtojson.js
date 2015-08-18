@@ -131,6 +131,8 @@ Inspect3js._object3dToJSON	= function(object){
 		if( material.map !== undefined )		data.map	= textureToJSON(material.map)
 		if( material.bumpMap !== undefined )		data.bumpMap	= textureToJSON(material.bumpMap)
 		if( material.bumpScale !== undefined )		data.bumpScale	= material.bumpScale
+		// if( material.normalMap !== undefined )		data.normalMap	= textureToJSON(material.normalMap)
+		// if( material.normalScale !== undefined )	data.normalScale= {x: material.normalScale.x, y: material.normalScale.y}
 		
 		// colors
 		if( material.color !== undefined )		data.color	= material.color.getHexString()
@@ -148,6 +150,10 @@ Inspect3js._object3dToJSON	= function(object){
 		if( material.shading !== undefined )		data.shading	= material.shading
 		if( material.blending !== undefined )		data.blending	= material.blending
 		
+		// point cloud mateiral
+		if( material.size !== undefined )		data.size	= material.size
+		if( material.sizeAttenuation !== undefined )	data.sizeAttenuation	= material.sizeAttenuation
+
 		// shader material
 		if( material.fragmentShader !== undefined )	data.fragmentShader	= material.fragmentShader
 		if( material.vertexShader !== undefined )	data.vertexShader	= material.vertexShader
@@ -160,6 +166,12 @@ Inspect3js._object3dToJSON	= function(object){
 						type : uniform.type,
 						value : uniform.value,
 					}
+				}else if( uniform.type === 'i' ){
+					data.uniforms[name]	= {
+						type : uniform.type,
+						value : uniform.value,
+					}
+					console.log('uniform', name, data.uniforms[name])
 				}else if( uniform.type === 'v2' ){
 					data.uniforms[name]	= {
 						type : uniform.type,
@@ -182,6 +194,13 @@ Inspect3js._object3dToJSON	= function(object){
 						type : uniform.type,
 						value : uniform.value.getHexString(),
 					}
+				}else if( uniform.type === 't' ){
+					data.uniforms[name]	= {
+						type : uniform.type,
+						value : textureToJSON(uniform.value),
+					}
+				}else{
+					console.warn('uniform type', uniform.type, 'not handled.')
 				}
 			})
 		}

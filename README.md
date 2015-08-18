@@ -10,6 +10,9 @@ by the excelent @thespite. Check it out!
 
 ## History 1.2.8
 - able to fully stop requestAnimationFrame in setting tabs
+- pointCloudmaterial material.size/material.sizeAttenuation
+- handled material.bumpScale
+- support for uniforms texture and integer
 
 ## History 1.2.7
 - started refactoring the scene grabbing
@@ -19,9 +22,11 @@ by the excelent @thespite. Check it out!
 
 ## History 1.2.5
 - added a popup menu in scene-brower
+  - http://127.0.0.1:8000/examples/webgl_materials_bumpmap_skin.html
 - ability to manually content scripts - more robust
 - improved tab css for visibility
 - added 'inject in three.js' in treeview popup menu - better scene capture
+  - find a demo without working well 
 - massive cleanup of the scene capture code
 - added range limit to material.opacity
 - added ability to create a texture from material popup menu
