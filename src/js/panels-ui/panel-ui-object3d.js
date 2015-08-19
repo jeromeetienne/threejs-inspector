@@ -240,21 +240,22 @@ var PanelObject3D	= function(){
 		injectProperty('castShadow', castShadowRow.getValue())
 		injectProperty('receiveShadow', receiveShadowRow.getValue())
 
+		if( selected.fov !== undefined )	injectProperty('fov', fovRow.getValue())		
+		if( selected.near !== undefined )	injectProperty('near', nearRow.getValue())		
+		if( selected.far !== undefined )	injectProperty('far', farRow.getValue())
+		if( selected.left !== undefined )	injectProperty('left', farRow.getValue())
+		if( selected.right !== undefined )	injectProperty('right', farRow.getValue())
+		if( selected.top !== undefined )	injectProperty('top', farRow.getValue())
+		if( selected.bottom !== undefined )	injectProperty('bottom', farRow.getValue())
+
 		var isCamera	= selected.near !== undefined ? true : false
 		if( isCamera ){
-			if( selected.fov !== undefined )	injectProperty('fov', fovRow.getValue())		
-			if( selected.near !== undefined )	injectProperty('near', nearRow.getValue())		
-			if( selected.far !== undefined )	injectProperty('far', farRow.getValue())
-			if( selected.left !== undefined )	injectProperty('left', farRow.getValue())
-			if( selected.right !== undefined )	injectProperty('right', farRow.getValue())
-			if( selected.top !== undefined )	injectProperty('top', farRow.getValue())
-			if( selected.bottom !== undefined )	injectProperty('bottom', farRow.getValue())
-
 			injectFunction(function(object3d){
 				console.assert(object3d instanceof THREE.Camera)
 				object3d.updateProjectionMatrix()				
 			});
 		}
+
 		if( selected.color !== undefined ){
 			// injectFunction
 			injectFunction(function(object3d, colorHexValue){

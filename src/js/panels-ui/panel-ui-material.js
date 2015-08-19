@@ -212,6 +212,10 @@ var PanelMaterial	= function(faceMaterialIndex){
 		5	: 'Custom',
 	})
 	
+	var rotationRow = new UI.NumberRow().onChange(update)
+	rotationRow.setLabel('Rotation')
+	container.add( rotationRow );
+
 	var sizeRow = new UI.NumberRow().onChange(update)
 	sizeRow.value.setPrecision(0)
 	sizeRow.setLabel('Size')
@@ -323,6 +327,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 		if( material.shading !== undefined ) injectProperty(propertyPrefix+'.shading', parseInt(shadingRow.getValue(),10))
 		if( material.blending !== undefined ) injectProperty(propertyPrefix+'.blending', parseInt(blendingRow.getValue(),10))
 
+		if( material.rotation !== undefined ) injectProperty(propertyPrefix+'.rotation', rotationRow.getValue())
 		if( material.size !== undefined ) injectProperty(propertyPrefix+'.size', sizeRow.getValue())
 		if( material.sizeAttenuation !== undefined ) injectProperty(propertyPrefix+'.sizeAttenuation', sizeAttenuationRow.getValue())
 
@@ -372,6 +377,7 @@ var PanelMaterial	= function(faceMaterialIndex){
 		shadingRow.updateUI( material.shading )
 		blendingRow.updateUI( material.blending )
 
+		rotationRow.updateUI( material.rotation )
 		sizeRow.updateUI( material.size )
 		sizeAttenuationRow.updateUI( material.sizeAttenuation )
 

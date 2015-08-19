@@ -150,6 +150,8 @@ Inspect3js._object3dToJSON	= function(object){
 		if( material.shading !== undefined )		data.shading	= material.shading
 		if( material.blending !== undefined )		data.blending	= material.blending
 		
+		// point SpriteMaterial
+		if( material.rotation !== undefined )		data.rotation	= material.rotation
 		// point cloud mateiral
 		if( material.size !== undefined )		data.size	= material.size
 		if( material.sizeAttenuation !== undefined )	data.sizeAttenuation	= material.sizeAttenuation
@@ -234,6 +236,9 @@ Inspect3js._object3dToJSON	= function(object){
 		
 		if(texture.wrapS !== undefined )	data.wrapS	= texture.wrapS
 		if(texture.wrapT !== undefined )	data.wrapT	= texture.wrapT
+		
+		if(texture.magFilter !== undefined )	data.magFilter	= texture.magFilter
+		if(texture.minFilter !== undefined )	data.minFilter	= texture.minFilter
 
 		if(texture.sourceFile !== undefined ){
 			var aDomElement = document.createElement('a')
