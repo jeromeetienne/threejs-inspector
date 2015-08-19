@@ -8,26 +8,34 @@ var PanelTexture	= function(propertyPrefix){
 	var signals	= editor.signals
 
 	var container	= new UI.Panel()
+	var _this	= container
 
 	//////////////////////////////////////////////////////////////////////////////////
-	//		handle autoRefresh
+	//		comments
 	//////////////////////////////////////////////////////////////////////////////////
-
 
 	var textureRow = new UI.TextureRow2().setLabel('Texture').onChange(function(){
 		var textureJson = textureRow.getValue();
-		updateTexture(textureJson)
+		update(textureJson)
 	})
-	container.add( textureRow );
+	_this.add( textureRow );
 
-        this.textureRow = textureRow
+        _this.textureRow = textureRow
 
 
 	//////////////////////////////////////////////////////////////////////////////////
-	//		handle autoRefresh
+	//		comments
 	//////////////////////////////////////////////////////////////////////////////////
 
-	function update(propertyPrefix, textureJson){
+	_this.updateUI	= function(textureJson){
+		_this.textureRow.updateUI(textureJson)
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		comments
+	//////////////////////////////////////////////////////////////////////////////////
+
+	function update(textureJson){
 		InspectDevTools.functionOnObject3d(function(object3d, propertyPrefix, textureJson){
 			var texture	= eval('object3d.'+propertyPrefix)
 

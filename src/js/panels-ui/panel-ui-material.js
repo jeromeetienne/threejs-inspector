@@ -254,63 +254,27 @@ var PanelMaterial	= function(faceMaterialIndex){
 	//		Textures
 	//////////////////////////////////////////////////////////////////////////////////
 
-	var mapRow = new UI.TextureRow2().setLabel('Map').onChange(function(){
-		var textureJson = mapRow.getValue();
-		updateTexture('map', textureJson)
-	})
-	container.add( mapRow );
-	
-	// var mapPanel	= new Pane
+	var propertyPrefix = faceMaterialIndex === -1 ? 'material' : 'material.materials['+faceMaterialIndex+']'
 
-	var bumpMapRow = new UI.TextureRow2().setLabel('Bump map').onChange(function(){
-		var textureJson = bumpMapRow.getValue();
-		updateTexture('bumpmap', textureJson)
-	})
+	var mapRow = new PanelTexture(propertyPrefix+'.map')
+	mapRow.textureRow.setLabel('Map')
+	container.add( mapRow );
+
+	var bumpMapRow = new PanelTexture(propertyPrefix+'.bumpMap')
+	bumpMapRow.textureRow.setLabel('Bump map')
 	container.add( bumpMapRow );
 
 	var bumpScaleRow = new UI.NumberRow().onChange(update)
 	bumpScaleRow.setLabel('bumpScale')
 	container.add( bumpScaleRow );
 	
-	var normalMapRow = new UI.TextureRow2().setLabel('Normal map').onChange(function(){
-		var textureJson = normalMapRow.getValue();
-		updateTexture('normalMap', textureJson)
-	})
+	var normalMapRow = new PanelTexture(propertyPrefix+'.normalMap')
+	normalMapRow.textureRow.setLabel('Normal map')
 	container.add( normalMapRow );
 	
 	var normalScaleRow = new UI.Vector2Row().onChange(update)
 	normalScaleRow.setLabel('normalScale')
 	container.add( normalScaleRow );
-
-	function updateTexture(materialProperty, textureJson){
-		InspectDevTools.functionOnObject3d(function(object3d, materialProperty, textureJson, faceMaterialIndex){
-			var material	= faceMaterialIndex === -1 ? object3d.material : object3d.material.materials[faceMaterialIndex]
-			var texture	= material[materialProperty]
-
-			if( textureJson.uuid !== undefined )		texture.uuid = textureJson.uuid
-			if( textureJson.name !== undefined )		texture.name = textureJson.name
-			if( textureJson.anisotropy !== undefined )	texture.anisotropy = textureJson.anisotropy
-
-			if( textureJson.wrapS !== undefined )	texture.wrapS = textureJson.wrapS
-			if( textureJson.wrapT !== undefined )	texture.wrapT = textureJson.wrapT
-
-			if( textureJson.repeat !== undefined )	texture.repeat.copy(textureJson.repeat)
-			if( textureJson.offset !== undefined )	texture.offset.copy(textureJson.offset)
-			
-			if( textureJson.sourceFile !== texture.sourceFile ){
-				var loader = new THREE.ImageLoader();
-				loader.crossOrigin = '';
-				loader.load( textureJson.sourceFile, function( image ){
-					texture.image = image;
-					texture.needsUpdate = true;
-				});
-				texture.sourceFile = textureJson.sourceFile;
-			}
-			
-			texture.needsUpdate	= true;
-		}, [materialProperty, textureJson, faceMaterialIndex]);		
-	}
-	
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		update()
