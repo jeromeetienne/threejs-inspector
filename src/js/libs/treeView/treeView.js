@@ -9,7 +9,7 @@
 function TreeView( domElementContainer ) {
 
 	
-	this.root = new TreeViewItem( 'WebGLRenderer');
+	this.root = new TreeViewItem( 'Root');
 	this.root.createRootNode();
 	this.root.ulDomElement.classList.add( 'treeView' );
 	this.root.treeView = this;
@@ -28,6 +28,16 @@ TreeView.prototype.clearActive = function() {
 	if( activeElement ) activeElement.classList.remove( 'active' );
 
 }
+
+/**
+ * empty the treeView
+ */
+TreeView.prototype.empty = function () {
+	var ulDomElement	 = this.root.ulDomElement
+	while( ulDomElement.firstChild ){		
+		ulDomElement.removeChild( ulDomElement.firstChild );
+	}
+};
 
 
 /**

@@ -26,11 +26,14 @@ function onRender(){
                 renderings[renderingUuid] = {
                         sceneUuid : scene.uuid,
                         cameraUuid : camera.uuid
+                        renderedAt : Date.now(),
                 }
         }
 
         var rendering = renderings[renderingUuid]
-
+        
+        rendering.renderedAt = Date.now()
+        
         // cache those 2 parent-less object
         cache(scene)
         cache(camera)
