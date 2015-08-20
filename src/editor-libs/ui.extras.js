@@ -41,13 +41,9 @@ UI.FontAwesomeIcon = function(){
 	dom.classList.add('fa');
 	dom.classList.add('uiFontAwesomeButton');
 
-	dom.style.fontSize	= '1.3em'
-	dom.style.paddingTop	= '0.1em'
-	dom.style.paddingBottom	= '0.1em'
-	dom.style.paddingLeft	= '0.2em'
-	dom.style.paddingRight	= '0.2em'
-	dom.style.marginLeft	= '0.2em'
-	dom.style.marginRight	= '0.2em'
+	dom.style.fontSize	= '1.1em'
+	dom.style.padding	= '0.1em'
+	// dom.style.verticalAlign	= 'center'
 
 	return this
 }

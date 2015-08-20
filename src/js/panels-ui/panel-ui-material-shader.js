@@ -128,11 +128,10 @@ var PanelMaterialShader	= function(faceMaterialIndex){
 						}, [colorRow.value.getHexValue(), name, faceMaterialIndex]);
 					})
 				}else if( data.type === 't' ){
-					var mapRow = new UI.TextureRow2().setLabel(name).onChange(function(){
-						alert('change on texture uniform is not yet implemented')
-					})
-					mapRow.updateUI(data.value)
+					var mapRow = new PanelTexture(propertyPrefix+'.uniforms.'+name)
+					mapRow.textureRow.setLabel(name)
 					container.add( mapRow );
+					mapRow.updateUI(data.value)
 				}else {
 					console.log('unhandled uniforms type', data.type)
 				}

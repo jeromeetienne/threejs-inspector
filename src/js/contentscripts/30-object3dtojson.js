@@ -202,7 +202,7 @@ Inspect3js._object3dToJSON	= function(object){
 						value : textureToJSON(uniform.value),
 					}
 				}else{
-					console.warn('uniform type', uniform.type, 'not handled.')
+					// console.warn('uniform type', uniform.type, 'not handled.')
 				}
 			})
 		}
