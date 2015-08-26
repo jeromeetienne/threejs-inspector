@@ -27,6 +27,10 @@
 
 
 ---
+- WONT onSelect ui, set $_ so no action is needed to share in console
+  - normal workflow in chrome devtools. Find a reference
+  - https://developer.chrome.com/devtools/docs/commandline-api#_
+  - impossible as it conflict with actual ```$_``` in the jsconsole evaluation
 - LATER support camera hook
   - in render i put my own camera
 - DONE put 'show three.js help' in context menu

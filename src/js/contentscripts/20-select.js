@@ -49,6 +49,8 @@ Inspect3js.getObjectByUuid	= function(uuid){
 Inspect3js.UISelect = function( uuid ) {
 	// console.log('UISelect', uuid)
 
+
+	// honor this._lastSelectedUuid
 	this._lastSelectedUuid	= uuid
 
 	// used to deselect
@@ -64,6 +66,8 @@ Inspect3js.UISelect = function( uuid ) {
 
 	var object = Inspect3js._objectsCache[ uuid ];		
 	var data = Inspect3js._object3dToJSON(object);
+
+
 
 	window.postMessage( {
 		source: 'ThreejsEditor', 

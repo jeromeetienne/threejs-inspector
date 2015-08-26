@@ -9,6 +9,7 @@ It is a fork from
 by the excelent @thespite. Check it out! 
 
 ## History 1.2.8
+- support for $_
 - added support material.magFilter and material.minFilter
   - http://127.0.0.1:8000/examples/webgl_materials_texture_filters.html
 - added support for spriteMaterial.rotation

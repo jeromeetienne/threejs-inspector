@@ -122,7 +122,8 @@ body {
 	position:absolute;
 	left:0;
 	top:0;
-	width: 300px;
+	/*width: 300px;*/
+	width: 50%;
 	right:50%;
 	bottom:0;
 	overflow:auto;
@@ -131,7 +132,8 @@ body {
 #editPanel, #rightSidebar {
 	position:absolute;
 	left:50%;
-	width: 300px;
+	/*width: 300px;*/
+	width: 50%;
 	top:0;
 	right:0;
 	bottom:0;
