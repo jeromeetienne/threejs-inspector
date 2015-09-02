@@ -40,7 +40,7 @@ function TreeViewItem( label, id ) {
 	}.bind(this))
 	
 	// add label
-	var labelElement = document.createElement( 'p' );
+	var labelElement = this.labelElement = document.createElement( 'p' );
 	labelElement.textContent = this.label;
 	containerDiv.appendChild( labelElement );
 	
@@ -219,3 +219,8 @@ TreeViewItem.prototype.detach = function () {
 
 	this._updateCollapseIcon()
 };
+
+TreeViewItem.prototype.updateLabel = function (label) {
+	this.label = label;
+	this.labelElement.textContent = label;
+}

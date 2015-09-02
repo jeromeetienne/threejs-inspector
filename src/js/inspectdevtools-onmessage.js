@@ -64,6 +64,7 @@ InspectDevTools._onMessage	= function(message){
 				}
 			}
 			var object = objects[ objectUuid ]
+			object.data.viewItem.updateLabel(message.label);
 			console.assert( object !== undefined )
 
 			if( parentUuid ) {
