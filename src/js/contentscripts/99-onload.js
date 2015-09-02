@@ -16,10 +16,10 @@ Inspect3js.rafThrottler	= new RafThrottler()
 //		Comments
 //////////////////////////////////////////////////////////////////////////////////
 function checkThreeJs() {
-	var isThreejsPresent = (window.THREE && window.THREE.REVISION) ? true : false
+	var isThreejsPresent = window.THREE && window.THREE.REVISION;
 
-	if( isThreejsPresent === false ) {
-		console.log('three.js not present', window.THREE.REVISION)
+	if(!isThreejsPresent) {
+		console.log('three.js not present')
 		setTimeout( checkThreeJs, 10 );
 		return
 	}
