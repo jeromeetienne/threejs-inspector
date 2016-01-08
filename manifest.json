@@ -1,0 +1,12 @@
+{
+        "name": "three.js extension2",
+        "version": "1.0.0",
+        "manifest_version": 2,
+        "description": "super description",
+        "devtools_page": "devtools.html",
+        "background": {
+                "scripts": [
+                        "background.js"
+                ]
+        }
+}

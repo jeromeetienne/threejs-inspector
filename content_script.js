@@ -1,0 +1,1 @@
+console.log('inside content_script')
