@@ -8,5 +8,21 @@
                 "scripts": [
                         "background.js"
                 ]
-        }
+        },
+
+	"content_scripts": [{
+		"matches": ["<all_urls>"],
+		"js": ["content_script.js"],
+		"run_at": "document_end",
+		"all_frames": true
+	} ],
+	"permissions": [
+		"http://*/*",
+		"https://*/*",
+		"webNavigation"
+	],
+	"content_security_policy": "default-src 'self' chrome-extension-resource: ; img-src * ; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src *; frame-src *;",
+	"web_accessible_resources": [
+		"*"
+	]
 }
