@@ -6,12 +6,18 @@
         "devtools_page": "devtools.html",
         "background": {
                 "scripts": [
-                        "background.js"
+                        "scripts/background.js"
                 ]
         },
+
 	"permissions": [
 		"http://*/*",
 		"https://*/*",
-		"webNavigation"
+		"webNavigation",
+                "tabs"
+	],
+	"content_security_policy": "default-src 'self' chrome-extension-resource: ; img-src * ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval'; connect-src *; frame-src *;",
+	"web_accessible_resources": [
+		"*"
 	]
 }

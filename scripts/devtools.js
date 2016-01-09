@@ -44,6 +44,15 @@ function initPanel(){
                 name: "devtools-page"
         });
 
+        backgroundPageConnection.postMessage({
+                name: 'devtoolPageCreated',
+                tabId: chrome.devtools.inspectedWindow.tabId
+        });
+
+        backgroundPageConnection.onMessage.addListener(function(msg) {
+                // console.log( 'devtools.js', msg );
+        });
+
         // backgroundPageConnection.onMessage.addListener(function (message) {
         //         // Handle responses from the background page, if any
         //         console.log('in devtools.js: received message from background page', message)
@@ -73,4 +82,3 @@ function initPanel(){
         //////////////////////////////////////////////////////////////////////////////////
         console.log('in devtools.js: devtools.js execution completed')        
 }
-

@@ -1,3 +1,5 @@
+console.log('INSPECTING background page')
+
 console.log('in background.js: start executing')
 
 //////////////////////////////////////////////////////////////////////////////
@@ -11,7 +13,9 @@ chrome.runtime.onConnect.addListener(function(devToolsConnection) {
         var onMessage = function(message, senderPort) {
                 // alert('dddd')
                 console.log('in background.js: received message from devtools page', arguments)
-                if( message.type === 'executeScriptFile' ){
+                if( message.name === 'devtoolPageCreated' ){
+                        
+                }else if( message.type === 'executeScriptFile' ){
                         console.log('in background.js: trying to inject', message.data.file , 'in', message.data.tabId)
                         console.log('in background.js: message.data', message.data)
                         // Inject a content script into the identified tab
@@ -31,14 +35,18 @@ chrome.runtime.onConnect.addListener(function(devToolsConnection) {
                 devToolsConnection.onMessage.removeListener(onMessage);
                 devToolsConnection = null
         });
-
-        // setTimeout(function(){
-        //         console.log('in background.js: notify devTools that background page is connected')
-        //         // notify devtools page that it is connected
-        //         devToolsConnection.postMessage({
-        //                 type: 'connected'
-        //         }) 
-        // }, 500)
 })
+
+
+//////////////////////////////////////////////////////////////////////////////////
+//                Comments
+//////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * chrome.webNavigation.onCommitted to send message to 'inject'
+ */
+chrome.webNavigation.onCommitted.addListener(function(data) {        
+        console.log("onCommitted: " + data.url + ". Frame: " + data.frameId + ". Tab: " + data.tabId);
+});
 
 console.log('in background.js: stop executing')
