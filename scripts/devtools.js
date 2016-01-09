@@ -1,4 +1,4 @@
-console.log('INSPECT VIEW devtool page')
+console.log('INSPECTING devtool page')
 
 console.log('in devtools.js: devtools.js execution started. tabId', chrome.devtools.inspectedWindow.tabId)
 
@@ -78,7 +78,7 @@ function initPanel(){
 
 
         // chrome.devtools.inspectedWindow.eval("console.log('ddddd', window.THREE);");
-        chrome.devtools.inspectedWindow.eval('('+injected_script.toString()+')();');
+        // chrome.devtools.inspectedWindow.eval('('+injected_script.toString()+')();');
 
         //////////////////////////////////////////////////////////////////////////////////
         //                Comments

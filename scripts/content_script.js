@@ -13,7 +13,7 @@ window.addEventListener('message', function(event) {
 	// check the message.source
 	if( message.source !== 'threejs-extension' ) return
 
-	// if this point is 
+	// if this point is reached, send the message to the background page
 	chrome.runtime.sendMessage(message);
 });
 
