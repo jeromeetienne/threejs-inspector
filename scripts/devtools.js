@@ -56,30 +56,6 @@ function initPanel(){
                 
         });
 
-        // backgroundPageConnection.onMessage.addListener(function (message) {
-        //         // Handle responses from the background page, if any
-        //         console.log('in devtools.js: received message from background page', message)
-        //         if( message.type === 'connected' ){
-        //                 console.log('in devtools.js: sending message scriptToInject to background page for tabId', chrome.devtools.inspectedWindow.tabId)
-        //                 // Relay the tab ID to the background page
-        //                 backgroundPageConnection.postMessage({
-        //                         type: 'executeScriptFile',
-        //                         data: {
-        //                                 tabId: chrome.devtools.inspectedWindow.tabId,
-        //                                 file: "content_script.js"                
-        //                         }
-        //                 }, function(response){
-        //                         console.log('in devtools.js: received response', arguments)
-        //                 })
-        //         }else{
-        //                 console.assert('unknown ')
-        //         }
-        // });
-
-
-        // chrome.devtools.inspectedWindow.eval("console.log('ddddd', window.THREE);");
-        // chrome.devtools.inspectedWindow.eval('('+injected_script.toString()+')();');
-
         //////////////////////////////////////////////////////////////////////////////////
         //                Comments
         //////////////////////////////////////////////////////////////////////////////////

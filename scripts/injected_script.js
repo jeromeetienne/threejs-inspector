@@ -10,9 +10,10 @@ function injected_script(){
         	console.log('three.js is NOT present')
         }        
 
+        //window.postMessage({greeting:'hello', source:'threejs-extension'}, '*')
         // window.postMessage({
         //   greeting: 'hello there!',
-        //   source: 'threejs-extension'
+        //   source: 'threejs-extension-inspected-window'
         // }, '*');
 
         console.log('in injected_script.js: running stop')
