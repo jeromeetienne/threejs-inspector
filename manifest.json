@@ -9,7 +9,12 @@
                         "scripts/background.js"
                 ]
         },
-
+	"content_scripts": [{
+		"matches": ["<all_urls>"],
+		"js": ["scripts/content_script.js"],
+		"run_at": "document_end",
+		"all_frames": true
+	} ],
 	"permissions": [
 		"http://*/*",
 		"https://*/*",

@@ -10,5 +10,10 @@ function injected_script(){
         	console.log('three.js is NOT present')
         }        
 
+        // window.postMessage({
+        //   greeting: 'hello there!',
+        //   source: 'threejs-extension'
+        // }, '*');
+
         console.log('in injected_script.js: running stop')
 }

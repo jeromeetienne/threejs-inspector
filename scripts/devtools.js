@@ -1,3 +1,5 @@
+console.log('INSPECT VIEW devtool page')
+
 console.log('in devtools.js: devtools.js execution started. tabId', chrome.devtools.inspectedWindow.tabId)
 
 
@@ -49,8 +51,9 @@ function initPanel(){
                 tabId: chrome.devtools.inspectedWindow.tabId
         });
 
-        backgroundPageConnection.onMessage.addListener(function(msg) {
-                // console.log( 'devtools.js', msg );
+        backgroundPageConnection.onMessage.addListener(function(message) {
+                console.log( 'in devtools.js: received', message );
+                
         });
 
         // backgroundPageConnection.onMessage.addListener(function (message) {
