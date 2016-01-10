@@ -34,36 +34,9 @@ function initPanel(){
                         console.log("in devtools.js: panel created", panel);
                 } 
         );
-
-
-        //////////////////////////////////////////////////////////////////////////////
-        //              connect background page
-        //////////////////////////////////////////////////////////////////////////////
-
-
-        // Create a connection to the background page
-        var backgroundPageConnection = chrome.runtime.connect({
-                name: "devtools-page"
-        });
-
-        backgroundPageConnection.postMessage({
-                name: 'devtoolPageCreated',
-                tabId: chrome.devtools.inspectedWindow.tabId
-        });
-
-        backgroundPageConnection.onMessage.addListener(function(message) {
-                console.log( 'in devtools.js: received', message );
-                
-                if( message.type === 'updateObject3D' ){
-                        // console.log('in devtools.js: uuid', message.data.uuid, 'name', message.data.name)
-                        // console.log('chrome.devtools.panels.elements', chrome.devtools.panels.elements)
-                }else{
-                        console.assert(false)
-                }
-        });
-
-        //////////////////////////////////////////////////////////////////////////////////
-        //                Comments
-        //////////////////////////////////////////////////////////////////////////////////
-        console.log('in devtools.js: devtools.js execution completed')        
 }
+
+//////////////////////////////////////////////////////////////////////////////////
+//                Comments
+//////////////////////////////////////////////////////////////////////////////////
+console.log('in devtools.js: devtools.js execution completed')        
