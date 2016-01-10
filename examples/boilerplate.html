@@ -25,7 +25,9 @@
 
 	// init scene and camera
 	var scene	= new THREE.Scene();
+	scene.name	= 'My Scene'
 	var camera	= new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 1000);
+	camera.name	= 'My Scene'
 	camera.position.z = 2;
 	var controls	= new THREE.OrbitControls(camera)
 
@@ -34,6 +36,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 
 	var light	= new THREE.DirectionalLight()
+	light.name	= 'My Light'
 	light.position.set(1,1,1)
 	// light.color.set('red')
 	scene.add(light)

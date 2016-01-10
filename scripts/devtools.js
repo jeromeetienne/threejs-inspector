@@ -55,8 +55,8 @@ function initPanel(){
                 console.log( 'in devtools.js: received', message );
                 
                 if( message.type === 'updateObject3D' ){
-                        console.log('in devtools.js: uuid', message.data.uuid)
-                        console.log('in devtools.js: name', message.data.name)
+                        // console.log('in devtools.js: uuid', message.data.uuid, 'name', message.data.name)
+                        // console.log('chrome.devtools.panels.elements', chrome.devtools.panels.elements)
                 }else{
                         console.assert(false)
                 }

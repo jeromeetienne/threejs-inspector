@@ -21,11 +21,7 @@ document.querySelector('button.capture_scene').addEventListener('click', functio
         console.log('in panel.js: detecting click on a button capture_scene')
         
         function jsCode(){
-                console.log('namespace', window.InspectedWin3js)
                 InspectedWin3js.captureScene(scene)
-                console.log('aaaa', window)
-                console.log('scene', scene)
-
         }
 
         chrome.devtools.inspectedWindow.eval('('+injected_script.toString()+')();');

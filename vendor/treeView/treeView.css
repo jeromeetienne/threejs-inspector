@@ -1,0 +1,67 @@
+ul.treeView {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+}
+
+ul.treeView ul li {
+        margin-left: 1em;
+        position: relative;
+}
+ul.treeView {
+  /*padding-left: 1em;*/
+}
+
+ul.treeView ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+ul.treeView i {
+        width : 1.2em;
+}
+ul.treeView {
+  list-style-type: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5em;
+  color: #777;
+}
+
+
+ul.treeView li p {
+  display: inline;
+}
+
+ul.treeView li i {
+  cursor: pointer;
+}
+
+ul.treeView li i:hover {
+	color: #000;
+}
+
+ul.treeView li div.container {
+	border-radius: 4px;
+}
+
+ul.treeView li div.container:hover {
+	background-color: #ddd;
+}
+
+ul.treeView li div.container.active {
+	background-color: #ccc;
+}
+
+ul.treeView li.collapsed {
+  height: 1.5em;
+  overflow: hidden;
+}
+
+ul.treeView .active {
+  font-weight: bold;
+  color: #444;
+}

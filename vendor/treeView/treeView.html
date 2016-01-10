@@ -1,0 +1,44 @@
+<body>
+<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="treeView.css">
+<script src="treeView.js" charset="utf-8"></script>
+<script src="treeViewItem.js" charset="utf-8"></script>
+<div id="treeView"></div>
+
+<script>
+	var treeViewContainer = document.getElementById( 'treeView' )
+	// empty treeViewContainer
+	while( treeViewContainer.firstChild ){		
+		treeViewContainer.removeChild( treeViewContainer.firstChild );
+	}
+	
+	// create TreeView
+	var treeView = new TreeView( treeViewContainer );
+	treeView.onSelect = function( uuid ) {
+		// if( uuid === null )	treeView.clearActive()
+		console.log( 'SELECTED', uuid );
+	}
+	treeView.onExport = function( uuid ) {
+		// if( uuid === null )	treeView.clearActive()
+		console.log( 'EXPORT', uuid );
+	}	
+	treeView.onToggleVisibility = function( uuid ) {
+		console.log( 'onToggleVisibility', uuid );
+	}		
+
+	var rendererItem = new TreeViewItem( 'Renderer', 1 );
+	treeView.getRoot().appendChild( rendererItem );
+	
+	var cameraItem = new TreeViewItem( 'Camera', 2 );
+	rendererItem.appendChild( cameraItem );
+	
+	var sceneItem = new TreeViewItem( 'Scene', 3 );
+	rendererItem.appendChild( sceneItem );
+
+	var cubeItem = new TreeViewItem( 'Cube', 4 );
+	sceneItem.appendChild( cubeItem );
+
+	var torusItem = new TreeViewItem( 'Torus', 5 );
+	sceneItem.appendChild( torusItem );
+
+</script></body>
