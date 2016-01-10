@@ -6,7 +6,7 @@ console.log('in content_script.js: start running')
 window.addEventListener('message', function(event) {
 	var message = event.data;
 
-	// console.log('receiving window.message', message)
+	console.log('receiving window.message', message)
 	
 	// Only accept messages from the same frame
 	// if (event.source !== window) return
@@ -18,6 +18,9 @@ window.addEventListener('message', function(event) {
 	
 	// check the message.source
 	if( message.source !== 'threejs-extension-inspected-window' ) return
+
+	// remove the magic 'message.source'
+	delete message.source
 
 	console.log('receiving window.message for background page of three.js extension', message)
 

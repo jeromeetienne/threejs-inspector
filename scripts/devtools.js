@@ -27,11 +27,11 @@ if( hasInspectedWindow === true ){
 //////////////////////////////////////////////////////////////////////////////
 
 function initPanel(){
-        chrome.devtools.panels.create("Three.js extension2",
+        chrome.devtools.panels.create("Three.js Inspector2",
                 "images/icon_128.png",
                 "panel.html",
                 function(panel) {
-                        console.log("in devtools.js: panel created");
+                        console.log("in devtools.js: panel created", panel);
                 } 
         );
 
@@ -54,6 +54,12 @@ function initPanel(){
         backgroundPageConnection.onMessage.addListener(function(message) {
                 console.log( 'in devtools.js: received', message );
                 
+                if( message.type === 'updateObject3D' ){
+                        console.log('in devtools.js: uuid', message.data.uuid)
+                        console.log('in devtools.js: name', message.data.name)
+                }else{
+                        console.assert(false)
+                }
         });
 
         //////////////////////////////////////////////////////////////////////////////////
