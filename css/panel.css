@@ -1,0 +1,174 @@
+* {
+	box-sizing:border-box;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	margin:0;
+	padding:0;
+}
+
+body {
+	background-color:#eee;
+	-webkit-user-select:none;
+	cursor:default;
+}
+
+#reload {
+	cursor:pointer;
+	padding:10px;
+}
+
+#container {
+	position:absolute;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0;
+	/*display:none;*/
+}
+
+#waiting {
+	display:none;
+	color:#404040;
+	text-align:center;
+	justify-content:center;
+	align-items:center;
+	height:100%;
+}
+
+#info {
+	color:#404040;
+	text-align:center;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	height:100%;
+}
+
+#info p {
+	margin-bottom:1em;
+	line-height:1.4em;
+}
+
+#info a {
+	color:#4c9ed9;
+}
+
+#info a:hover {
+	color:#202020;
+}
+
+#log {
+	position:absolute;
+	left:50%;
+	top:0;
+	right:0;
+	bottom:0;
+	overflow:auto;
+	display:none;
+}
+
+#settingsPanel {
+	position:absolute;
+	left:0;
+	top:0;
+	right:0;
+	bottom:0;
+	background-color:#FFF;
+	display:none;
+	padding:40px;
+}
+
+#settingsPanel h1 {
+	margin-bottom:10px;
+}
+
+#settingsPanel input[type="checkbox"] {
+	margin-right:5px;
+}
+
+#toolbarContainer {
+	position:absolute;
+	left:0;
+	bottom:0;
+	height:25px;
+	width:200px;
+}
+
+#toolbarContainer li {
+	width:25px;
+	height:25px;
+	float:left;
+}
+
+#toolbarContainer a {
+	width:21px;
+	height:21px;
+	display:block;
+	background-repeat:no-repeat;
+	background-position:50% 50%;
+	background-size:contain;
+	margin:2px;
+}
+
+/*#settingsButton {
+	background-image:url(assets/gears.svg);
+}*/
+
+/*#highlightButton {
+	background-image:url(assets/eye.svg);
+}*/
+
+#leftSidebar {
+	position:absolute;
+	left:0;
+	top:0;
+	/*width: 300px;*/
+	width: 50%;
+	right:50%;
+	bottom:0;
+	overflow:auto;
+}
+
+#editPanel, #rightSidebar {
+	position:absolute;
+	left:50%;
+	/*width: 300px;*/
+	width: 50%;
+	top:0;
+	right:0;
+	bottom:0;
+	overflow:auto;
+	border-left:1px solid #bbb;
+}
+
+.panel {
+	padding:10px;
+}
+
+.panel div {
+	position:relative;
+	width:100%;
+	height:20px;
+}
+
+.panel span:first-child {
+	position:absolute;
+	left:0;
+	top:0;
+	width:80px;
+}
+
+.panel span:nth-child(2) {
+	position:absolute;
+	left:80px;
+	top:0;
+	right:0;
+}
+
+.panel input[type=number] {
+	width:60px;
+}
+
+#info h1,#info button {
+	margin-bottom:1em;
+}

@@ -1,18 +1,159 @@
 <html>
+<link rel=stylesheet href='css/panel.css'>
+<link rel=stylesheet href='editor-css/dark.css'>
+<link rel=stylesheet href='css/font-awesome/css/font-awesome.min.css'>
+
+<!-- ui lib -->
+<script src="editor-libs/ui.js"></script>
+<script src="editor-libs/ui.extras.js"></script>
+<script src="editor-libs/ui.rows/ui.vector2row.js"></script>
+<script src="editor-libs/ui.rows/ui.vector3row.js"></script>
+<script src="editor-libs/ui.rows/ui.lockablevector2row.js"></script>
+<script src="editor-libs/ui.rows/ui.lockablevector3row.js"></script>
+<script src="editor-libs/ui.rows/ui.checkboxrow.js"></script>
+<script src="editor-libs/ui.rows/ui.inputrow.js"></script>
+<script src="editor-libs/ui.rows/ui.textrow.js"></script>
+<script src="editor-libs/ui.rows/ui.colorrow.js"></script>
+<script src="editor-libs/ui.rows/ui.selectrow.js"></script>
+<script src="editor-libs/ui.rows/ui.numberrow.js"></script>
+<script src="editor-libs/ui.rows/ui.texturerow.js"></script>
+<script src="editor-libs/ui.texture.js"></script>
+<script src="editor-libs/ui.editor.js"></script>
+<script src="editor-libs/Config.js"></script>
+
+<!-- Load signals.min.js -->
+<script src='vendor/signals.min.js'></script>
+		
+<!-- tree view -->
+<link  href='vendor/treeView/treeView.css' rel='stylesheet' type='text/css'>
+<script src='vendor/treeView/treeView.js'></script>
+<script src='vendor/treeView/treeViewItem.js'></script>
+<link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="editor-css/ui.fontawesome.css">
+
 <body>
-        <h2>Three.js extension2</h2>
-
-        <button class='inject_script'>inject script</button>
-        <button class='capture_scene'>capture_scene</button>
+	<!-- <div id="info">
+		<div>
+			<p>Welcome!</p>
+			<h1>Three.js Inspector</h1>
+			<p>To start inspecting three.js scenes,<br/>the extension needs to reload the page.</p>
+			<button id="reload" >Reload</button>
+			<p>Bugs, ideas and feedback: 
+			<a href="https://github.com/jeromeetienne/threejs-inspector" target="_blank">GitHub page</a><br/>
+			It is a fork 
+			of <a href="https://github.com/spite/ThreeJSEditorExtension" target="_blank">Three.jsExtension</a>
+			by the excelent <a href="https://twitter.com/thespite" target="_blank">@thespite</a>.
+			<br/>
+			<a href="http://www.learningthreejs.com" target="_blank">www.learningthreejs.com</a></p>
+		</div>
+	</div> -->
+		
+	<!-- <div id="waiting" >
+		<p>Waiting for scenes to be created...</p>
+	</div> -->
 	
-        <link  href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link  href="vendor/treeView/treeView.css" rel="stylesheet">
-        <script src="vendor/treeView/treeView.js"></script>
-        <script src="vendor/treeView/treeViewItem.js"></script>
-        <div id="treeView"></div>
+	<!-- <div id="log" ></div>
+		 -->
+	<div id="container" >
+		<div id="leftSidebar" class="panel">
+		</div>
+		<div id="rightSidebar" class="panel">
+		</div>
+	</div>
+	
+	<!-- <div id="settingsPanel" >
+		<h1>Settings</h1>
+	</div> -->
+		
 
+<style>
+input.Input {
+	background-color: white;
+}
+</style>
+<style>
+/*custom editor css*/
+.panel span:first-child {
+	position: inherit;
+}
+.panel {
+	padding: 4px;
+}
+.panel div {
+	height: auto;
+}
+.panel span:nth-child(2) {
+	position: inherit;
+	left: 0px; 
+}
+.panel > .Checkbox {
+	left : 80px;
+	top: 8px;
+}
+.panel > select.Select {
+	background-color: white;
+}
+
+.panel > .CollapsiblePanel .CollapsiblePanelButton {
+  margin-top: 0.1em;
+  width: 0.8em;	
+}
+
+.panel button.Button {
+	padding: 0.2em;
+	margin-bottom: 0.2em;
+	background-color: lightgrey;;
+	border: 0px;
+	border-radius: 5px;
+}
+
+.Panel {
+	color	: #666;
+}
+
+.tabContainer {
+	background-color: inherit;
+}
+.tabContainer > ul.headers {
+	border-top: inherit;
+	border-bottom-color: #bbb;
+	height: 29px;
+}
+.tabContainer > ul.headers > li {
+	border-right: 1px solid #bbb;
+}
+.tabContainer > ul.headers > li.active {
+	color : #888;
+	background-color: #ddd;
+}
+.tabContainer > ul.headers > li.disabled {
+	color : #ddd;
+}
+</style>
+	<script src="scripts/panel-editor.js"></script>
+	<script src="scripts/ui/panel-ui-about.js"></script>
+	<script src="scripts/ui/panel-ui-settings.js"></script>
+	<script src="scripts/ui/panel-ui-treeview.js"></script>
+	<!-- <script src="scripts/ui/panel-ui-object3dactions.js"></script>
+	<script src="scripts/ui/panel-ui-noobject3d.js"></script>
+	<script src="scripts/ui/panel-ui-object3d.js"></script>
+	<script src="scripts/ui/panel-ui-nogeometry.js"></script>
+	<script src="scripts/ui/panel-ui-geometry.js"></script>
+	<script src="scripts/ui/panel-ui-geometry-torusknot.js"></script>
+	<script src="scripts/ui/panel-ui-geometry-sphere.js"></script>
+	<script src="scripts/ui/panel-ui-nomaterial.js"></script>
+	<script src="scripts/ui/panel-ui-material.js"></script>
+	<script src="scripts/ui/panel-ui-material-shader.js"></script>
+
+	<script src="scripts/ui/panel-ui-texture.js"></script>
+
+	<script src="js/panel-injector.js"></script>
+	<script src="js/panel-editor.js"></script>
+	<script src="js/panel-init-ui.js"></script>
+	<script src="js/panel-onmessage.js"></script>
+	<script src="js/panel-backgroundpage.js"></script>
+	<script src="js/panel-main.js"></script> -->
 
     	<script src="scripts/injected_script.js"></script>
 	<script src="scripts/panel.js"></script>
-</body>
-</html>
+</body></html>

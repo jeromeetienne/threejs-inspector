@@ -1,0 +1,9 @@
+i.uiFontAwesomeButton.fa {
+}
+
+i.uiFontAwesomeButton.fa:hover {
+	background-color: #ccc;
+	border-radius: 75%;	
+	color: #444;
+	cursor: pointer;
+}
