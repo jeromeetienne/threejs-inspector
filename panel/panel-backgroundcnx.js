@@ -18,8 +18,11 @@ PanelWin3js.initBackgroundConnection	= function(){
 	backgroundPageConnection.onMessage.addListener(function(message) {
 	        console.log( 'in panel-backgroundcnx.js: received', message );
 	        
+		
 	        if( message.type === 'updateObject3DTreeView' ){
 	                PanelWin3js.editor.signals.updateObject3DTreeView.dispatch(message.data)
+	        }else if( message.type === 'inspectObject3D' ){
+	                PanelWin3js.editor.signals.inspectObject3D.dispatch(message.data)
 	        }else{
 	                console.assert(false)
 	        }

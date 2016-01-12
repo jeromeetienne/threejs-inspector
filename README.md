@@ -1,5 +1,5 @@
 ### TODO
-
+- there are 3 versions of font awesome
 
 ### start inspection of object on click
 - onSelect, trigger a function in inspected window
@@ -8,8 +8,3 @@
 - send it to the panel
 - display the result in panel
 - import all the ui for the object in inspect
-
-### Put panel code in its own repo
-- ```panels/css``` 
-- ```panels/js/``` from scripts/panel-*.js
-- ```panels/panel.html```

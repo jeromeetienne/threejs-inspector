@@ -5,5 +5,6 @@
 function Editor(){
 	this.signals	= {
 		updateObject3DTreeView: new SIGNALS.Signal(),
+		inspectObject3D: new SIGNALS.Signal(),
 	}
 }

@@ -29,7 +29,7 @@ if( hasInspectedWindow === true ){
 function initPanel(){
         chrome.devtools.panels.create("Three.js Inspector2",
                 "images/icon_128.png",
-                "panel.html",
+                "panel/panel.html",
                 function(panel) {
                         console.log("in devtools.js: panel created", panel);
                 } 

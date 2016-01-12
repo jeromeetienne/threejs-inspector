@@ -13,6 +13,16 @@ PanelWin3js.PanelTreeView	= function(){
 
 	var container	= UI.CollapsiblePanelHelper.createContainer('BROWSER', 'leftSidebarSceneBrowser', false)
 
+	container.dom.addEventListener('click', function(){
+		treeView.clearActive()
+		PanelWin3js.plainFunction(function(){
+			console.log('in panel-ui-treeview.js: unselecting item')
+			InspectedWin3js.inspectUuid(null)
+		})
+		console.log('click on empty panel', arguments)
+	})
+
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		popupMenu
 	//////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +69,7 @@ PanelWin3js.PanelTreeView	= function(){
 	treeView.onSelect = function( object3dUuid ){
 		PanelWin3js.plainFunction(function(uuid){
 			console.log('trying to select object3d uuid', uuid)
+			InspectedWin3js.inspectUuid(uuid)
 		}, [object3dUuid])
 	}
 	treeView.onToggleVisibility = function(object3dUuid){

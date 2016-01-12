@@ -48,7 +48,13 @@ function injected_script(){
 
                         className: InspectedWin3js.getThreeJSClassName(object3d),                        
                         parentUuid : object3d.parent ? object3d.parent.uuid : null,
-                        childrenUuid: []
+                        childrenUuid: [],
+
+        		visible: object3d.visible,
+
+        		position: { x: object3d.position.x, y: object3d.position.y, z: object3d.position.z },
+        		rotation: { x: object3d.rotation.x, y: object3d.rotation.y, z: object3d.rotation.z },
+        		scale: { x: object3d.scale.x, y: object3d.scale.y, z: object3d.scale.z },
                 }
                 // populate data.childrenUuid
                 object3d.children.forEach(function(child){
@@ -58,6 +64,24 @@ function injected_script(){
                 return data
         } 
 
+        InspectedWin3js.treeviewObject3dToJSON  = function(object3d){
+                // build the json data
+                var json = {
+                        uuid    : object3d.uuid,
+                        name    : object3d.name,
+
+                        className: InspectedWin3js.getThreeJSClassName(object3d),                        
+                        parentUuid : object3d.parent ? object3d.parent.uuid : null,
+                        childrenUuid: []
+                }
+                // populate json.childrenUuid
+                object3d.children.forEach(function(child){
+                        json.childrenUuid.push(child.uuid)
+                })
+                // return the json
+                return json
+        } 
+
 
         /**
          * capture a scene and send it to inspector panel
@@ -65,14 +89,27 @@ function injected_script(){
          */
         InspectedWin3js.captureScene    = function(scene){
                 scene.traverse(function(object3d){
-                        var object3dJSON = InspectedWin3js.object3dToJSON(object3d)
-                        InspectedWin3js.postMessage('updateObject3DTreeView', object3dJSON)                        
+                        var json = InspectedWin3js.treeviewObject3dToJSON(object3d)
+                        InspectedWin3js.postMessage('updateObject3DTreeView', json)                      
                 })
         }
         
         InspectedWin3js.getObjectByUuid = function(uuid){
                 // FIXME use scene as a global
                 return scene.getObjectByProperty('uuid', uuid)
+        }
+        
+        InspectedWin3js.inspectUuid = function(uuid){
+                console.log('in injected_script.js: inspectUuid', uuid)
+                
+                if( uuid ===  null ){
+                        InspectedWin3js.postMessage('inspectObject3D', null)                      
+                        return
+                }
+
+                var object3d = InspectedWin3js.getObjectByUuid(uuid)
+                var json = InspectedWin3js.object3dToJSON(object3d)
+                InspectedWin3js.postMessage('inspectObject3D', json)                      
         }
         
         //////////////////////////////////////////////////////////////////////////////////

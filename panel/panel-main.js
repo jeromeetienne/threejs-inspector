@@ -17,6 +17,7 @@ PanelWin3js.editor	= new Editor()
 
 PanelWin3js.initBackgroundConnection()
 PanelWin3js.initLeftSideBar()
+PanelWin3js.initRightSideBar()
 
 //////////////////////////////////////////////////////////////////////////////////
 //                Comments
