@@ -5,8 +5,6 @@
  */
 var PanelTreeView	= function(){
 
-	// var container	= new UI.Panel()
-	
 	var container	= UI.CollapsiblePanelHelper.createContainer('BROWSER', 'leftSidebarSceneBrowser', false)
 
 
@@ -25,11 +23,11 @@ var PanelTreeView	= function(){
 
 	function onPopupMenuChange(value){
 		if( value === 'collapseAll' ){
-			threeViewItem.children.forEach(function(child){
+			treeView.getRoot().children.forEach(function(child){
 				child.collapseAll()
 			})
 		}else if( value === 'expandAll' ){
-			threeViewItem.children.forEach(function(child){
+			treeView.getRoot().children.forEach(function(child){
 				child.expandAll()
 			})
 		}else if( value === 'captureScene' ){
@@ -48,27 +46,11 @@ var PanelTreeView	= function(){
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
-	//		tiltButton
-	//////////////////////////////////////////////////////////////////////////////////
-	var tiltButton	= new UI.FontAwesomeIcon()
-	tiltButton.setTitle('Medkit to repair three.js inspector. push it in case of panic :)')
-	tiltButton.dom.classList.add('fa-bolt')
-	tiltButton.dom.style.cssFloat = 'right'
-	tiltButton.onClick(function(event){
-		InspectDevTools.plainFunction(function(){
-			Inspect3js.injectInThreejs()
-			Inspect3js.purgeObsoleteObjects()
-			console.log('three.js inspector: Tried to tilt this page. I hope it works better...')
-		})
-		event.stopPropagation()
-	})
-	container.titleElement.add(tiltButton)
-
-	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
 
 container.content.appendChild( document.createElement('br') )
+
 	// create TreeView
 	var treeView = new TreeView( container.content );
 	treeView.onSelect = function( object3dUuid ){
@@ -92,14 +74,12 @@ container.content.appendChild( document.createElement('br') )
 		}, [object3dUuid])
 	}
 	
-	var threeViewItem = new TreeViewItem( 'Scenes', null );
-	treeView.getRoot().appendChild( threeViewItem );
-	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
 	var treeViewObjects     = {}
-	editor.signals.updateObject3DTreeView.add(function(dataJSON){
+
+	PanelWin3js.editor.signals.updateObject3DTreeView.add(function(dataJSON){
 		//////////////////////////////////////////////////////////////////////////////////
 		//                Comments
 		//////////////////////////////////////////////////////////////////////////////////
