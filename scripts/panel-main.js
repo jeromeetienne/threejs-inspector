@@ -2,7 +2,7 @@ console.log("in panel.js: start running");
 
 
 //////////////////////////////////////////////////////////////////////////////////
-//                Comments
+//              declare namespace
 //////////////////////////////////////////////////////////////////////////////////
 // declare namespace
 window.PanelWin3js = window.PanelWin3js || {}
@@ -49,21 +49,7 @@ backgroundPageConnection.onMessage.addListener(function(message) {
 /**
  * init left sidebar
  */
-var initLeftSideBar = function(){
-	var treeViewContainer = document.getElementById( 'leftSidebar' )
-
-	//////////////////////////////////////////////////////////////////////////////////
-	//		Comments
-	//////////////////////////////////////////////////////////////////////////////////
-	
-	// empty treeViewContainer
-	while( treeViewContainer.firstChild ){		
-		treeViewContainer.removeChild( treeViewContainer.firstChild );
-	}
-	
-	//////////////////////////////////////////////////////////////////////////////////
-	//		Comments
-	//////////////////////////////////////////////////////////////////////////////////
+PanelWin3js.initLeftSideBar = function(){
 
 	var tabContainer	= new UI.TabsHelper.createTabContainer('sceneSidebar', 0)
 	document.querySelector( '#leftSidebar' ).appendChild(tabContainer.dom)
@@ -72,14 +58,15 @@ var initLeftSideBar = function(){
         
 	var sceneTab	= new UI.TabsHelper.createTab()
 	tabContainer.addTab('SCENE', sceneTab)
-	sceneTab.add( new PanelTreeView() )
+	sceneTab.add( new PanelWin3js.PanelTreeView() )
 
 	var aboutTab	= new UI.TabsHelper.createTab()
 	tabContainer.addTab('ABOUT', aboutTab)
-	aboutTab.add( new PanelAbout() )
+	aboutTab.add( new PanelWin3js.PanelAbout() )
+
 }
 
-initLeftSideBar()
+PanelWin3js.initLeftSideBar()
 
 //////////////////////////////////////////////////////////////////////////////////
 //                Comments

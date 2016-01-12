@@ -172,3 +172,65 @@ body {
 #info h1,#info button {
 	margin-bottom:1em;
 }
+
+/*custom editor css*/
+.panel span:first-child {
+	position: inherit;
+}
+.panel {
+	padding: 4px;
+}
+.panel div {
+	height: auto;
+}
+.panel span:nth-child(2) {
+	position: inherit;
+	left: 0px; 
+}
+.panel > .Checkbox {
+	left : 80px;
+	top: 8px;
+}
+.panel > select.Select {
+	background-color: white;
+}
+
+.panel > .CollapsiblePanel .CollapsiblePanelButton {
+  margin-top: 0.1em;
+  width: 0.8em;	
+}
+
+.panel button.Button {
+	padding: 0.2em;
+	margin-bottom: 0.2em;
+	background-color: lightgrey;;
+	border: 0px;
+	border-radius: 5px;
+}
+
+.Panel {
+	color	: #666;
+}
+
+.tabContainer {
+	background-color: inherit;
+}
+.tabContainer > ul.headers {
+	border-top: inherit;
+	border-bottom-color: #bbb;
+	height: 29px;
+}
+.tabContainer > ul.headers > li {
+	border-right: 1px solid #bbb;
+}
+.tabContainer > ul.headers > li.active {
+	color : #888;
+	background-color: #ddd;
+}
+.tabContainer > ul.headers > li.disabled {
+	color : #ddd;
+}
+
+input.Input {
+	background-color: white;
+}

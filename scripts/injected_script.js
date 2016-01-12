@@ -70,6 +70,11 @@ function injected_script(){
                 })
         }
         
+        InspectedWin3js.getObjectByUuid = function(uuid){
+                // FIXME use scene as a global
+                return scene.getObjectByProperty('uuid', uuid)
+        }
+        
         //////////////////////////////////////////////////////////////////////////////////
         //		To guess the three.js classname
         //////////////////////////////////////////////////////////////////////////////////

@@ -1,9 +1,20 @@
+//////////////////////////////////////////////////////////////////////////////////
+//              declare namespace
+//////////////////////////////////////////////////////////////////////////////////
+// declare namespace
+window.PanelWin3js = window.PanelWin3js || {}
+var PanelWin3js = window.PanelWin3js
+
+//////////////////////////////////////////////////////////////////////////////////
+//		Comments
+//////////////////////////////////////////////////////////////////////////////////
+
 /**
  * Handle panel for object3d
  *
  * @constructor
  */
-var PanelTreeView	= function(){
+PanelWin3js.PanelTreeView	= function(){
 
 	var container	= UI.CollapsiblePanelHelper.createContainer('BROWSER', 'leftSidebarSceneBrowser', false)
 
@@ -54,28 +65,29 @@ container.content.appendChild( document.createElement('br') )
 	// create TreeView
 	var treeView = new TreeView( container.content );
 	treeView.onSelect = function( object3dUuid ){
-		if( object3dUuid === null )	treeView.clearActive()
-		InspectDevTools.plainFunction(function(uuid){
-			Inspect3js.UISelect( uuid )
+		PanelWin3js.plainFunction(function(uuid){
+			var object3d = InspectedWin3js.getObjectByUuid(uuid)
+			console.log('selecting object3d', uuid, object3d)
 		}, [object3dUuid])
 	}
 	treeView.onToggleVisibility = function(object3dUuid){
-		InspectDevTools.plainFunction(function(uuid){
-			var object = Inspect3js.getObjectByUuid(uuid)
-			object.visible = object.visible === true ? false : true
+		PanelWin3js.plainFunction(function(uuid){
+			console.log('in panel-ui-treeview.js: toggle visibility in uuid', uuid)
+			var object3d = InspectedWin3js.getObjectByUuid(uuid)
+			object3d.visible = object3d.visible === true ? false : true
 		}, [object3dUuid])
 	}
 	treeView.onExport = function(object3dUuid){
-		InspectDevTools.plainFunction(function(uuid){
-			var object = Inspect3js.getObjectByUuid(uuid)
-			window.$object3d = object
-			console.log('three.js inspector: Object3D exported as $object3d')
+		PanelWin3js.plainFunction(function(uuid){
+			var object3d = InspectedWin3js.getObjectByUuid(uuid)
+			window.$object3d = object3d
+			console.log('in panel-ui-treeview.js: Object3D exported as $object3d')
 			console.dir($object3d)
 		}, [object3dUuid])
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////
-	//		Comments
+	//		process updateObject3DTreeView
 	//////////////////////////////////////////////////////////////////////////////////
 	var treeViewObjects     = {}
 
