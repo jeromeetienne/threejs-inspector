@@ -1,13 +1,5 @@
 var PanelWin3js	= PanelWin3js	|| {}
 
-//////////////////////////////////////////////////////////////////////////////////
-//              declare namespace
-//////////////////////////////////////////////////////////////////////////////////
-// declare namespace
-window.PanelWin3js = window.PanelWin3js || {}
-var PanelWin3js = window.PanelWin3js
-
-
 
 /**
  * inject a function and run it on a object3d
