@@ -38,7 +38,7 @@ PanelWin3js.PanelTreeView	= function(){
 		}else if( value === 'captureScene' ){
 		        console.log('in panel-ui-treeview.js: detecting click on a button capture_scene')
 		        
-		        chrome.devtools.inspectedWindow.eval('('+injected_script.toString()+')();');
+		        PanelWin3js.evalJsCode('('+injected_script.toString()+')();');
 
 			PanelWin3js.plainFunction(function(uuid){
 		                InspectedWin3js.captureScene(scene)
