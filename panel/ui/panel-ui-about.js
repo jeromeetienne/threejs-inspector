@@ -24,7 +24,7 @@ PanelWin3js.PanelAbout	= function(){
 	container.dom.appendChild(domElement)
 	
 	var domElement	= document.createElement('div')
-	domElement.innerHTML	= 'v ' + '1.2.8'	
+	domElement.innerHTML	= 'v ' + '1.9.0'	
 	domElement.style.color = '#888'
 	container.dom.appendChild(domElement)
 
@@ -80,7 +80,7 @@ PanelWin3js.PanelAbout	= function(){
 	container.dom.appendChild( document.createElement('br') )
 
 	var versionRow	= document.createElement('div')
-	versionRow.innerHTML	= 'Work better with the last version of three.js (r71 atm) '
+	versionRow.innerHTML	= 'Work better with the last version of three.js (r71 atm)'
 	container.dom.appendChild(versionRow)
 	
 	container.dom.appendChild( document.createElement('br') )
