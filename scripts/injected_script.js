@@ -26,13 +26,18 @@ function injected_script(){
         var InspectedWin3js = window.InspectedWin3js
         
         InspectedWin3js.hasTHREEJS = hasTHREEJS;
+        
+        /**
+         * object3DJson of the last selected object3d, if none selected then === null
+         */
+        InspectedWin3js.selected = null
 
         /**
          * post message to devtools pages
          * @param {String} type - the type of the message
          * @param {String} data - the data of the message
          */
-        InspectedWin3js.postMessage     = function(type, data){
+        InspectedWin3js.postMessageToPanel     = function(type, data){
                 window.postMessage({
                         type: type,
                         data: data,
@@ -90,7 +95,7 @@ function injected_script(){
         InspectedWin3js.captureScene    = function(scene){
                 scene.traverse(function(object3d){
                         var json = InspectedWin3js.treeviewObject3dToJSON(object3d)
-                        InspectedWin3js.postMessage('updateObject3DTreeView', json)                      
+                        InspectedWin3js.postMessageToPanel('updateObject3DTreeView', json)                      
                 })
         }
         
@@ -103,13 +108,18 @@ function injected_script(){
                 console.log('in injected_script.js: inspectUuid', uuid)
                 
                 if( uuid ===  null ){
-                        InspectedWin3js.postMessage('inspectObject3D', null)                      
+                        InspectedWin3js.selected = null
+                        InspectedWin3js.postMessageToPanel('inspectObject3D', null)                
                         return
                 }
 
                 var object3d = InspectedWin3js.getObjectByUuid(uuid)
-                var json = InspectedWin3js.object3dToJSON(object3d)
-                InspectedWin3js.postMessage('inspectObject3D', json)                      
+                var object3DJson = InspectedWin3js.object3dToJSON(object3d)                
+                // update selected
+                InspectedWin3js.selected = object3DJson
+                // send message to the panel
+                InspectedWin3js.postMessageToPanel('inspectObject3D', object3DJson)                      
+
         }
         
         //////////////////////////////////////////////////////////////////////////////////
@@ -143,6 +153,62 @@ function injected_script(){
         
         InspectedWin3js.extractThreeJSClassNames()
         
+        //////////////////////////////////////////////////////////////////////////////////
+        //                Comments
+        //////////////////////////////////////////////////////////////////////////////////
+        /**
+         * Change a property in a object - called from devtool panel 
+         * 
+         * @param {String} id   - object uid
+         * @param {String} data - property name e.g. "position.x"
+         */
+        InspectedWin3js.ChangeProperty = function( object3dUUID, property, value ) {
+        	console.log('in injected_script.js: ChangeProperty', arguments)
+                
+                // @TODO change the API of this function....
+
+                var object3d = InspectedWin3js.getObjectByUuid(object3dUUID)
+
+        	var curObject = object3d;
+        	
+        	var fields = property.split( '.' );
+        	for( var fieldIndex = 0; fieldIndex < fields.length; fieldIndex++ ) {
+        		var fieldName = fields[fieldIndex]
+
+        		var matchArray = fieldName.match(/(.*)\[(\d+)\]/)
+        		if( matchArray !== null ){
+        			var indexInArray = matchArray === null ? -1 : parseInt(matchArray[2], 10)
+        			fieldName = matchArray[1]
+        		}else{
+        			var indexInArray = -1				
+        		}
+
+        		if( fieldIndex === fields.length - 1 ) {
+        			if( indexInArray === -1 )	curObject[ fieldName ] = value;
+        			else 				curObject[ fieldName ][indexInArray] = value;
+        		} else {
+        			if( indexInArray === -1 )	curObject = curObject[ fieldName ];
+        			else 				curObject = curObject[ fieldName ][indexInArray];
+        		}				
+        	}
+        }
+        /**
+         * Call a function on a object3d 
+         * 
+         * @param {String} object3dUUID   - object uid
+         * @param {Function} fct - the function to call
+         * @param {Array} data - the parameters to send to function
+         */
+        InspectedWin3js.ChangeObject3dFunction = function( object3dUUID, fct, args ) {
+        	console.log('in injected_script.js: ChangeObject3dFunction', fct.toString(), args)
+                var object3d = InspectedWin3js.getObjectByUuid(object3dUUID)
+        	console.assert(object3d instanceof THREE.Object3D)
+        	var newArgs	= args.slice(0)
+        	newArgs.unshift(object3d)
+        	
+        	fct.apply(null, newArgs)
+        }        
+
         //////////////////////////////////////////////////////////////////////////////////
         //                Comments
         //////////////////////////////////////////////////////////////////////////////////

@@ -7,7 +7,8 @@ var PanelWin3js	= PanelWin3js	|| {}
  */
 PanelWin3js.PanelObject3D	= function(){
 	
-	var signals	= PanelWin3js.editor.signals
+	var editor	= PanelWin3js.editor
+	var signals	= editor.signals
 	
 	var container	= UI.CollapsiblePanelHelper.createContainer('OBJECT3D', 'sidebarObject3d', false)
 	container.setDisplay( 'none' );
@@ -51,7 +52,7 @@ PanelWin3js.PanelObject3D	= function(){
 		}else if( value === 'doResetScale' ){
 			scaleRow.updateUI({x:1, y:1, z:1})
 		}else if( value === 'exportInConsole' ){
-			InspectDevTools.functionOnObject3d(function(object3d){
+			PanelWin3js.functionOnObject3d(function(object3d){
 				window.$object3d = object3d
 				console.log('three.js inspector: Object3D exported as $object3d')
 				console.dir($object3d)
@@ -85,7 +86,7 @@ PanelWin3js.PanelObject3D	= function(){
 			console.log('help button clicked', editor.selected.className)
 			// var url = 'http://threejs.org/docs/#Reference/Objects/Mesh'
 			var url = typeToUrl(editor.selected.className)
-			InspectDevTools.plainFunction(function(url){
+			PanelWin3js.plainFunction(function(url){
 				var win = window.open(url, '_blank');
 			}, [url]);
 			
@@ -146,7 +147,7 @@ PanelWin3js.PanelObject3D	= function(){
 
 	var receiveShadowRow	= new UI.CheckboxRow()
 	receiveShadowRow.setLabel('Recv Shadow').onChange(function(){
-		var injectFunction = InspectDevTools.functionOnObject3d
+		var injectFunction = PanelWin3js.functionOnObject3d
 
 		updateWhole()
 
@@ -219,11 +220,11 @@ PanelWin3js.PanelObject3D	= function(){
 	//////////////////////////////////////////////////////////////////////////////////
 	function updateWhole(){
 		var selected	= editor.selected
-		var injectProperty = InspectDevTools.propertyOnObject3d;
-		var injectFunction = InspectDevTools.functionOnObject3d
+		var injectProperty = PanelWin3js.propertyOnObject3d
+		var injectFunction = PanelWin3js.functionOnObject3d
 		
-		injectProperty('uuid', uuidRow.getValue())
 		injectProperty('name', nameRow.getValue())
+		injectProperty('uuid', uuidRow.getValue())
 
 		injectProperty('position.x', positionRow.valueX.getValue())
 		injectProperty('position.y', positionRow.valueY.getValue())
