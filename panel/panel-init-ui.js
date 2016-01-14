@@ -49,4 +49,12 @@ PanelWin3js.initRightSideBar = function(){
 	tabContainer.addTab('GEOMETRY', geometryTab)
 	geometryTab.add( new PanelWin3js.PanelGeometry() )
 	geometryTab.add( new PanelWin3js.PanelNoGeometry() )
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		materialTab
+	//////////////////////////////////////////////////////////////////////////////////
+	var materialTab	= new UI.TabsHelper.createTab()
+	tabContainer.addTab('MATERIAL', materialTab)
+	materialTab.add( new PanelWin3js.PanelNoMaterial() )
+	materialTab.add( new PanelWin3js.PanelMaterial(-1) )
 }
