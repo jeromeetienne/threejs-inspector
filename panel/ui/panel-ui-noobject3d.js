@@ -13,7 +13,7 @@ PanelWin3js.PanelNoObject3D	= function(){
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
-	PanelWin3js.editor.signals.inspectObject3D.add(function( object3dJson ){
+	PanelWin3js.editor.signals.selectObject3D.add(function( object3dJson ){
 	
 		if( object3dJson === null ){
 			container.setDisplay( 'inherit' );

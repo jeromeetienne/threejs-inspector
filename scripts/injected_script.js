@@ -104,12 +104,12 @@ function injected_script(){
                 return scene.getObjectByProperty('uuid', uuid)
         }
         
-        InspectedWin3js.inspectUuid = function(uuid){
-                console.log('in injected_script.js: inspectUuid', uuid)
+        InspectedWin3js.selectUuid = function(uuid){
+                console.log('in injected_script.js: selectUuid', uuid)
                 
                 if( uuid ===  null ){
                         InspectedWin3js.selected = null
-                        InspectedWin3js.postMessageToPanel('inspectObject3D', null)                
+                        InspectedWin3js.postMessageToPanel('selectObject3D', null)                
                         return
                 }
 
@@ -118,7 +118,7 @@ function injected_script(){
                 // update selected
                 InspectedWin3js.selected = object3DJson
                 // send message to the panel
-                InspectedWin3js.postMessageToPanel('inspectObject3D', object3DJson)                      
+                InspectedWin3js.postMessageToPanel('selectObject3D', object3DJson)                      
 
         }
         

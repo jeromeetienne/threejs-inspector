@@ -17,7 +17,7 @@ PanelWin3js.PanelTreeView	= function(){
 		treeView.clearActive()
 		PanelWin3js.plainFunction(function(){
 			console.log('in panel-ui-treeview.js: unselecting item')
-			InspectedWin3js.inspectUuid(null)
+			InspectedWin3js.selectUuid(null)
 		})
 		console.log('click on empty panel', arguments)
 	})
@@ -69,7 +69,7 @@ PanelWin3js.PanelTreeView	= function(){
 	treeView.onSelect = function( object3dUuid ){
 		PanelWin3js.plainFunction(function(uuid){
 			console.log('trying to select object3d uuid', uuid)
-			InspectedWin3js.inspectUuid(uuid)
+			InspectedWin3js.selectUuid(uuid)
 		}, [object3dUuid])
 	}
 	treeView.onToggleVisibility = function(object3dUuid){
