@@ -16,7 +16,7 @@ PanelWin3js.PanelObject3D	= function(){
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
-	PanelWin3js.editor.signals.selectObject3D.add(function( object3d ){
+	PanelWin3js.editor.signals.object3dSelected.add(function( object3d ){
 		if( object3d !== null ){
 			container.setDisplay( 'inherit' );
 			updateUI(object3d)

@@ -6,7 +6,7 @@ function Editor(){
 	var _this = this
 	this.signals	= {
 		updateObject3DTreeView: new SIGNALS.Signal(),
-		selectObject3D: new SIGNALS.Signal(),
+		object3dSelected: new SIGNALS.Signal(),
 	}
 	
 	
@@ -14,6 +14,6 @@ function Editor(){
 
 	this.selectObject3D = function(object3dJson){
 		_this.selected = object3dJson
-                _this.signals.selectObject3D.dispatch(object3dJson)		
+                _this.signals.object3dSelected.dispatch(object3dJson)		
 	}
 }

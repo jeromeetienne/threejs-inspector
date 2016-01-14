@@ -24,7 +24,7 @@ PanelWin3js.initBackgroundConnection	= function(){
 	        }else if( message.type === 'selectObject3D' ){
 			PanelWin3js.editor.selectObject3D( message.data )
 	        }else{
-	                console.assert(false)
+	                console.assert(false, 'in panel-backgroundcnx.js: unknown message.type', message.type)
 	        }
 	});	
 }
