@@ -1,4 +1,6 @@
 ### TODO
+- bring material/geometry panel. then clean up
+
 - port this injection mechanism. to enable the action from panel to object3d properties
 ```
 var injectProperty = InspectDevTools.propertyOnObject3d
