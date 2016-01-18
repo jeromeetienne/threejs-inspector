@@ -1,6 +1,4 @@
 ### Cleanup
-- split the injected_script.js
-  - how to handle the detection of the previous inclusion ?
 - test on alexandra mac book air
   - configure it for coding
   - iterm + git + github auth rsa key + screen switch
@@ -16,6 +14,8 @@
 
 
 
+- DONE split the injected_script.js
+  - how to handle the detection of the previous inclusion ?
 - DONE bring material/geometry panel. then clean up
 - FIXED there are 3 versions of font awesome
 - DONE port this injection mechanism. to enable the action from panel to object3d properties

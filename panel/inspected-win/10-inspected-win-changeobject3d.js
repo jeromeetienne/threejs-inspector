@@ -5,7 +5,7 @@
  * @param {String} data - property name e.g. "position.x"
  */
 InspectedWin3js.ChangeProperty = function( object3dUUID, property, value ) {
-	console.log('in 10-injected_script-changeobject3d.js: ChangeProperty', arguments)
+	// console.log('in 10-injected_script-changeobject3d.js: ChangeProperty', arguments)
         
         // @TODO change the API of this function....
 
@@ -42,7 +42,7 @@ InspectedWin3js.ChangeProperty = function( object3dUUID, property, value ) {
  * @param {Array} data - the parameters to send to function
  */
 InspectedWin3js.ChangeObject3dFunction = function( object3dUUID, fct, args ){
-	console.log('in 10-injected_script-changeobject3d.js: ChangeObject3dFunction', fct.toString(), args)
+	// console.log('in 10-injected_script-changeobject3d.js: ChangeObject3dFunction', fct.toString(), args)
         var object3d = InspectedWin3js.getObjectByUuid(object3dUUID)
 	console.assert(object3d instanceof THREE.Object3D)
 	var newArgs	= args.slice(0)

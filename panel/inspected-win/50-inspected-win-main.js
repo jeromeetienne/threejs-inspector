@@ -1,9 +1,37 @@
 console.log('in 50-injected_script-main.js: running start')
 
+//////////////////////////////////////////////////////////////////////////////////
+//                Comments
+//////////////////////////////////////////////////////////////////////////////////
+
 /**
  * object3DJson of the last selected object3d, if none selected then === null
  */
 InspectedWin3js.selected = null
+
+
+InspectedWin3js.selectUuid = function(uuid){
+        console.log('in 50-injected_script-main.js: selectUuid', uuid)
+        
+        if( uuid ===  null ){
+                InspectedWin3js.selected = null
+                InspectedWin3js.postMessageToPanel('selectObject3D', null)                
+                return
+        }
+
+        var object3d = InspectedWin3js.getObjectByUuid(uuid)
+        var object3DJson = InspectedWin3js.object3dToJSON(object3d)                
+        // update selected
+        InspectedWin3js.selected = object3DJson
+
+        // send message to the panel
+        InspectedWin3js.postMessageToPanel('selectObject3D', object3DJson)                      
+
+}
+        
+//////////////////////////////////////////////////////////////////////////////////
+//                Comments
+//////////////////////////////////////////////////////////////////////////////////
 
 /**
  * post message to devtools pages
@@ -18,6 +46,15 @@ InspectedWin3js.postMessageToPanel     = function(type, data){
         }, '*');
 }
 
+
+InspectedWin3js.getObjectByUuid = function(uuid){
+        // FIXME use scene as a global
+        return scene.getObjectByProperty('uuid', uuid)
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+//                for treeview
+//////////////////////////////////////////////////////////////////////////////////
 
 InspectedWin3js.treeviewObject3dToJSON  = function(object3d){
         // build the json data
@@ -35,8 +72,7 @@ InspectedWin3js.treeviewObject3dToJSON  = function(object3d){
         })
         // return the json
         return json
-} 
-
+}
 
 /**
  * capture a scene and send it to inspector panel
@@ -49,29 +85,6 @@ InspectedWin3js.captureScene    = function(scene){
         })
 }
 
-InspectedWin3js.getObjectByUuid = function(uuid){
-        // FIXME use scene as a global
-        return scene.getObjectByProperty('uuid', uuid)
-}
-
-InspectedWin3js.selectUuid = function(uuid){
-        console.log('in 50-injected_script-main.js: selectUuid', uuid)
-        
-        if( uuid ===  null ){
-                InspectedWin3js.selected = null
-                InspectedWin3js.postMessageToPanel('selectObject3D', null)                
-                return
-        }
-
-        var object3d = InspectedWin3js.getObjectByUuid(uuid)
-        var object3DJson = InspectedWin3js.object3dToJSON(object3d)                
-        // update selected
-        InspectedWin3js.selected = object3DJson
-        // send message to the panel
-        InspectedWin3js.postMessageToPanel('selectObject3D', object3DJson)                      
-
-}
-        
         
 //////////////////////////////////////////////////////////////////////////////////
 //                Comments

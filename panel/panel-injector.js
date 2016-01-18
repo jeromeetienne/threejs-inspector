@@ -55,7 +55,7 @@ PanelWin3js.propertyOnObject3d	= function(property, value){
 	var editor = PanelWin3js.editor
 	
 	PanelWin3js.plainFunction(function(property, value){
-		console.log('in panel-injector.js: change property', property, 'value', value)
+		// console.log('in panel-injector.js: change property', property, 'value', value)
 
 		if( InspectedWin3js.selected === null )	console.error('in panel-injector.js: an object should be selected')
 
