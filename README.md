@@ -1,6 +1,7 @@
 ### Cleanup
 - use object3dJson when applicable
 - split the injected_script.js
+  - how to handle the detection of the previous inclusion ?
 - FIXED there are 3 versions of font awesome
 
 

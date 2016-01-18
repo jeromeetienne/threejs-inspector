@@ -6,7 +6,7 @@ console.log('in content_script.js: start running')
 window.addEventListener('message', function(event) {
 	var message = event.data;
 
-	console.log('in content_script.js: receiving window.message', message)
+	// console.log('in content_script.js: receiving window.message', message)
 	
 	// Only accept messages from the same frame
 	// if (event.source !== window) return
@@ -22,7 +22,7 @@ window.addEventListener('message', function(event) {
 	// remove the magic 'message.source'
 	delete message.source
 
-	console.log('in content_script.js: receiving window.message for background page of three.js extension', message)
+	// console.log('in content_script.js: receiving window.message for background page of three.js extension', message)
 
 	// if this point is reached, send the message to the background page
 	chrome.runtime.sendMessage(message);

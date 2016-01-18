@@ -90,3 +90,31 @@ PanelWin3js.functionOnObject3d	= function(fct, args){
 		}
 	});		
 }
+
+//////////////////////////////////////////////////////////////////////////////////
+//		Comments
+//////////////////////////////////////////////////////////////////////////////////
+
+PanelWin3js.injectInspectedWinScripts	= function(){
+        // PanelWin3js.evalJsCode('('+injected_script.toString()+')();');
+	
+	injectFile('inspected-win/50-inspected-win-main.js')
+	return
+
+	function injectFile(url){
+		var request = new XMLHttpRequest();
+		request.open('GET', url, false);  // `false` makes the request synchronous
+		request.send(null);
+		console.assert(request.status === 200)
+			var content = request.responseText
+
+		chrome.devtools.inspectedWindow.eval( content, function(result, isException){
+			if( isException ){
+				console.error('Exception while eval()', url)
+				console.error(isException.value)
+			}else{
+				// console.log('result = ', result)
+			}
+		})
+	}	
+}
