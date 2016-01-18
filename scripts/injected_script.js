@@ -8,7 +8,9 @@ function injected_script(){
 
         console.log('in injected_script.js: running start')
 
-
+        //////////////////////////////////////////////////////////////////////////////////
+        //                detection
+        //////////////////////////////////////////////////////////////////////////////////
         var hasTHREEJS = window.THREE !== undefined ? true : false
         if( hasTHREEJS ){
         	console.log('in injected_script.js: three.js is present version', THREE.REVISION)
@@ -24,8 +26,6 @@ function injected_script(){
         // declare namespace
         window.InspectedWin3js = window.InspectedWin3js || {}
         var InspectedWin3js = window.InspectedWin3js
-        
-        InspectedWin3js.hasTHREEJS = hasTHREEJS;
         
         /**
          * object3DJson of the last selected object3d, if none selected then === null
@@ -429,7 +429,7 @@ function injected_script(){
          * @param {Function} fct - the function to call
          * @param {Array} data - the parameters to send to function
          */
-        InspectedWin3js.ChangeObject3dFunction = function( object3dUUID, fct, args ) {
+        InspectedWin3js.ChangeObject3dFunction = function( object3dUUID, fct, args ){
         	console.log('in injected_script.js: ChangeObject3dFunction', fct.toString(), args)
                 var object3d = InspectedWin3js.getObjectByUuid(object3dUUID)
         	console.assert(object3d instanceof THREE.Object3D)

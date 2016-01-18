@@ -1,7 +1,7 @@
 ### Cleanup
-- use object3dJson when applicaable
+- use object3dJson when applicable
 - split the injected_script.js
-- there are 3 versions of font awesome
+- FIXED there are 3 versions of font awesome
 
 
 ### TODO
