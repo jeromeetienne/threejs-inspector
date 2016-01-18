@@ -96,13 +96,14 @@ PanelWin3js.PanelTreeView	= function(){
 		// create treeViewObjects[] object if needed
 		if( treeViewObjects[ dataJSON.uuid ] === undefined ){
 		        console.log('in panel-ui-treeview.js: create a treeviewItem')
+			var label = (dataJSON.name ? dataJSON.name : 'no name') + ' - ' + dataJSON.className
 			// create the dom element
 			treeViewObjects[ dataJSON.uuid ] = {
 				uuid : dataJSON.uuid,
 				parentUuid : dataJSON.parentUuid,
 				data : {
 					className : dataJSON.className,
-					viewItem : new TreeViewItem( dataJSON.name, dataJSON.uuid )
+					viewItem : new TreeViewItem( label, dataJSON.uuid )
 				}
 			}
 		}
