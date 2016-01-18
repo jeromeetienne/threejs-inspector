@@ -11,6 +11,7 @@ PanelWin3js.evalJsCode	= function(jsCode){
 	chrome.devtools.inspectedWindow.eval( jsCode, function(result, isException){
 		if( isException ){
 			console.error('in panel-injector.js: Exception while eval()', jsCode)
+			console.error(isException.value)
 		}else{
 			// console.log('result = ', result)
 		}
@@ -33,6 +34,7 @@ PanelWin3js.plainFunction	= function(fct, args){
 	chrome.devtools.inspectedWindow.eval( jsCode, function(result, isException){
 		if( isException ){
 			console.error('in panel-injector.js: Exception while eval()', jsCode)
+			console.error(isException.value)
 		}else{
 			// console.log('result = ', result)
 		}
@@ -85,6 +87,7 @@ PanelWin3js.functionOnObject3d	= function(fct, args){
 	chrome.devtools.inspectedWindow.eval( jsCode, function(result, isException){
 		if( isException ){
 			console.error('in panel-injector.js: Exception while eval()', jsCode)
+			console.error(isException.value)
 		}else{
 			// console.log('result = ', result)
 		}
@@ -96,25 +99,34 @@ PanelWin3js.functionOnObject3d	= function(fct, args){
 //////////////////////////////////////////////////////////////////////////////////
 
 PanelWin3js.injectInspectedWinScripts	= function(){
-        // PanelWin3js.evalJsCode('('+injected_script.toString()+')();');
+	// read the inspected-win scripts content
+	var content	= ''
+	content += readFile('inspected-win/00-inspected-win-prefix.js')
+	content += readFile('inspected-win/10-inspected-win-changeobject3d.js')
+	content += readFile('inspected-win/10-inspected-win-classnames.js')
+	content += readFile('inspected-win/10-inspected-win-object3dtojson.js')
+	content += readFile('inspected-win/50-inspected-win-main.js')
+	content += readFile('inspected-win/99-inspected-win-suffix.js')
 	
-	injectFile('inspected-win/50-inspected-win-main.js')
+	// eval it
+	chrome.devtools.inspectedWindow.eval( content, function(result, isException){
+		if( isException ){
+			console.error('Exception while eval() inspected-win scripts')
+			console.error(isException.value)
+		}else{
+			// console.log('result = ', result)
+		}
+	})
+
+
 	return
 
-	function injectFile(url){
+	function readFile(url){
 		var request = new XMLHttpRequest();
 		request.open('GET', url, false);  // `false` makes the request synchronous
 		request.send(null);
 		console.assert(request.status === 200)
-			var content = request.responseText
-
-		chrome.devtools.inspectedWindow.eval( content, function(result, isException){
-			if( isException ){
-				console.error('Exception while eval()', url)
-				console.error(isException.value)
-			}else{
-				// console.log('result = ', result)
-			}
-		})
+		var content = request.responseText
+		return content
 	}	
 }

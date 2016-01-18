@@ -1,18 +1,23 @@
 ### Cleanup
-- use object3dJson when applicable
 - split the injected_script.js
   - how to handle the detection of the previous inclusion ?
-- FIXED there are 3 versions of font awesome
-
-
-### TODO
-- bring material/geometry panel. then clean up
+- test on alexandra mac book air
+  - configure it for coding
+  - iterm + git + github auth rsa key + screen switch
 - address the three.js detection mechanism. currently manual with button
   - no emergency
   - you dont know any good solution for now
 
+- test on most recent version of three.js
+- use object3dJson var name when applicable
 
 
+### TODO
+
+
+
+- DONE bring material/geometry panel. then clean up
+- FIXED there are 3 versions of font awesome
 - DONE port this injection mechanism. to enable the action from panel to object3d properties
 ```
 var injectProperty = InspectDevTools.propertyOnObject3d
