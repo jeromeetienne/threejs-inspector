@@ -51,7 +51,7 @@ PanelWin3js.PanelSettings	= function(){
 	function update(){		
 		PanelWin3js.plainFunction(function(rafEnabled, fps){
 			var rafThrottler	= InspectedWin3js.rafThrottler
-			console.log('in panel-ui-settings.js: setting rafThrottler to', rafEnabled ? 'enable at '+fps : 'disable')
+			// console.log('in panel-ui-settings.js: setting rafThrottler to', rafEnabled ? ('enable at '+fps+' fps') : 'disable')
 			if( rafEnabled !== true ){
 				rafThrottler.fps = -1
 			}else{

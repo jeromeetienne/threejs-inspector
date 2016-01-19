@@ -42,7 +42,18 @@ PanelWin3js.PanelAbout	= function(){
 	domElement.target	= '_blank'
 	domElement.style.color = '#888'
 	authorRow.appendChild(domElement)
+	
+	container.dom.appendChild( document.createElement('br') )
 
+	var feedbackRow	= document.createElement('div')
+	feedbackRow.innerHTML	= 'Chrome Store Extension: '
+	container.dom.appendChild(feedbackRow)
+	var domElement	= document.createElement('a')
+	domElement.href	= 'https://chrome.google.com/webstore/detail/threejs-inspector/dnhjfclbfhcbcdfpjaeacomhbdfjbebi?hl=en'
+	domElement.innerHTML	= 'three.js inspector'	
+	domElement.target	= '_blank'	
+	domElement.style.color = '#888'
+	feedbackRow.appendChild(domElement)
 
 	container.dom.appendChild( document.createElement('br') )
 	container.dom.appendChild( document.createElement('br') )
@@ -65,29 +76,26 @@ PanelWin3js.PanelAbout	= function(){
 	domElement.style.color = '#888'
 	feedbackRow.appendChild(domElement)
 
+	
 	container.dom.appendChild( document.createElement('br') )
 
-	var feedbackRow	= document.createElement('div')
-	feedbackRow.innerHTML	= 'Chrome Store Extension: '
-	container.dom.appendChild(feedbackRow)
+	var creditRow	= document.createElement('div')
+	creditRow.innerHTML	= 'forked of the excelent '
+	container.dom.appendChild(creditRow)
+
 	var domElement	= document.createElement('a')
-	domElement.href	= 'https://chrome.google.com/webstore/detail/threejs-inspector/dnhjfclbfhcbcdfpjaeacomhbdfjbebi?hl=en'
-	domElement.innerHTML	= 'three.js inspector'	
+	domElement.href	= 'https://github.com/spite/ShaderEditorExtension'
+	domElement.innerHTML	= '@thespite\'s shader extension'	
 	domElement.target	= '_blank'	
 	domElement.style.color = '#888'
-	feedbackRow.appendChild(domElement)
-
+	creditRow.appendChild(domElement)
+	
 	container.dom.appendChild( document.createElement('br') )
 
 	var versionRow	= document.createElement('div')
 	versionRow.innerHTML	= 'Work better with the last version of three.js (r71 atm)'
 	container.dom.appendChild(versionRow)
-	
-	container.dom.appendChild( document.createElement('br') )
 
-	var creditRow	= document.createElement('div')
-	creditRow.innerHTML	= 'forked of the excelent @thespite\'s three.js extension'
-	container.dom.appendChild(creditRow)
 	
 	return container
 };
