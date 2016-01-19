@@ -65,6 +65,11 @@ PanelWin3js.PanelTreeView	= function(){
 
 	// create TreeView
 	var treeView = new TreeView( container.content );
+
+	//////////////////////////////////////////////////////////////////////////////
+	//              Code Separator
+	//////////////////////////////////////////////////////////////////////////////
+	
 	treeView.onSelect = function( object3dUuid ){
 		PanelWin3js.plainFunction(function(uuid){
 			console.log('trying to select object3d uuid', uuid)
@@ -91,6 +96,18 @@ PanelWin3js.PanelTreeView	= function(){
 	//		process updateObject3DTreeView
 	//////////////////////////////////////////////////////////////////////////////////
 	var treeViewObjects     = {}
+
+	PanelWin3js.editor.signals.clearObject3DTreeView.add(function(){
+		console.log('in panel-ui-treeview.js: process clearObject3DTreeView', treeViewObjects)
+
+		// clear the cache
+		for( var objectUuid in treeViewObjects ){
+			console.log('in panel-ui-treeview.js: delete object3d', objectUuid, treeViewObjects[ objectUuid ])
+			var object3d = treeViewObjects[ objectUuid ]
+			object3d.data.viewItem.detach()
+			treeViewObjects[ objectUuid ] = undefined;
+		}
+	})
 
 	PanelWin3js.editor.signals.updateObject3DTreeView.add(function(dataJSON){
 		// create treeViewObjects[] object if needed

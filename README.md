@@ -1,3 +1,14 @@
+### About Detection
+- on panel load, have a splash with a button which captureScene
+- have a capture button on the UI in the open panel
+- have captureScene to clear the treeView to start with
+  - ```InspectedWin3js.postMessageToPanel('clearObject3DTreeView')```
+  - it doesnt work for now treeView.empty() is supposed to be taht
+  - likely a bug
+  - action item: simply review how item are created and added, then do the auto remove function
+- it should provide a consitent basic detection system
+
+
 ### Cleanup
 
 - reimport the raf throttler

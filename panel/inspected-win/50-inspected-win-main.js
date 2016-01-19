@@ -82,6 +82,12 @@ InspectedWin3js.treeviewObject3dToJSON  = function(object3d){
  * @param {THREE.Object3D} scene - the object3d root to capture
  */
 InspectedWin3js.captureScene    = function(scene){
+        
+        // TODO it could be a long message with all object
+        // - this would reduce message latency
+        
+        InspectedWin3js.postMessageToPanel('clearObject3DTreeView')                      
+
         scene.traverse(function(object3d){
                 var json = InspectedWin3js.treeviewObject3dToJSON(object3d)
                 InspectedWin3js.postMessageToPanel('updateObject3DTreeView', json)                      

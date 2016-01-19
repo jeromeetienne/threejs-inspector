@@ -21,6 +21,9 @@ PanelWin3js.initBackgroundConnection	= function(){
 		
 	        if( message.type === 'updateObject3DTreeView' ){
 	                PanelWin3js.editor.signals.updateObject3DTreeView.dispatch(message.data)
+	        }else if( message.type === 'clearObject3DTreeView' ){
+			console.log('in panel-backgroundcnx.js: dispatch clearObject3DTreeView')
+	                PanelWin3js.editor.signals.clearObject3DTreeView.dispatch()
 	        }else if( message.type === 'injectedInspectedWin' ){
 	                PanelWin3js.editor.signals.injectedInspectedWin.dispatch()
 	        }else if( message.type === 'selectObject3D' ){
