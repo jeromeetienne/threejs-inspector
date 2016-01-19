@@ -1,14 +1,35 @@
 ### Cleanup
-- test on alexandra mac book air
-  - configure it for coding
-  - iterm + git + github auth rsa key + screen switch
+
+- when to switch to threejs-doctor and to update threejs-inspector
 - address the three.js detection mechanism. currently manual with button
   - no emergency
   - you dont know any good solution for now
+  - what about binding THREE.WebGLRenderer.prototype.render ?
+  - what i want is periodic update of the scene.
+    - then i update the treeview in the panel
+  - so we got t
+- what to do when the inspected page is reloaded ?
+- reimport the raf throttler
+  - thus you got interest in reimporting the config too
 
 - test on most recent version of three.js
 - use object3dJson var name when applicable
+- test on alexandra mac book air
+  - configure it for coding
+  - iterm + git + github auth rsa key + screen switch
+  - seems to work
 
+### Detection of the three.js in the page
+- we want mainly the scene for now
+  - we can provide a explicit API for that. the inspectedWin.* API will do it
+- this inspectedWin.sendSceneToPanel(scene) API... can be used to 
+- address the three.js detection mechanism. currently manual with button
+  - no emergency
+  - you dont know any good solution for now
+  - what about binding THREE.WebGLRenderer.prototype.render ?
+  - what i want is periodic update of the scene.
+    - then i update the treeview in the panel
+  - so we got t
 
 ### TODO
 
