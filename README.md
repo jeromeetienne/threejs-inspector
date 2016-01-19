@@ -1,16 +1,11 @@
 ### Cleanup
 
-- when to switch to threejs-doctor and to update threejs-inspector
-- address the three.js detection mechanism. currently manual with button
-  - no emergency
-  - you dont know any good solution for now
-  - what about binding THREE.WebGLRenderer.prototype.render ?
-  - what i want is periodic update of the scene.
-    - then i update the treeview in the panel
-  - so we got t
-- what to do when the inspected page is reloaded ?
 - reimport the raf throttler
   - thus you got interest in reimporting the config too
+- when to switch to threejs-doctor and to update threejs-inspector
+  - When detection + raf throttler is done
+- address the three.js detection mechanism. currently manual with button
+- what to do when the inspected page is reloaded ?
 
 - test on most recent version of three.js
 - use object3dJson var name when applicable
