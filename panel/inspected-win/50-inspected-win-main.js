@@ -85,7 +85,6 @@ InspectedWin3js.captureScene    = function(scene){
         
         // TODO it could be a long message with all object
         // - this would reduce message latency
-        
         InspectedWin3js.postMessageToPanel('clearObject3DTreeView')                      
 
         scene.traverse(function(object3d){
