@@ -15,6 +15,7 @@
   - seems to work
 
 ### Detection of the three.js in the page
+- see about the splash screen
 - we want mainly the scene for now
   - we can provide a explicit API for that. the inspectedWin.* API will do it
 - this inspectedWin.sendSceneToPanel(scene) API... can be used to 

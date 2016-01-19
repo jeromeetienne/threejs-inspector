@@ -102,6 +102,7 @@ PanelWin3js.injectInspectedWinScripts	= function(){
 	// read the inspected-win scripts content
 	var content	= ''
 	content += readFile('inspected-win/00-inspected-win-prefix.js')
+	content += readFile('../vendor/raf-throttler.js')
 	content += readFile('inspected-win/10-inspected-win-changeobject3d.js')
 	content += readFile('inspected-win/10-inspected-win-classnames.js')
 	content += readFile('inspected-win/10-inspected-win-object3dtojson.js')

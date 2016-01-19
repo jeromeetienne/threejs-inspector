@@ -7,9 +7,10 @@ function Editor(){
 	this.signals	= {
 		updateObject3DTreeView: new SIGNALS.Signal(),
 		object3dSelected: new SIGNALS.Signal(),
+		injectedInspectedWin: new SIGNALS.Signal(),
 	}
 	
-	
+	this.config	= new Config()
 	this.selected = null;
 
 	this.selectObject3D = function(object3dJson){

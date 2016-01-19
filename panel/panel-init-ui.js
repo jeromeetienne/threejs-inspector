@@ -18,6 +18,10 @@ PanelWin3js.initLeftSideBar = function(){
 	tabContainer.addTab('SCENE', sceneTab)
 	sceneTab.add( new PanelWin3js.PanelTreeView() )
 
+	var settingTab	= new UI.TabsHelper.createTab()
+	tabContainer.addTab('SETTINGS', settingTab)
+	settingTab.add( new PanelWin3js.PanelSettings() )
+
 	var aboutTab	= new UI.TabsHelper.createTab()
 	tabContainer.addTab('ABOUT', aboutTab)
 	aboutTab.add( new PanelWin3js.PanelAbout() )

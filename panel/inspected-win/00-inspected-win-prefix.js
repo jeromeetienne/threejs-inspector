@@ -23,5 +23,6 @@
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// declare namespace
-	window.InspectedWin3js = window.InspectedWin3js || {}
-	var InspectedWin3js = window.InspectedWin3js
+	var InspectedWin3js = {}
+	// export namespace globally
+	window.InspectedWin3js = InspectedWin3js

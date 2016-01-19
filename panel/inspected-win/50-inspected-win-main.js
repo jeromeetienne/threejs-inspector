@@ -1,5 +1,8 @@
 console.log('in 50-injected_script-main.js: running start')
 
+// create a RafThrottler 
+InspectedWin3js.rafThrottler	= new RafThrottler();
+
 //////////////////////////////////////////////////////////////////////////////////
 //                Comments
 //////////////////////////////////////////////////////////////////////////////////
@@ -92,3 +95,6 @@ InspectedWin3js.captureScene    = function(scene){
 
         
 InspectedWin3js.extractThreeJSClassNames()
+
+InspectedWin3js.postMessageToPanel('injectedInspectedWin')                      
+
