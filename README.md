@@ -8,6 +8,9 @@
 
 ### About Detection
 - on panel load, have a splash with a button which captureScene
+  - display panel-ui-splash with a single button.
+  - on click, inject scripts
+  - on injectedScript, hide splash and create panels.
 - have a capture button on the UI in the open panel
 - have captureScene to clear the treeView to start with
   - ```InspectedWin3js.postMessageToPanel('clearObject3DTreeView')```

@@ -12,7 +12,7 @@ PanelWin3js.PanelMaterial	= function(faceMaterialIndex){
 	//////////////////////////////////////////////////////////////////////////////////
 	var editor	= PanelWin3js.editor
 	var signals	= editor.signals
-	var subMaterialPanel = null;
+	var subMaterialPanel = null
 	
 	if( faceMaterialIndex === -1 ){
 		var container	= new UI.Panel()
@@ -265,11 +265,11 @@ PanelWin3js.PanelMaterial	= function(faceMaterialIndex){
 
 	var propertyPrefix = faceMaterialIndex === -1 ? 'material' : 'material.materials['+faceMaterialIndex+']'
 
-	var mapRow = new PanelTexture(propertyPrefix+'.map')
+	var mapRow = new PanelWin3js.PanelTexture(propertyPrefix+'.map')
 	mapRow.textureRow.setLabel('Map')
 	container.add( mapRow );
 
-	var bumpMapRow = new PanelTexture(propertyPrefix+'.bumpMap')
+	var bumpMapRow = new PanelWin3js.PanelTexture(propertyPrefix+'.bumpMap')
 	bumpMapRow.textureRow.setLabel('Bump map')
 	container.add( bumpMapRow );
 
@@ -277,7 +277,7 @@ PanelWin3js.PanelMaterial	= function(faceMaterialIndex){
 	bumpScaleRow.setLabel('bumpScale')
 	container.add( bumpScaleRow );
 	
-	var normalMapRow = new PanelTexture(propertyPrefix+'.normalMap')
+	var normalMapRow = new PanelWin3js.PanelTexture(propertyPrefix+'.normalMap')
 	normalMapRow.textureRow.setLabel('Normal map')
 	container.add( normalMapRow );
 	

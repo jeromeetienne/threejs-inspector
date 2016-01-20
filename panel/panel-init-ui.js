@@ -1,6 +1,15 @@
 var PanelWin3js	= PanelWin3js	|| {}
 
 //////////////////////////////////////////////////////////////////////////////////
+//		Comments
+//////////////////////////////////////////////////////////////////////////////////
+
+PanelWin3js.initSplash = function(){
+	var panel = new PanelWin3js.PanelSplash() 
+	document.querySelector( '#container' ).appendChild(panel.dom)
+}
+
+//////////////////////////////////////////////////////////////////////////////////
 //                Comments
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -25,6 +34,26 @@ PanelWin3js.initLeftSideBar = function(){
 	var aboutTab	= new UI.TabsHelper.createTab()
 	tabContainer.addTab('ABOUT', aboutTab)
 	aboutTab.add( new PanelWin3js.PanelAbout() )
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Handle Inspect button hack
+	//////////////////////////////////////////////////////////////////////////////////
+	var domElement	= document.createElement('button')
+	domElement.innerHTML	= 'Inspect'	
+	domElement.style.position = 'absolute'
+	domElement.style.top = '0px'
+	domElement.style.right = '0px'
+	domElement.style.margin = '0.2em'
+	domElement.style.lineHeight = '2em'
+	domElement.style.paddingLeft = '0.5em'
+	domElement.style.paddingRight = '0.5em'
+	tabContainer.dom.appendChild(domElement)
+	domElement.addEventListener('click', function(){
+		// capture the scene if possible
+		PanelWin3js.plainFunction(function(uuid){
+	                InspectedWin3js.captureScene(scene)
+		})		
+	})
 }
 
 //////////////////////////////////////////////////////////////////////////////////

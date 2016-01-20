@@ -31,7 +31,6 @@ PanelWin3js.PanelTreeView	= function(){
 		''			: '--- Options ---',
 		'collapseAll'		: 'Collapse All',
 		'expandAll'		: 'Expand All',
-		'captureScene'		: 'Capture Scene',
 	}, onPopupMenuChange)
 	container.titleElement.add(popupMenu)
 	container.dom.appendChild( document.createElement('br') )
@@ -44,13 +43,6 @@ PanelWin3js.PanelTreeView	= function(){
 		}else if( value === 'expandAll' ){
 			treeView.getRoot().children.forEach(function(child){
 				child.expandAll()
-			})
-		}else if( value === 'captureScene' ){
-		        console.log('in panel-ui-treeview.js: detecting click on a button capture_scene')
-		        PanelWin3js.injectInspectedWinScripts()
-
-			PanelWin3js.plainFunction(function(uuid){
-		                InspectedWin3js.captureScene(scene)
 			})
 		}else{
 			console.assert(false)
