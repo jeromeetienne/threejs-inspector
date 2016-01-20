@@ -1,3 +1,11 @@
+### How to merge it into extension
+- 2 repositories threejs-doctor and threejs-inspector
+- move old threejs-doctor into threejs-doctor-old, move it to public
+- move extension-devtools into threejs-doctor private
+- do a push force on threejs-inspector repository
+- update the extension in chrome store
+
+
 ### About Detection
 - on panel load, have a splash with a button which captureScene
 - have a capture button on the UI in the open panel
