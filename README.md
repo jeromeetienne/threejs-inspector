@@ -1,6 +1,6 @@
 ### How to merge it into extension
 - 2 repositories threejs-doctor and threejs-inspector
-- move old threejs-doctor into threejs-doctor-old, move it to public
+- DONE move old threejs-doctor into threejs-inspector-old, move it to public
 - move extension-devtools into threejs-doctor private
 - do a push force on threejs-inspector repository
 - update the extension in chrome store
