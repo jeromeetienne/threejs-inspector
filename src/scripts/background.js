@@ -79,7 +79,7 @@ chrome.webNavigation.onCommitted.addListener(function(data) {
                 if( data.frameId === 0 ) {
                         // console.log('frameId', data.frameId)
                         panelConnections[ data.tabId ].postMessage({
-                                name: 'inspectedPageReloaded'
+                                type: 'inspectedWinReloaded'
                         });
                 }
         }

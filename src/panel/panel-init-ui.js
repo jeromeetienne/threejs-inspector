@@ -49,10 +49,11 @@ PanelWin3js.initLeftSideBar = function(){
 	domElement.style.paddingRight = '0.5em'
 	tabContainer.dom.appendChild(domElement)
 	domElement.addEventListener('click', function(){
+		PanelWin3js.injectInspectedWinScripts()
 		// capture the scene if possible
 		PanelWin3js.plainFunction(function(uuid){
 	                InspectedWin3js.captureScene(scene)
-		})		
+		})	
 	})
 }
 

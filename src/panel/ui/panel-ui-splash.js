@@ -55,11 +55,11 @@ PanelWin3js.PanelSplash	= function(){
 		return
 			
 		function onInjectedInspectedWin(){
-			// hide splash panel
-			container.dom.style.display = 'none';
-	
 			// remove the signals function
 			signals.injectedInspectedWin.remove(onInjectedInspectedWin)
+
+			// hide splash panel
+			container.dom.style.display = 'none';	
 
 			// init inspector ui
 			document.querySelector( '#leftSidebar' ).style.display = 'block'

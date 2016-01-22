@@ -1,3 +1,8 @@
+### TODO
+- bug in treeview
+  - it is does empty on http://127.0.0.1:3000/examples/webgl_geometry_cube.html
+  - debug treeView.empty() in standalone page
+
 ### How to merge it into extension
 - 2 repositories threejs-doctor and threejs-inspector
 - DONE move old threejs-doctor into threejs-inspector-old, move it to public
