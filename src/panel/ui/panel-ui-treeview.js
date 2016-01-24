@@ -99,6 +99,8 @@ PanelWin3js.PanelTreeView	= function(){
 			object3d.data.viewItem.detach()
 			treeViewObjects[ objectUuid ] = undefined;
 		}
+		
+		
 	})
 
 	PanelWin3js.editor.signals.updateObject3DTreeView.add(function(dataJSON){
