@@ -17,24 +17,57 @@ PanelWin3js.PanelSplash	= function(){
 	//////////////////////////////////////////////////////////////////////////////////
 	document.querySelector( '#leftSidebar' ).style.display = 'none'
 	document.querySelector( '#rightSidebar' ).style.display = 'none'
+
 	//////////////////////////////////////////////////////////////////////////////////
-	//		Create elements
+	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	
 	var domElement	= document.createElement('div')
-	domElement.innerHTML	= 'SPLASH'
+	domElement.innerHTML	= 'THREE.js Inspector'
 	domElement.style.fontSize = '2em'
 	domElement.style.paddingTop = '1em'
 	domElement.style.width = '100%';
 	domElement.style.color = '#aaa'
 	container.dom.appendChild(domElement)
+	
+	var domElement	= document.createElement('div')
+	domElement.innerHTML	= 'v ' + '1.9.0'	
+	domElement.style.color = '#888'
+	container.dom.appendChild(domElement)
 
+	container.dom.appendChild( document.createElement('br') )
+	
+
+
+	var authorRow	= document.createElement('div')
+	authorRow.innerHTML	= 'Contact me on twitter '
+	container.dom.appendChild(authorRow)
+
+	var domElement	= document.createElement('a')
+	domElement.href	= 'https://twitter.com/jerome_etienne'
+	domElement.innerHTML	= '@jerome_etienne'	
+	domElement.target	= '_blank'
+	domElement.style.color = '#888'
+	authorRow.appendChild(domElement)
+	container.dom.appendChild( document.createElement('br') )
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Create elements
+	//////////////////////////////////////////////////////////////////////////////////
+
+	container.dom.appendChild( document.createElement('br') )
+	container.dom.appendChild( document.createElement('br') )
+	container.dom.appendChild( document.createElement('br') )
+	container.dom.appendChild( document.createElement('br') )
+
+	var labelRow	= document.createElement('div')
+	labelRow.innerHTML	= 'Keep on clicking "inspect" to refresh the scene'
+	container.dom.appendChild(labelRow)
+	container.dom.appendChild( document.createElement('br') )
+	
 	var domElement	= document.createElement('button')
 	domElement.innerHTML	= 'Inspect'	
-	// domElement.style.position = 'absolute'
-	// domElement.style.top = '0px'
-	// domElement.style.right = '0px'
 	domElement.style.margin = '0.2em'
 	domElement.style.lineHeight = '2em'
 	domElement.style.paddingLeft = '0.5em'
