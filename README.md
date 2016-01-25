@@ -1,9 +1,13 @@
 ### How to merge it into extension
+- do a push force on threejs-inspector repository
+- import all the meta data from the threejs-inspector 
+  - images, description 
+  - manifest.json
+
 - 2 repositories threejs-doctor and threejs-inspector
 - DONE move old threejs-doctor into threejs-inspector-old, move it to public
-- move extension-devtools into threejs-doctor private
-- do a push force on threejs-inspector repository
-- update the extension in chrome store
+- DONE move extension-devtools into threejs-doctor private
+- DONE update the extension in chrome store
 
 
 ### About Detection
