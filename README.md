@@ -8,8 +8,11 @@ It is a fork from
 [WebGL GLSL Shader Editor Extension for Google Chrome](https://github.com/spite/ShaderEditorExtension)
 by the excelent @thespite. Check it out! 
 
+## How to be sure the extension find your scene
+- export your THREE.Scene as a ```scene``` global variable
+  - typically ```window.scene = scene;``` 
 
-## How to install
+## How to install three.js inspector locally
 
 You can install the extensions directly from the chrome store
 
