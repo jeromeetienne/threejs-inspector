@@ -1,9 +1,15 @@
 {
-        "name": "three.js inspector",
+        "name": "three.js inspector-dev",
+        "short_name": "3jsInspect",
         "version": "1.9.0",
         "manifest_version": 2,
-        "description": "super description",
+        "description": "Three.js Inspector is an extension to inspect three.js page. It allow to interact with almost all three.js demos out there.",
         "devtools_page": "devtools.html",
+	"icons": {
+		"128": "images/icon_128.png",
+		"48": "images/icon_48.png",
+		"16": "images/icon_16.png"
+	},
         "background": {
                 "scripts": [
                         "scripts/background.js"
