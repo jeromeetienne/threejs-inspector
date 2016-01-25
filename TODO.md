@@ -5,3 +5,4 @@
 - check how the previous extension is doing the detection
   - see what you can learn from it
 - remove the debug console.log when releasing
+- if scene isnt found, notify it with an alert in inspected window
