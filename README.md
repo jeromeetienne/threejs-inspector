@@ -32,6 +32,7 @@ Follow those steps:
 ## History 1.9.2
 - better detection of the inspected window
   - detect when the inspected window is reloaded, and reinject the script
+- added a timer to count the time since the last scene update
 
 ## History 1.9.0
 

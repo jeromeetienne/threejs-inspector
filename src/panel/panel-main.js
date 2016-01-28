@@ -16,24 +16,7 @@ PanelWin3js.editor	= new Editor()
 //////////////////////////////////////////////////////////////////////////////
 
 PanelWin3js.initBackgroundConnection()
-// // PanelWin3js.initLeftSideBar()
-// // PanelWin3js.initRightSideBar()
-// PanelWin3js.initSplash()
-
-// hide splash panel
-// container.dom.style.display = 'none';	
-
-// init inspector ui
-document.querySelector( '#leftSidebar' ).style.display = 'block'
-document.querySelector( '#rightSidebar' ).style.display = 'block'
-PanelWin3js.initLeftSideBar()
-PanelWin3js.initRightSideBar()
-
-PanelWin3js.injectInspectedWinScripts()
-// capture the scene if possible
-PanelWin3js.plainFunction(function(uuid){
-        InspectedWin3js.captureScene()
-})
+PanelWin3js.initSplash()
 			
 //////////////////////////////////////////////////////////////////////////////////
 //                Comments

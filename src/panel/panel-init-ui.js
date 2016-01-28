@@ -39,7 +39,7 @@ PanelWin3js.initLeftSideBar = function(){
 	//		Handle Inspect button hack
 	//////////////////////////////////////////////////////////////////////////////////
 	var domElement	= document.createElement('button')
-	domElement.innerHTML	= 'Inspect'	
+	domElement.innerHTML	= 'Refresh'	
 	domElement.style.position = 'absolute'
 	domElement.style.top = '0px'
 	domElement.style.right = '0px'

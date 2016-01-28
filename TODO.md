@@ -1,7 +1,12 @@
 ### TODO
-- add the date in the three.js inspector
+- DONE add the date in the three.js inspector
 - add a 'NO SCENE' in the left panel
+  - how to know there are no scene ?
 - remove the whole splash code which seems useless
+- add a message counter in the source
+  - apparently the update are super slow...
+  - maybe there are a lot of message shared between window
+  - if so, one can reduce the number of message by packing them together
 
 ### TODO
 - bug in treeview

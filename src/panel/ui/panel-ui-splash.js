@@ -60,14 +60,9 @@ PanelWin3js.PanelSplash	= function(){
 	container.dom.appendChild( document.createElement('br') )
 	container.dom.appendChild( document.createElement('br') )
 	container.dom.appendChild( document.createElement('br') )
-
-	var labelRow	= document.createElement('div')
-	labelRow.innerHTML	= 'Keep on clicking "inspect" to refresh the scene'
-	container.dom.appendChild(labelRow)
-	container.dom.appendChild( document.createElement('br') )
 	
 	var domElement	= document.createElement('button')
-	domElement.innerHTML	= 'Inspect'	
+	domElement.innerHTML	= 'Launch'	
 	domElement.style.margin = '0.2em'
 	domElement.style.lineHeight = '2em'
 	domElement.style.paddingLeft = '0.5em'

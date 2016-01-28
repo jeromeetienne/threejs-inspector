@@ -11,7 +11,8 @@ var PanelWin3js	= PanelWin3js	|| {}
  */
 PanelWin3js.PanelTreeView	= function(){
 
-	var container	= UI.CollapsiblePanelHelper.createContainer('BROWSER', 'leftSidebarSceneBrowser', false)
+	// var container	= UI.CollapsiblePanelHelper.createContainer('BROWSER', 'leftSidebarSceneBrowser', false)
+	var container	= new UI.Panel()
 
 	container.dom.addEventListener('click', function(){
 		treeView.clearActive()
@@ -32,9 +33,8 @@ PanelWin3js.PanelTreeView	= function(){
 		'collapseAll'		: 'Collapse All',
 		'expandAll'		: 'Expand All',
 	}, onPopupMenuChange)
-	container.titleElement.add(popupMenu)
-	container.dom.appendChild( document.createElement('br') )
-
+	container.add(popupMenu)
+	
 	function onPopupMenuChange(value){
 		if( value === 'collapseAll' ){
 			treeView.getRoot().children.forEach(function(child){
@@ -53,10 +53,30 @@ PanelWin3js.PanelTreeView	= function(){
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
 
-	container.content.appendChild( document.createElement('br') )
+	var dateRow	= new UI.Text()
+	var lastClearedAt = Date.now()
+	container.add(dateRow)
+	dateRow.setTextContent('Never updated')
+	function updateDateRow(){
+		var ageSeconds = Math.floor( (Date.now() - lastClearedAt)/1000 )
+		dateRow.setTextContent('Updated '+ageSeconds+' seconds ago')
+	}
+	// do the first init
+	updateDateRow()
+	// periodically update it
+	setInterval(function(){
+		updateDateRow()		
+	}, 1000);
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Comments
+	//////////////////////////////////////////////////////////////////////////////////
+
+	container.dom.appendChild( document.createElement('br') )
+	container.dom.appendChild( document.createElement('br') )
 
 	// create TreeView
-	var treeView = new TreeView( container.content );
+	var treeView = new TreeView( container.dom );
 
 	//////////////////////////////////////////////////////////////////////////////
 	//              Code Separator
@@ -91,6 +111,11 @@ PanelWin3js.PanelTreeView	= function(){
 	PanelWin3js.editor.signals.clearObject3DTreeView.add(function(){
 		console.log('in panel-ui-treeview.js: start clearObject3DTreeView', treeViewObjects)
 
+		// honor lastClearedAt
+		lastClearedAt = Date.now()
+		
+		updateDateRow()
+		
 		// clear the cache
 		for( var objectUuid in treeViewObjects ){
 			console.log('in panel-ui-treeview.js: delete object3d', objectUuid, treeViewObjects[ objectUuid ])
@@ -109,7 +134,7 @@ PanelWin3js.PanelTreeView	= function(){
 		// create treeViewObjects[] object if needed
 		if( treeViewObjects[ dataJSON.uuid ] === undefined ){
 		        console.log('in panel-ui-treeview.js: create a treeviewItem')
-			var label = (dataJSON.name ? dataJSON.name : 'no name') + ' - ' + dataJSON.className
+			var label = (dataJSON.name ? dataJSON.name : 'unnamed') + ' - ' + dataJSON.className
 			// create the dom element
 			treeViewObjects[ dataJSON.uuid ] = {
 				uuid : dataJSON.uuid,
@@ -131,10 +156,7 @@ PanelWin3js.PanelTreeView	= function(){
 			treeViewObject.parent = dataJSON.parentUuid;
 		} else {
 		        console.log('in panel-ui-treeview.js: appendChild treeviewItem to root')
-			// if this object got no parent, add it at the root
-			// if( !object.data.viewItem.parentItem ){
-				treeView.getRoot().appendChild( treeViewObject.data.viewItem );
-			// }
+			treeView.getRoot().appendChild( treeViewObject.data.viewItem );
 		}
 		
 	})
