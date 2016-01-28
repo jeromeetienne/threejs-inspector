@@ -11,6 +11,7 @@ by the excelent @thespite. Check it out!
 ## How to be sure the extension find your scene
 - export your THREE.Scene as a ```scene``` global variable
   - typically ```window.scene = scene;``` 
+- press 'inspect' button to refresh the scene
 
 ## How to install three.js inspector locally
 
@@ -27,6 +28,10 @@ Follow those steps:
 - Click on "Load unpacked extension"...
 - Select the folder /src in the checked out project
 
+
+## History 1.9.2
+- better detection of the inspected window
+  - detect when the inspected window is reloaded, and reinject the script
 
 ## History 1.9.0
 

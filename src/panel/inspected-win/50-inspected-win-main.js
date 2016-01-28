@@ -55,6 +55,24 @@ InspectedWin3js.getObjectByUuid = function(uuid){
         return scene.getObjectByProperty('uuid', uuid)
 }
 
+InspectedWin3js.getInspectedScene = function(){
+        if( window.scene instanceof THREE.Scene === false ) return null
+        return window.scene;
+}
+
+/**
+ * get default parent when adding a mesh
+ */
+InspectedWin3js.getDefaultParent = function(){
+        var scene = InspectedWin3js.getInspectedScene()
+
+        if( InspectedWin3js.selected === null ) return scene
+
+        var uuid = InspectedWin3js.selected.uuid
+        var parent = scene.getObjectByProperty('uuid', uuid)
+        return parent
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 //                for treeview
 //////////////////////////////////////////////////////////////////////////////////
@@ -79,18 +97,27 @@ InspectedWin3js.treeviewObject3dToJSON  = function(object3d){
 
 /**
  * capture a scene and send it to inspector panel
- * @param {THREE.Object3D} scene - the object3d root to capture
  */
-InspectedWin3js.captureScene    = function(scene){
-        
+InspectedWin3js.captureScene    = function(){
+console.log('in 50-injected_script-main: begin captureScene')
         // TODO it could be a long message with all object
         // - this would reduce message latency
-        InspectedWin3js.postMessageToPanel('clearObject3DTreeView')                      
+        InspectedWin3js.postMessageToPanel('clearObject3DTreeView')
+        
+console.log('in 50-injected_script-main: sent clearObject3DTreeView message')
+console.log('in 50-injected_script-main: hasTHREEJS', InspectedWin3js.hasTHREEJS)
+        if( InspectedWin3js.hasTHREEJS === false )      return                  
 
+        var scene = InspectedWin3js.getInspectedScene()
+console.log('in 50-injected_script-main: scene', scene)
+if( scene === null )    console.error('three.js inspector: no scene to inspect')
+        
+        if( scene === null )    return;
         scene.traverse(function(object3d){
                 var json = InspectedWin3js.treeviewObject3dToJSON(object3d)
                 InspectedWin3js.postMessageToPanel('updateObject3DTreeView', json)                      
         })
+console.log('in 50-injected_script-main: end captureScene')
 }
 
         
@@ -98,8 +125,8 @@ InspectedWin3js.captureScene    = function(scene){
 //                Comments
 ////////////////////////////////////////////////////////////////////////////////// 
 
-        
-InspectedWin3js.extractThreeJSClassNames()
+if( InspectedWin3js.hasTHREEJS === true ){
+        InspectedWin3js.extractThreeJSClassNames()
+}
 
 InspectedWin3js.postMessageToPanel('injectedInspectedWin')                      
-

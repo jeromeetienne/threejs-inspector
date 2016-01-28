@@ -28,7 +28,14 @@ PanelWin3js.initBackgroundConnection	= function(){
 	                PanelWin3js.editor.signals.injectedInspectedWin.dispatch()
 	        }else if( message.type === 'inspectedWinReloaded' ){
 			console.log('in panel-backgroundcnx.js: inspected window got reloaded... not sure what do to about it')
-		// 	PanelWin3js.injectInspectedWinScripts()
+			PanelWin3js.injectInspectedWinScripts()
+			// capture the scene if possible
+			PanelWin3js.plainFunction(function(uuid){
+				// TODO what about the .selected stuff too ?
+				// - how to share all those states shared between the panel and the inspected window
+        			InspectedWin3js.postMessageToPanel('clearObject3DTreeView')                      
+		                InspectedWin3js.captureScene()
+			})
 	        }else if( message.type === 'selectObject3D' ){
 			PanelWin3js.editor.selectObject3D( message.data )
 	        }else{

@@ -88,19 +88,21 @@ PanelWin3js.PanelTreeView	= function(){
 	//		process updateObject3DTreeView
 	//////////////////////////////////////////////////////////////////////////////////
 	var treeViewObjects     = {}
-
 	PanelWin3js.editor.signals.clearObject3DTreeView.add(function(){
-		console.log('in panel-ui-treeview.js: process clearObject3DTreeView', treeViewObjects)
+		console.log('in panel-ui-treeview.js: start clearObject3DTreeView', treeViewObjects)
 
 		// clear the cache
 		for( var objectUuid in treeViewObjects ){
 			console.log('in panel-ui-treeview.js: delete object3d', objectUuid, treeViewObjects[ objectUuid ])
-			var object3d = treeViewObjects[ objectUuid ]
-			object3d.data.viewItem.detach()
-			treeViewObjects[ objectUuid ] = undefined;
+			// get the 
+			var treeViewObject = treeViewObjects[ objectUuid ]
+			// get the object3d
+			delete treeViewObjects[ objectUuid ];
+			// detach the viewItem
+			treeViewObject.data.viewItem.detach()
 		}
-		
-		
+		// console.assert(false, 'test of console assert')
+		console.log('in panel-ui-treeview.js: stop clearObject3DTreeView', treeViewObjects)
 	})
 
 	PanelWin3js.editor.signals.updateObject3DTreeView.add(function(dataJSON){

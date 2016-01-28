@@ -99,17 +99,23 @@ PanelWin3js.functionOnObject3d	= function(fct, args){
 //////////////////////////////////////////////////////////////////////////////////
 
 PanelWin3js.injectInspectedWinScripts	= function(){
-	// read the inspected-win scripts content
-	var content	= ''
-	content += readFile('inspected-win/00-inspected-win-prefix.js')
-	content += readFile('../vendor/raf-throttler.js')
-	content += readFile('inspected-win/10-inspected-win-changeobject3d.js')
-	content += readFile('inspected-win/10-inspected-win-classnames.js')
-	content += readFile('inspected-win/10-inspected-win-object3dtojson.js')
-	content += readFile('inspected-win/50-inspected-win-main.js')
-	content += readFile('inspected-win/99-inspected-win-suffix.js')
 	
-	// eval it
+	// load and cache the inspected window scripts
+	if( PanelWin3js.injectInspectedWinScripts.cache === undefined ){
+		// read the inspected-win scripts content
+		var cache	= ''
+		cache += readFile('inspected-win/00-inspected-win-prefix.js')
+		cache += readFile('../vendor/raf-throttler.js')
+		cache += readFile('inspected-win/10-inspected-win-changeobject3d.js')
+		cache += readFile('inspected-win/10-inspected-win-classnames.js')
+		cache += readFile('inspected-win/10-inspected-win-object3dtojson.js')
+		cache += readFile('inspected-win/50-inspected-win-main.js')
+		cache += readFile('inspected-win/99-inspected-win-suffix.js')
+		 PanelWin3js.injectInspectedWinScripts.cache = cache
+	}
+	
+	// eval the inspected window script 
+	var content = PanelWin3js.injectInspectedWinScripts.cache
 	chrome.devtools.inspectedWindow.eval( content, function(result, isException){
 		if( isException ){
 			console.error('Exception while eval() inspected-win scripts')

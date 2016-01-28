@@ -69,11 +69,15 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 /**
  * chrome.webNavigation.onCommitted to send message to 'inject'
+ * 
+ * - TODO: check other events onBeforeNavigate -> onCommitted -> onDOMContentLoaded -> onCompleted
+ * - https://developer.chrome.com/extensions/webNavigation
+ * - especially onCompleted
  */
-chrome.webNavigation.onCommitted.addListener(function(data) {        
+chrome.webNavigation.onCompleted.addListener(function(data) {
         // console.log("onCommitted: " + data.url + ". Frame: " + data.frameId + ". Tab: " + data.tabId);
         // console.log("onCommitted: " + data.url + ". Frame: " + data.frameId + ". Tab: " + data.tabId);
-        
+
         if( panelConnections[ data.tabId ] ) {
                 // console.log('has connection', panelConnections[ data.tabId ])
                 if( data.frameId === 0 ) {

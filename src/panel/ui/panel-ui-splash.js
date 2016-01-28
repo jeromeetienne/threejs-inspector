@@ -32,7 +32,7 @@ PanelWin3js.PanelSplash	= function(){
 	container.dom.appendChild(domElement)
 	
 	var domElement	= document.createElement('div')
-	domElement.innerHTML	= 'v ' + '1.9.0'	
+	domElement.innerHTML	= 'v ' + '1.9.2'	
 	domElement.style.color = '#888'
 	container.dom.appendChild(domElement)
 
@@ -102,7 +102,7 @@ PanelWin3js.PanelSplash	= function(){
 
 			// capture the scene if possible
 			PanelWin3js.plainFunction(function(uuid){
-		                InspectedWin3js.captureScene(scene)
+		                InspectedWin3js.captureScene()
 			})
 		}
 		
