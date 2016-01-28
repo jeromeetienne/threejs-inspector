@@ -1,14 +1,21 @@
 ### TODO
-- DONE add the date in the three.js inspector
 - add a 'NO SCENE' in the left panel
   - how to know there are no scene ?
-- remove the whole splash code which seems useless
+- find an automatic way to identify when you run in -dev or in prod
+  - change things based on it... 
+  - simple principle: even patch number are dev version, odd patch number
+  - maybe thanks to the url ?
 - add a message counter in the source
   - apparently the update are super slow...
   - maybe there are a lot of message shared between window
   - if so, one can reduce the number of message by packing them together
+- on scene refresh, be sure the inspected object3d is still present
+  - if so update it
+- make it run in http://threejs.org page
+  - window.frames[0].frameElement.contentWindow.THREE
+- DONE add the date in the three.js inspector
 
-### TODO
+### old TODO
 - bug in treeview
   - it is does empty on http://127.0.0.1:3000/examples/webgl_geometry_cube.html
   - debug treeView.empty() in standalone page

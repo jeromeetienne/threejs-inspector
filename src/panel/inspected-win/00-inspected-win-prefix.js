@@ -1,11 +1,9 @@
 (function(){
 
-	// console.log = function(){}
-
 	// make sure it is loaded only once
 	if( window.InspectedWin3js !== undefined ){
 	        console.log('in 00-injected_script-init.js: already injected, bailing out')
-	        return                
+	        return
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -16,6 +14,21 @@
 	var InspectedWin3js = {}
 	// export namespace globally
 	window.InspectedWin3js = InspectedWin3js
+	
+	InspectedWin3js.REVISION	= '1.9.5'
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Comments
+	//////////////////////////////////////////////////////////////////////////////////
+	// determine which environment we run in thanks to the version number
+	// - simple principle: even patch number are dev version, odd patch number
+	InspectedWin3js.ENVIRONMENT	= parseInt(InspectedWin3js.REVISION.split('.').pop()) % 2 ? 'dev' : 'prod'
+
+	
+	// remove console.log in production
+	if( InspectedWin3js.ENVIRONMENT === 'prod' ){
+		console.log = function(){}
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//                detection

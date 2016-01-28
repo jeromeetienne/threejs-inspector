@@ -11,7 +11,7 @@ by the excelent @thespite. Check it out!
 ## How to be sure the extension find your scene
 - export your THREE.Scene as a ```scene``` global variable
   - typically ```window.scene = scene;``` 
-- press 'inspect' button to refresh the scene
+- press 'refresh' button to refresh the scene
 
 ## How to install three.js inspector locally
 
@@ -131,3 +131,12 @@ will be more manageable. Dont hesitate to report any issue on github.
   - if shift is pressed, it goes 10 times faster
   - it meta is pressed, it goes 100 times faster
   - if shift+meta are pressed, it goes 1000 times faster
+
+### How To Release
+- search /src for the previous version number
+- change the version number to even patch number e.g. 1.2.2
+- do ```make packageExtension``` to build the src.zip
+- upload the src.zip at https://chrome.google.com/webstore/developer/edit/dnhjfclbfhcbcdfpjaeacomhbdfjbebi?hl=en
+- click 'Publish Changes'
+- do ```make cleanExtension``` to build the src.zip
+- make the patch number as odd, by replacing all instance

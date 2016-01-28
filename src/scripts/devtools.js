@@ -21,13 +21,14 @@ if( hasInspectedWindow === true ){
 }else{
         console.log('in devtools.js: no inspected page, so not initializing three.js extension')
 }
+window.hasInspectedWindow = hasInspectedWindow
 
 //////////////////////////////////////////////////////////////////////////////
 //              create panel
 //////////////////////////////////////////////////////////////////////////////
 
 function initPanel(){
-        chrome.devtools.panels.create("Three.js Inspector-dev",
+        chrome.devtools.panels.create("Three.js Inspector",
                 "images/icon_128.png",
                 "panel/panel.html",
                 function(panel) {
