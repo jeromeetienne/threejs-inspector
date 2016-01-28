@@ -1,4 +1,19 @@
-(function(){
+// (function(){
+// 	window.x3js_window = window
+// 	
+// 	var isOnThreejsExamples = location.hostname === 'threejs.org' && location.pathname === '/examples/'
+// 
+// console.log('isOnThreejsExamples', isOnThreejsExamples)
+// 	if( isOnThreejsExamples === true ){
+// 		x3js_window = window.frames[0].frameElement.contentWindow
+// 	}
+// })();
+
+(function inspectedWinScript(){
+// 	var window = x3js_window
+// 	var THREE = x3js_window.THREE
+// console.log('window', window)
+// console.log('THREE', THREE)
 
 	// make sure it is loaded only once
 	if( window.InspectedWin3js !== undefined ){
