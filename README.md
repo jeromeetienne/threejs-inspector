@@ -29,11 +29,12 @@ Follow those steps:
 - Select the folder /src in the checked out project
 
 
-## History 1.9.2
+## History 1.9.5
 - better detection of the inspected window
   - detect when the inspected window is reloaded, and reinject the script
 - added a timer to count the time since the last scene update
 - detect when running in production and disable debug feature when not in development
+- reenabled shadermaterial with uniforms tuning
 
 ## History 1.9.0
 

@@ -237,9 +237,9 @@ InspectedWin3js.object3dToJSON  = function(object3d){
 		if(texture.magFilter !== undefined )	data.magFilter	= texture.magFilter
 		if(texture.minFilter !== undefined )	data.minFilter	= texture.minFilter
 
-		if(texture.sourceFile !== undefined ){
+		if(texture.image instanceof HTMLImageElement === true ){
 			var aDomElement = document.createElement('a')
-			aDomElement.href = texture.sourceFile
+			aDomElement.href = texture.image.src
 			data.sourceFile	= aDomElement.href
 		}
 		

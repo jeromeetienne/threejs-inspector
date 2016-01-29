@@ -6,11 +6,12 @@ var PanelWin3js	= PanelWin3js	|| {}
  * @constructor
  */
 PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
+	console.log('in panel-ui-material-shader.js: creating for faceMaterialIndex', faceMaterialIndex)
+
 	var editor	= PanelWin3js.editor
 	var signals	= editor.signals
 
 	var container	= new UI.Panel()
-console.log('in panel-ui-material-shader.js: creating for faceMaterialIndex', faceMaterialIndex)
 	//////////////////////////////////////////////////////////////////////////////////
 	//		handle tab-geometry
 	//////////////////////////////////////////////////////////////////////////////////
