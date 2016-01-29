@@ -15,7 +15,7 @@ UI.Texture = function () {
 		var reader = new FileReader();
 		reader.addEventListener( 'load', function ( event ) {
 			var url	= event.target.result 
-			console.log('url', url );
+			// console.log('url', url );
 			_this.setValue(url)
 			
 			if( _this.onChangeCallback )	_this.onChangeCallback();
@@ -35,7 +35,7 @@ UI.Texture = function () {
 	canvas.style.border = '1px solid #888';
 	dom.appendChild( canvas );
 
-	canvas.setAttribute('title', 'click to open in a new tab')
+	canvas.setAttribute('title', 'Click to upload a new texture')
 	canvas.addEventListener('click', function(){
 		input.click();
 	})

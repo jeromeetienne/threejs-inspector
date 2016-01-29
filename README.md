@@ -28,13 +28,16 @@ Follow those steps:
 - Click on "Load unpacked extension"...
 - Select the folder /src in the checked out project
 
+## History 1.9.7
+- nothing yet....
 
-## History 1.9.5
+## History 1.9.6
 - better detection of the inspected window
   - detect when the inspected window is reloaded, and reinject the script
 - added a timer to count the time since the last scene update
 - detect when running in production and disable debug feature when not in development
 - reenabled shadermaterial with uniforms tuning
+- reenable texture image tunning, export+drag drop from desktop
 
 ## History 1.9.0
 
@@ -142,3 +145,4 @@ will be more manageable. Dont hesitate to report any issue on github.
 - click 'Publish Changes'
 - do ```make cleanExtension``` to build the src.zip
 - make the patch number as odd, by replacing all instance
+- add a line in README.md Changelog
