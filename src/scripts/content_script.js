@@ -16,6 +16,8 @@
 // 	onLoad()
 // }
 
+var x3js_messagesForwardedCounter = 0
+
 //////////////////////////////////////////////////////////////////////////////////
 //		to receive message from injected_script
 //////////////////////////////////////////////////////////////////////////////////
@@ -25,7 +27,7 @@ window.addEventListener('message', function(event) {
 	// console.log('in content_script.js: receiving window.message', message)
 	
 	// Only accept messages from the same frame
-	// if (event.source !== window) return
+	if (event.source !== window) return
 	// console.log('receiving window.message')
 
 	// check the message
@@ -37,6 +39,9 @@ window.addEventListener('message', function(event) {
 
 	// remove the magic 'message.source'
 	delete message.source
+
+	x3js_messagesForwardedCounter++
+	// console.log('x3js_messagesForwardedCounter', x3js_messagesForwardedCounter)
 
 	// console.log('in content_script.js: receiving window.message for background page of three.js extension', message)
 

@@ -419,7 +419,7 @@ PanelWin3js.PanelMaterial	= function(faceMaterialIndex){
 			})
 			subFaceMaterialPanels	= []
 			for(var i = 0; i < material.materials.length; i++){
-				var subFaceMaterialPanel = new PanelMaterial(i)
+				var subFaceMaterialPanel = new PanelWin3js.PanelMaterial(i)
 				subFaceMaterialPanels.push(subFaceMaterialPanel)
 				container.add(subFaceMaterialPanel)
 			}
@@ -445,10 +445,10 @@ PanelWin3js.PanelMaterial	= function(faceMaterialIndex){
 			container.remove(subMaterialPanel)
 			subMaterialPanel = null
 		}
-		
+console.log('in panel-ui-material.js: material className', material.className)
 		// create suitable subMaterialPanel
 		if( material.className === 'ShaderMaterial'){
-			subMaterialPanel = new PanelMaterialShader(faceMaterialIndex);
+			subMaterialPanel = new PanelWin3js.PanelMaterialShader(faceMaterialIndex);
 			subMaterialPanel.setPadding('0px')
 			container.add( subMaterialPanel );		
 		}

@@ -91,7 +91,23 @@ PanelWin3js.PanelTreeView	= function(){
 			noSceneContainer.dom.style.display = 'none'
 		}
 	})
-	
+
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Check that currently selected object is still in the new treeView
+	//////////////////////////////////////////////////////////////////////////////////
+
+	PanelWin3js.editor.signals.capturedScene.add(function(){
+		var selected = PanelWin3js.editor.selected
+		// if there is no selected object, return now
+		if( selected === null )	return
+
+		// if selected objects is in the treeView, select(itsUUID) else select(null)
+		var uuidToSelect = treeViewObjects[selected.uuid] !== undefined ? selected.uuid : null
+		PanelWin3js.plainFunction(function(uuid){
+			InspectedWin3js.selectUuid(uuid)
+		}, [uuidToSelect])
+	})	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////

@@ -9,7 +9,7 @@ var Config = function () {
 	var storage = {
 		'autoRefresh': false,
 		'rafEnabled'	: false,
-		'rafFps'	: 10,
+		'rafFps'	: 30,
 	}
 
 	if ( window.localStorage[ name ] === undefined ) {

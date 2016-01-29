@@ -13,7 +13,7 @@ var panelConnections = {};
 chrome.runtime.onConnect.addListener(function (panelConnection) {
         var onMessage = function (message, sender, sendResponse) {
                 console.log('in background.js: received message', message)
-
+                
                 // The original connection event doesn't include the tab ID of the
                 // DevTools page, so we need to send it explicitly.
                 if (message.name == "panelPageCreated") {

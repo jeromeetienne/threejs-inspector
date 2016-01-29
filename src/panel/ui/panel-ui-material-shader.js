@@ -10,7 +10,7 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 	var signals	= editor.signals
 
 	var container	= new UI.Panel()
-
+console.log('in panel-ui-material-shader.js: creating for faceMaterialIndex', faceMaterialIndex)
 	//////////////////////////////////////////////////////////////////////////////////
 	//		handle tab-geometry
 	//////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 	
 	function onPopupMenuChange(value){
 		var material = faceMaterialIndex === -1 ? editor.selected.material : editor.selected.material.materials[faceMaterialIndex]
-		var injectFunction = InspectDevTools.functionOnObject3d
+		var injectFunction = PanelWin3js.functionOnObject3d
 
 
 		if( value === 'viewVertexShader' ){
@@ -68,11 +68,12 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 	//////////////////////////////////////////////////////////////////////////////////
 
 	function updateUI(faceMaterialIndex) {
+		console.log('in panel-ui-material-shader.js: updateUI')
 		var material = faceMaterialIndex === -1 ? editor.selected.material : editor.selected.material.materials[faceMaterialIndex]
 		var propertyPrefix = faceMaterialIndex === -1 ? 'material' : 'material.materials['+faceMaterialIndex+']'
 
-		var injectProperty = InspectDevTools.propertyOnObject3d;
-		var injectFunction = InspectDevTools.functionOnObject3d
+		var injectProperty = PanelWin3js.propertyOnObject3d;
+		var injectFunction = PanelWin3js.functionOnObject3d
 
 		// typeRow.updateUI( 'Uniforms' )
 
@@ -85,7 +86,7 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 		if( material.uniforms !== undefined ){
 			Object.keys( material.uniforms ).forEach(function(name){
 				var data = material.uniforms[name]
-				// console.log('materialShader', faceMaterialIndex)
+				console.log('in panel-ui-material-shader.js: uniform', name)
 				// console.dir(data)
 				if( data.type === 'f' ){
 					var numberRow = new UI.NumberRow()
