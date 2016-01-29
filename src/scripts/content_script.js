@@ -1,4 +1,20 @@
-// console.log('in content_script.js: start running')
+// console.log('in content_script.js: start running', window.location.href)
+
+// //////////////////////////////////////////////////////////////////////////////////
+// //		Comments
+// //////////////////////////////////////////////////////////////////////////////////
+// // console.log('in content_script.js: three.js is '+(window.THREE ? '' : ' not')+ 'present.')
+// function onLoad(){
+// 	console.log('in content_script.js: three.js is '+(window.THREE ? '' : 'not ')+ 'present.')
+// }
+// 
+// // signal devtool panel that the injection is completed
+// if( document.readyState !== 'complete' ){
+// 	window.addEventListener( 'load', onLoad)
+// }else{
+// 	// if window already got loaded, call onLoad() manually
+// 	onLoad()
+// }
 
 //////////////////////////////////////////////////////////////////////////////////
 //		to receive message from injected_script
@@ -27,7 +43,6 @@ window.addEventListener('message', function(event) {
 	// if this point is reached, send the message to the background page
 	chrome.runtime.sendMessage(message);
 });
-
 
 //////////////////////////////////////////////////////////////////////////////////
 //		Comments

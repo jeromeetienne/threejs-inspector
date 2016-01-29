@@ -1,10 +1,6 @@
 ### TODO
 - add a 'NO SCENE' in the left panel
   - how to know there are no scene ?
-- find an automatic way to identify when you run in -dev or in prod
-  - change things based on it... 
-  - simple principle: even patch number are dev version, odd patch number
-  - maybe thanks to the url ?
 - add a message counter in the source
   - apparently the update are super slow...
   - maybe there are a lot of message shared between window
@@ -13,6 +9,10 @@
   - if so update it
 - make it run in http://threejs.org page
   - window.frames[0].frameElement.contentWindow.THREE
+- DONE find an automatic way to identify when you run in -dev or in prod
+  - change things based on it... 
+  - simple principle: even patch number are dev version, odd patch number
+  - maybe thanks to the url ?
 - DONE add the date in the three.js inspector
 
 ### old TODO

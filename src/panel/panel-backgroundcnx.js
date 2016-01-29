@@ -19,8 +19,10 @@ PanelWin3js.initBackgroundConnection	= function(){
 	        console.log( 'in panel-backgroundcnx.js: received', message.type, 'with data', message.data );
 	        
 		
-	        if( message.type === 'updateObject3DTreeView' ){
-	                PanelWin3js.editor.signals.updateObject3DTreeView.dispatch(message.data)
+	        if( message.type === 'updateOneObject3DTreeView' ){
+	                PanelWin3js.editor.signals.updateOneObject3DTreeView.dispatch(message.data)
+	        }else if( message.type === 'capturedScene' ){
+	                PanelWin3js.editor.signals.capturedScene.dispatch(message.data)
 	        }else if( message.type === 'clearObject3DTreeView' ){
 			console.log('in panel-backgroundcnx.js: dispatch clearObject3DTreeView')
 	                PanelWin3js.editor.signals.clearObject3DTreeView.dispatch()

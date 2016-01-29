@@ -33,6 +33,7 @@ Follow those steps:
 - better detection of the inspected window
   - detect when the inspected window is reloaded, and reinject the script
 - added a timer to count the time since the last scene update
+- detect when running in production and disable debug feature when not in development
 
 ## History 1.9.0
 

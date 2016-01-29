@@ -10,7 +10,7 @@
 // })();
 
 (function inspectedWinScript(){
-// 	var window = x3js_window
+	// var window = x3js_window
 // 	var THREE = x3js_window.THREE
 // console.log('window', window)
 // console.log('THREE', THREE)

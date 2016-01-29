@@ -103,7 +103,10 @@ InspectedWin3js.captureScene    = function(){
         // - this would reduce message latency
         InspectedWin3js.postMessageToPanel('clearObject3DTreeView')
         
-        if( InspectedWin3js.hasTHREEJS === false )      return                  
+        if( InspectedWin3js.hasTHREEJS === false ){
+                InspectedWin3js.postMessageToPanel('capturedScene')
+                return                  
+        }
 
         var scene = InspectedWin3js.getInspectedScene()
         
@@ -112,8 +115,10 @@ InspectedWin3js.captureScene    = function(){
         if( scene === null )    return;
         scene.traverse(function(object3d){
                 var json = InspectedWin3js.treeviewObject3dToJSON(object3d)
-                InspectedWin3js.postMessageToPanel('updateObject3DTreeView', json)                      
+                InspectedWin3js.postMessageToPanel('updateOneObject3DTreeView', json)                      
         })
+
+        InspectedWin3js.postMessageToPanel('capturedScene')
 }
 
         

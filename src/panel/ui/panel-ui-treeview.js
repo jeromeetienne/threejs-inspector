@@ -50,7 +50,7 @@ PanelWin3js.PanelTreeView	= function(){
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
-	//		Comments
+	//		Display time since refresh
 	//////////////////////////////////////////////////////////////////////////////////
 
 	var dateRow	= new UI.Text()
@@ -68,6 +68,30 @@ PanelWin3js.PanelTreeView	= function(){
 		updateDateRow()		
 	}, 1000);
 
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Comments
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	var noSceneContainer	= new UI.Panel()
+	noSceneContainer.dom.style.textAlign = 'center';
+	container.add(noSceneContainer)
+	noSceneContainer.dom.style.display = 'none'
+	
+	var text	= new UI.Text().setColor( '#ccc' ).setValue('NO SCENE')
+	text.dom.style.fontSize = '2em'
+	text.dom.style.paddingTop = '1em'
+	text.dom.style.width = '100%';
+	noSceneContainer.add(text)
+	
+	PanelWin3js.editor.signals.capturedScene.add(function(){
+		console.log('CAPTURED SCENE. nObjects', Object.keys(treeViewObjects).length)
+		if( Object.keys(treeViewObjects).length === 0 ){
+			noSceneContainer.dom.style.display = 'block'
+		}else{
+			noSceneContainer.dom.style.display = 'none'
+		}
+	})
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
@@ -105,7 +129,7 @@ PanelWin3js.PanelTreeView	= function(){
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////
-	//		process updateObject3DTreeView
+	//		process updateOneObject3DTreeView
 	//////////////////////////////////////////////////////////////////////////////////
 	var treeViewObjects     = {}
 	PanelWin3js.editor.signals.clearObject3DTreeView.add(function(){
@@ -130,7 +154,7 @@ PanelWin3js.PanelTreeView	= function(){
 		console.log('in panel-ui-treeview.js: stop clearObject3DTreeView', treeViewObjects)
 	})
 
-	PanelWin3js.editor.signals.updateObject3DTreeView.add(function(dataJSON){
+	PanelWin3js.editor.signals.updateOneObject3DTreeView.add(function(dataJSON){
 		// create treeViewObjects[] object if needed
 		if( treeViewObjects[ dataJSON.uuid ] === undefined ){
 		        console.log('in panel-ui-treeview.js: create a treeviewItem')
