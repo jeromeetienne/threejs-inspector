@@ -99,6 +99,7 @@ InspectedWin3js.treeviewObject3dToJSON  = function(object3d){
  * capture a scene and send it to inspector panel
  */
 InspectedWin3js.captureScene    = function(){
+        console.log('in 50-inspected-win-main.js: capture scene')
         // TODO it could be a long message with all object
         // - this would reduce message latency
         InspectedWin3js.postMessageToPanel('clearObject3DTreeView')
@@ -128,6 +129,7 @@ InspectedWin3js.captureScene    = function(){
 
 if( InspectedWin3js.hasTHREEJS === true ){
         InspectedWin3js.extractThreeJSClassNames()
+        InspectedWin3js.instrumentThreejs()
 }
 
 InspectedWin3js.postMessageToPanel('injectedInspectedWin')                      

@@ -73,7 +73,7 @@ UI.Texture.prototype.getValue = function () {
 };
 
 UI.Texture.prototype.setValue = function(url){
-	console.log('uiTexture.setValue', url)
+	// console.log('uiTexture.setValue', url)
 	this._urlInput.value	= url
 	if( url ){
 		var image = document.createElement( 'img' );
