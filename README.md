@@ -29,7 +29,8 @@ Follow those steps:
 - Select the folder /src in the checked out project
 
 ## History 1.9.7
-- nothing yet....
+- recapture the scene automatically if object are added to it
+  - overloading Object3D.prototype.add/Object3D.prototype.remove
 
 ## History 1.9.6
 - better detection of the inspected window

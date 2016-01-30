@@ -1,12 +1,30 @@
 ### TODO
-- add a message counter in the source
+- make it run in http://threejs.org page
+  - window.frames[0].frameElement.contentWindow.THREE
+- support keyboard binding in treeview
+- keep selected when updating treeview
+  - how to get to the 'next item' or 'previous item'
+- selection in treeview should be visible in the 3d
+  - bounding box attached to the scene
+  - 10-inspected-win-selectbbox.js
+- material.map.image.url undefined when canvas as texture
+  - issue with http://127.0.0.1:3000/examples/webgl_materials_video.html
+- support for large texture
+  - especially in drag drop
+  - issue with the url size... maybe to scale it down via canvas ?
+  - reduce resolution until .toDataURL string is less than 2mbyte
+- SPEED: add a message counter in the source
   - apparently the update are super slow...
   - maybe there are a lot of message shared between window
   - if so, one can reduce the number of message by packing them together
-- on scene refresh, be sure the inspected object3d is still present
+  - it seems more like a number of eval from panel to inspected page
+  - the capture scene could pack the message too
+- could we controls the camera ? 
+  - aka remove the other controllers and put mine...
+- DONE detect when the scene is updated, and update the treeview
+  - early version in src/panel/inspected-win/10-inspected-win-instrument3js.js
+- DONE on scene refresh, be sure the inspected object3d is still present
   - if so update it
-- make it run in http://threejs.org page
-  - window.frames[0].frameElement.contentWindow.THREE
 - DONE add a 'NO SCENE' in the left panel
   - how to know there are no scene ?
 - DONE find an automatic way to identify when you run in -dev or in prod
