@@ -27,7 +27,7 @@
 		"webNavigation",
                 "tabs"
 	],
-	"content_security_policy": "default-src 'self' chrome-extension-resource: ; img-src * ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval'; connect-src *; frame-src *;",
+	"content_security_policy": "default-src 'self' chrome-extension-resource: ; img-src * data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval'; connect-src *; frame-src *;",
 	"web_accessible_resources": [
 		"*"
 	]
