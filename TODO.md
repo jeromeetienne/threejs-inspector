@@ -1,8 +1,11 @@
 ### TODO
+- keep selected when updating treeview
 - make it run in http://threejs.org page
   - window.frames[0].frameElement.contentWindow.THREE
+  - possible solution
+    - what about a detection of the page ? if detected point on the 
+    - add a tab in the right sidebar with a list of all examples
 - support keyboard binding in treeview
-- keep selected when updating treeview
   - how to get to the 'next item' or 'previous item'
 - selection in treeview should be visible in the 3d
   - bounding box attached to the scene
@@ -13,6 +16,7 @@
   - especially in drag drop
   - issue with the url size... maybe to scale it down via canvas ?
   - reduce resolution until .toDataURL string is less than 2mbyte
+  - This is a async process so do it on reception of the upload
 - SPEED: add a message counter in the source
   - apparently the update are super slow...
   - maybe there are a lot of message shared between window

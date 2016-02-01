@@ -15,15 +15,18 @@ UI.Texture = function () {
 		var reader = new FileReader();
 		reader.addEventListener( 'load', function ( event ) {
 			var url	= event.target.result 
-			// console.log('url', url );
-			_this.setValue(url)
-			
-			if( _this.onChangeCallback )	_this.onChangeCallback();
+			UI.Texture.GenerateValidDataUrl(url, function(newUrl){
+				// console.log('url', url );
+				_this.setValue(newUrl)
+
+				if( _this.onChangeCallback )	_this.onChangeCallback();
+			})
 
 		}, false );
 
 		reader.readAsDataURL( file );
-	} );
+	});
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comment								//
 	//////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +78,10 @@ UI.Texture.prototype.getValue = function () {
 UI.Texture.prototype.setValue = function(url){
 	// console.log('uiTexture.setValue', url)
 	this._urlInput.value	= url
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		update the canvas in this panel
+	//////////////////////////////////////////////////////////////////////////////////
 	if( url ){
 		var image = document.createElement( 'img' );
 		image.addEventListener( 'load', function ( event ) {
@@ -92,4 +99,44 @@ UI.Texture.prototype.setValue = function(url){
 UI.Texture.prototype.onChange = function ( callback ) {
 	this.onChangeCallback = callback;
 	return this;
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+//		Comments
+//////////////////////////////////////////////////////////////////////////////////
+
+UI.Texture.GenerateValidDataUrl	= function(sourceUrl, callback){
+	var maxUrlLength = 0.5 * 1024 * 1024
+	console.log('in ui.texture.js: GenerateValidDataUrl sourceUrl.length=', sourceUrl.length)
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		if sourceUrl less than maxUrlLength, send do nothing
+	//////////////////////////////////////////////////////////////////////////////////
+	if( sourceUrl.length < maxLen ){
+		setTimeout(function(){
+			callback(sourceUrl)
+		}, 0)
+		return
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Resize the image to 1024x1024 in jpg (and hope it isnt more than maxUrlLength)
+	//////////////////////////////////////////////////////////////////////////////////
+	var image = document.createElement( 'img' );
+	image.addEventListener( 'load', function ( event ) {
+		var canvas = document.createElement( 'canvas' );
+		var context	= canvas.getContext( '2d' );
+		canvas.width = 1024;
+		canvas.height = 1024;
+		context.drawImage(image, 0, 0, canvas.width, canvas.height );		
+
+		var newUrl = canvas.toDataURL();
+		var newUrl = canvas.toDataURL("image/jpeg", 0.5);
+
+		console.log('in ui.texture.js: GenerateValidDataUrl newUrl.length=', newUrl.length)
+
+		callback(newUrl)
+	}.bind(this), false );
+
+	image.src	= sourceUrl
 }

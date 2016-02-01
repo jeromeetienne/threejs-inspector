@@ -31,6 +31,8 @@ Follow those steps:
 ## History 1.9.7
 - recapture the scene automatically if object are added to it
   - overloading Object3D.prototype.add/Object3D.prototype.remove
+- Handle large image texture 
+  - no more issue with "too long url"
 
 ## History 1.9.6
 - better detection of the inspected window
