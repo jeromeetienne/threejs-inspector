@@ -24,7 +24,7 @@ PanelWin3js.PanelAbout	= function(){
 	container.dom.appendChild(domElement)
 	
 	var domElement	= document.createElement('div')
-	domElement.innerHTML	= 'v ' + '1.9.7'	
+	domElement.innerHTML	= 'v ' + '1.9.9'	
 	domElement.style.color = '#888'
 	container.dom.appendChild(domElement)
 

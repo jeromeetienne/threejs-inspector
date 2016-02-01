@@ -28,7 +28,10 @@ Follow those steps:
 - Click on "Load unpacked extension"...
 - Select the folder /src in the checked out project
 
-## History 1.9.7
+## History 1.9.9
+- TODO: add something here
+
+## History 1.9.8
 - recapture the scene automatically if object are added to it
   - overloading Object3D.prototype.add/Object3D.prototype.remove
 - Handle large image texture 

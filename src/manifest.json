@@ -1,7 +1,7 @@
 {
         "name": "three.js inspector",
         "short_name": "3jsInspect",
-        "version": "1.9.7",
+        "version": "1.9.9",
         "manifest_version": 2,
         "description": "Three.js Inspector is an extension to inspect three.js page. It allow to interact with almost all three.js demos out there.",
         "devtools_page": "devtools.html",
