@@ -6,11 +6,6 @@
   - before updating the treeview, backup the selected uuid
   - on completion of updating, if the selected-uuid is still present in the new treeview
   - select it in the treeview only. aka DO NOT emulate an actual user click, just set the selected
-- make it run in http://threejs.org page
-  - window.frames[0].frameElement.contentWindow.THREE
-  - possible solution
-    - what about a detection of the page ? if detected point on the 
-    - add a tab in the right sidebar with a list of all examples
 - support keyboard binding in treeview
   - how to get to the 'next item' or 'previous item'
 - selection in treeview should be visible in the 3d
@@ -26,6 +21,11 @@
   - the capture scene could pack the message too
 - could we controls the camera ? 
   - aka remove the other controllers and put mine...
+- DONE make it run in http://threejs.org page
+  - window.frames[0].frameElement.contentWindow.THREE
+  - possible solution
+    - what about a detection of the page ? if detected point on the 
+    - add a tab in the right sidebar with a list of all examples
 - DONE support for large texture
   - especially in drag drop
   - issue with the url size... maybe to scale it down via canvas ?
