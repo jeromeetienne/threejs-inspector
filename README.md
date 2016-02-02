@@ -32,6 +32,10 @@ Follow those steps:
 - Fixed bug in texture drapdrop/file: just a typo in a varname
 - added a 'Examples' tab to easily access three.js examples
   - nice for discovery and learning
+- Added notification when devtools is open and three.js inspector is reloaded
+  - thus developper knows and don't assume the inspector will working
+  - This case doesn't happen for the actual user
+  - But it is very useful when developping three.js inspector :)
 
 ## History 1.9.8
 - recapture the scene automatically if object are added to it
