@@ -112,7 +112,7 @@ UI.Texture.GenerateValidDataUrl	= function(sourceUrl, callback){
 	//////////////////////////////////////////////////////////////////////////////////
 	//		if sourceUrl less than maxUrlLength, send do nothing
 	//////////////////////////////////////////////////////////////////////////////////
-	if( sourceUrl.length < maxLen ){
+	if( sourceUrl.length < maxUrlLength ){
 		setTimeout(function(){
 			callback(sourceUrl)
 		}, 0)

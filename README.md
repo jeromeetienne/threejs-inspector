@@ -29,7 +29,9 @@ Follow those steps:
 - Select the folder /src in the checked out project
 
 ## History 1.9.9
-- TODO: add something here
+- Fixed bug in texture drapdrop/file: just a typo in a varname
+- added a 'Examples' tab to easily access three.js examples
+  - nice for discovery and learning
 
 ## History 1.9.8
 - recapture the scene automatically if object are added to it

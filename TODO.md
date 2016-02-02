@@ -1,5 +1,11 @@
 ### TODO
+- if connection between panel and background cnx got closed, seen from Panel
+  - then the extension got reloaded
+  - TODO do something in this case to warn the user
 - keep selected when updating treeview
+  - before updating the treeview, backup the selected uuid
+  - on completion of updating, if the selected-uuid is still present in the new treeview
+  - select it in the treeview only. aka DO NOT emulate an actual user click, just set the selected
 - make it run in http://threejs.org page
   - window.frames[0].frameElement.contentWindow.THREE
   - possible solution
@@ -12,11 +18,6 @@
   - 10-inspected-win-selectbbox.js
 - material.map.image.url undefined when canvas as texture
   - issue with http://127.0.0.1:3000/examples/webgl_materials_video.html
-- support for large texture
-  - especially in drag drop
-  - issue with the url size... maybe to scale it down via canvas ?
-  - reduce resolution until .toDataURL string is less than 2mbyte
-  - This is a async process so do it on reception of the upload
 - SPEED: add a message counter in the source
   - apparently the update are super slow...
   - maybe there are a lot of message shared between window
@@ -25,6 +26,11 @@
   - the capture scene could pack the message too
 - could we controls the camera ? 
   - aka remove the other controllers and put mine...
+- DONE support for large texture
+  - especially in drag drop
+  - issue with the url size... maybe to scale it down via canvas ?
+  - reduce resolution until .toDataURL string is less than 2mbyte
+  - This is a async process so do it on reception of the upload
 - DONE detect when the scene is updated, and update the treeview
   - early version in src/panel/inspected-win/10-inspected-win-instrument3js.js
 - DONE on scene refresh, be sure the inspected object3d is still present

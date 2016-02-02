@@ -92,4 +92,9 @@ PanelWin3js.initRightSideBar = function(){
 	tabContainer.addTab('MATERIAL', materialTab)
 	materialTab.add( new PanelWin3js.PanelNoMaterial() )
 	materialTab.add( new PanelWin3js.PanelMaterial(-1) )
+	
+
+	var examplesTab	= new UI.TabsHelper.createTab()
+	tabContainer.addTab('EXAMPLES', examplesTab)
+	examplesTab.add( new PanelWin3js.PanelExamples() )
 }

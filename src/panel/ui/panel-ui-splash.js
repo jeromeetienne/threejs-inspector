@@ -55,7 +55,7 @@ PanelWin3js.PanelSplash	= function(){
 	container.dom.appendChild( document.createElement('br') )
 
 	var feedbackRow	= document.createElement('div')
-	feedbackRow.innerHTML	= 'Chrome Store Extension: '
+	feedbackRow.innerHTML	= 'Install it via Chrome Store : '
 	container.dom.appendChild(feedbackRow)
 	var domElement	= document.createElement('a')
 	domElement.href	= 'https://chrome.google.com/webstore/detail/threejs-inspector/dnhjfclbfhcbcdfpjaeacomhbdfjbebi?hl=en'
