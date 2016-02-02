@@ -130,7 +130,7 @@ UI.Texture.GenerateValidDataUrl	= function(sourceUrl, callback){
 		canvas.height = 1024;
 		context.drawImage(image, 0, 0, canvas.width, canvas.height );		
 
-		var newUrl = canvas.toDataURL();
+		// var newUrl = canvas.toDataURL();
 		var newUrl = canvas.toDataURL("image/jpeg", 0.5);
 
 		console.log('in ui.texture.js: GenerateValidDataUrl newUrl.length=', newUrl.length)

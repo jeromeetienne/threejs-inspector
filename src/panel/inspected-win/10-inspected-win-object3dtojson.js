@@ -241,7 +241,18 @@ InspectedWin3js.object3dToJSON  = function(object3d){
 			var aDomElement = document.createElement('a')
 			aDomElement.href = texture.image.src
 			data.sourceFile	= aDomElement.href
-		}
+		}else if( texture.image instanceof HTMLCanvasElement === true ){
+                        data.sourceFile = texture.image.toDataURL("image/jpeg", 0.5);
+                }else if( texture.image instanceof HTMLVideoElement === true ){
+                        ;(function(){
+                                var canvas = document.createElement('canvas')
+                                var context = canvas.getContext('2d')
+                                canvas.height = texture.image.videoHeight
+                                canvas.width = texture.image.videoWidth
+                                context.drawImage(texture.image, 0, 0, canvas.width, canvas.height );	
+                                data.sourceFile = canvas.toDataURL("image/jpeg", 0.5);                        
+                        })()
+                }
 		
 		if(texture.anisotropy !== undefined )	data.anisotropy	= texture.anisotropy
 		

@@ -1,7 +1,4 @@
 ### TODO
-- if connection between panel and background cnx got closed, seen from Panel
-  - then the extension got reloaded
-  - TODO do something in this case to warn the user
 - keep selected when updating treeview
   - before updating the treeview, backup the selected uuid
   - on completion of updating, if the selected-uuid is still present in the new treeview
@@ -23,6 +20,10 @@
   - aka remove the other controllers and put mine...
 - ability to edit shaders in shadermaterial
   - it would be fun to play with
+  - maybe i could use the iframe viewer system like in space3
+- DONE if connection between panel and background cnx got closed, seen from Panel
+  - then the extension got reloaded
+  - TODO do something in this case to warn the user
 - DONE make it run in http://threejs.org page
   - window.frames[0].frameElement.contentWindow.THREE
   - possible solution

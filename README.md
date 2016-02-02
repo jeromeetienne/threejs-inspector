@@ -30,6 +30,7 @@ Follow those steps:
 
 ## History 1.9.11
 - Added inspection for uniforms when using THREE.ShaderMaterial
+- inspector able to display canvas/video texture
 
 ## History 1.9.10
 - Fixed bug in texture drapdrop/file: just a typo in a varname
