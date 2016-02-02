@@ -28,6 +28,9 @@ Follow those steps:
 - Click on "Load unpacked extension"...
 - Select the folder /src in the checked out project
 
+## History 1.9.10
+- TODO put something here
+
 ## History 1.9.9
 - Fixed bug in texture drapdrop/file: just a typo in a varname
 - added a 'Examples' tab to easily access three.js examples
@@ -150,11 +153,11 @@ will be more manageable. Dont hesitate to report any issue on github.
   - if shift+meta are pressed, it goes 1000 times faster
 
 ### How To Release
-- search /src for the previous version number
+- search ```/src``` for the previous version number
 - change the version number to even patch number e.g. 1.2.2
 - do ```make packageExtension``` to build the src.zip
 - upload the src.zip at https://chrome.google.com/webstore/developer/edit/dnhjfclbfhcbcdfpjaeacomhbdfjbebi?hl=en
 - click 'Publish Changes'
 - do ```make cleanExtension``` to build the src.zip
-- make the patch number as odd, by replacing all instance
+- make the patch number as odd in ```/src```, by replacing all instance of version number
 - add a line in README.md Changelog
