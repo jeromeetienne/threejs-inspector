@@ -448,9 +448,15 @@ PanelWin3js.PanelMaterial	= function(faceMaterialIndex){
 console.log('in panel-ui-material.js: material className', material.className)
 		// create suitable subMaterialPanel
 		if( material.className === 'ShaderMaterial'){
+			console.log('in panel-ui-material.js: subMaterialPanel1', subMaterialPanel)	
+			console.log('in panel-ui-material.js: subMaterialPanel1', subMaterialPanel)	
+			console.log('in panel-ui-material.js: subMaterialPanel1', subMaterialPanel)	
 			subMaterialPanel = new PanelWin3js.PanelMaterialShader(faceMaterialIndex);
 			subMaterialPanel.setPadding('0px')
-			container.add( subMaterialPanel );		
+			container.add( subMaterialPanel );
+			console.log('in panel-ui-material.js: subMaterialPanel2', subMaterialPanel)	
+			console.log('in panel-ui-material.js: subMaterialPanel2', subMaterialPanel)	
+			console.log('in panel-ui-material.js: subMaterialPanel2', subMaterialPanel)	
 		}
 
 	}

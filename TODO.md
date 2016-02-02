@@ -21,6 +21,8 @@
   - the capture scene could pack the message too
 - could we controls the camera ? 
   - aka remove the other controllers and put mine...
+- ability to edit shaders in shadermaterial
+  - it would be fun to play with
 - DONE make it run in http://threejs.org page
   - window.frames[0].frameElement.contentWindow.THREE
   - possible solution

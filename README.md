@@ -29,7 +29,7 @@ Follow those steps:
 - Select the folder /src in the checked out project
 
 ## History 1.9.11
-- TODO put something here
+- Added inspection for uniforms when using THREE.ShaderMaterial
 
 ## History 1.9.10
 - Fixed bug in texture drapdrop/file: just a typo in a varname

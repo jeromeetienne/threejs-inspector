@@ -41,7 +41,7 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 			injectFunction(function(object3d, vertexShader){
 				// console.log('View Vertex Shader')
 				// console.log(vertexShader)
-
+				// 
 				var blob = new Blob( [ vertexShader ], { type: 'text/plain' } );
 				var objectURL = URL.createObjectURL( blob );
 				window.open( objectURL, '_blank' );
@@ -87,7 +87,7 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 		if( material.uniforms !== undefined ){
 			Object.keys( material.uniforms ).forEach(function(name){
 				var data = material.uniforms[name]
-				console.log('in panel-ui-material-shader.js: uniform', name)
+				console.log('in panel-ui-material-shader.js: uniform', name, data)
 				// console.dir(data)
 				if( data.type === 'f' ){
 					var numberRow = new UI.NumberRow()
@@ -132,7 +132,7 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 						}, [colorRow.value.getHexValue(), name, faceMaterialIndex]);
 					})
 				}else if( data.type === 't' ){
-					var mapRow = new PanelTexture(propertyPrefix+'.uniforms.'+name+'.value')
+					var mapRow = new PanelWin3js.PanelTexture(propertyPrefix+'.uniforms.'+name+'.value')
 					mapRow.textureRow.setLabel(name)
 					container.add( mapRow );
 					mapRow.updateUI(data.value)
