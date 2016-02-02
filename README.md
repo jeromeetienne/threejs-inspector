@@ -28,10 +28,10 @@ Follow those steps:
 - Click on "Load unpacked extension"...
 - Select the folder /src in the checked out project
 
-## History 1.9.10
+## History 1.9.11
 - TODO put something here
 
-## History 1.9.9
+## History 1.9.10
 - Fixed bug in texture drapdrop/file: just a typo in a varname
 - added a 'Examples' tab to easily access three.js examples
   - nice for discovery and learning

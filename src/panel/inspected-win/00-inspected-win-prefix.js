@@ -39,7 +39,7 @@
 	// export namespace globally
 	window.InspectedWin3js = InspectedWin3js
 	
-	InspectedWin3js.REVISION	= '1.9.10'
+	InspectedWin3js.REVISION	= '1.9.11'
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
