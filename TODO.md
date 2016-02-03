@@ -10,6 +10,9 @@
   - 10-inspected-win-selectbbox.js
 - material.map.image.url undefined when canvas as texture
   - issue with http://127.0.0.1:3000/examples/webgl_materials_video.html
+  - sourceUrl from inspected-win to inspector panel works ok
+  - inspector-panel to inspected-win works well IIF texture.image is an image
+  - what if the texture.image is a canvas or a video ?
 - SPEED: add a message counter in the source
   - apparently the update are super slow...
   - maybe there are a lot of message shared between window
