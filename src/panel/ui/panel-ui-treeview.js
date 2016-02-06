@@ -84,7 +84,6 @@ PanelWin3js.PanelTreeView	= function(){
 	noSceneContainer.add(text)
 	
 	PanelWin3js.editor.signals.capturedScene.add(function(){
-		console.log('CAPTURED SCENE. nObjects', Object.keys(treeViewObjects).length)
 		if( Object.keys(treeViewObjects).length === 0 ){
 			noSceneContainer.dom.style.display = 'block'
 		}else{

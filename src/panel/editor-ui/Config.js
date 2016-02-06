@@ -4,7 +4,7 @@
 
 var Config = function () {
 
-	var name = 'threejs-inspector';
+	var namespace = 'threejs-inspector';
 
 	var storage = {
 		'selectionBoxEnabled': false,
@@ -12,13 +12,13 @@ var Config = function () {
 		'rafFps'	: 30,
 	}
 
-	if ( window.localStorage[ name ] === undefined ) {
+	if ( window.localStorage[ namespace ] === undefined ) {
 
-		window.localStorage[ name ] = JSON.stringify( storage );
+		window.localStorage[ namespace ] = JSON.stringify( storage );
 
 	} else {
 
-		var data = JSON.parse( window.localStorage[ name ] );
+		var data = JSON.parse( window.localStorage[ namespace ] );
 
 		for ( var key in data ) {
 
@@ -44,7 +44,7 @@ var Config = function () {
 
 			}
 
-			window.localStorage[ name ] = JSON.stringify( storage );
+			window.localStorage[ namespace ] = JSON.stringify( storage );
 
 			console.log( '[' + /\d\d\:\d\d\:\d\d/.exec( new Date() )[ 0 ] + ']', 'Saved config to LocalStorage.' );
 
@@ -52,7 +52,7 @@ var Config = function () {
 
 		clear: function () {
 
-			delete window.localStorage[ name ];
+			delete window.localStorage[ namespace ];
 
 		}
 

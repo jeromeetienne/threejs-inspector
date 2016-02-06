@@ -11,19 +11,32 @@ PanelWin3js.PanelSettings	= function(){
 
 	var container	= new UI.Panel()
 
+	//////////////////////////////////////////////////////////////////////////////////
+	//		popupMenu
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	var popupMenu	= UI.PopupMenuHelper.createSelect({
+		''			: '--- Options ---',
+		'clear'		: 'Clear',
+	}, onPopupMenuChange)
+	container.add(popupMenu)
+	function onPopupMenuChange(value){
+		if( value === 'clear' ){
+			editor.config.clear()
+			updateUI();
+		}
+	}
 
+	container.dom.appendChild( document.createElement('br') )
+	container.dom.appendChild( document.createElement('br') )
+	container.dom.appendChild( document.createElement('br') )
 	//////////////////////////////////////////////////////////////////////////////////
 	//		handle selectionBoxEnabled
 	//////////////////////////////////////////////////////////////////////////////////
 
 	var selectionBoxEnabledRow	= new UI.CheckboxRow()
 	selectionBoxEnabledRow.setTitle('Show a bounding box on the selected object')
-	selectionBoxEnabledRow.setLabel('Selection Box').onChange(function(){
-		editor.config.setKey('selectionBoxEnabled', selectionBoxEnabledRow.getValue())
-		
-		update()
-	})
-	selectionBoxEnabledRow.setValue(editor.config.getKey('selectionBoxEnabled'))
+	selectionBoxEnabledRow.setLabel('Selection Box').onChange(update)
 	container.add( selectionBoxEnabledRow )
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -32,22 +45,12 @@ PanelWin3js.PanelSettings	= function(){
 
 	var rafEnabledRow	= new UI.CheckboxRow()
 	rafEnabledRow.setTitle('Enable RequestAnimationFrame hijackinglected object')
-	rafEnabledRow.setLabel('RAF. Enabled').onChange(function(){
-		editor.config.setKey('rafEnabled', rafEnabledRow.getValue())
-		
-		update()
-	})
-	rafEnabledRow.setValue(editor.config.getKey('rafEnabled'))
+	rafEnabledRow.setLabel('RAF. Enabled').onChange(update)
 	container.add( rafEnabledRow )
 
-	var rafFpsRow = new UI.NumberRow().onChange(function(){
-		editor.config.setKey('rafFps', rafFpsRow.getValue())
-		
-		update()
-	})
+	var rafFpsRow = new UI.NumberRow().onChange(update)
 	rafFpsRow.setLabel('RAF. fps')
 	rafFpsRow.value.setRange(0.0,60.0).setPrecision(0).setStep(10)
-	rafFpsRow.value.setValue(editor.config.getKey('rafFps'))
 	container.add( rafFpsRow );
 	
 	//////////////////////////////////////////////////////////////////////////////////
@@ -61,8 +64,20 @@ PanelWin3js.PanelSettings	= function(){
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
+	function updateUI(){
+		rafEnabledRow.setValue(editor.config.getKey('selectionBoxEnabled'))	
+		rafEnabledRow.setValue(editor.config.getKey('rafEnabled'))
+		rafFpsRow.value.setValue(editor.config.getKey('rafFps'))
+	}
 	
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		Comments
+	//////////////////////////////////////////////////////////////////////////////////
 	function update(){
+		editor.config.setKey('selectionBoxEnabled', selectionBoxEnabledRow.getValue())
+		editor.config.setKey('rafEnabled', rafEnabledRow.getValue())
+		editor.config.setKey('rafFps', rafFpsRow.getValue())
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		honot rafEnabledRow
@@ -88,7 +103,7 @@ PanelWin3js.PanelSettings	= function(){
 		
 	}
 
-
+	updateUI();
 
 	return container
 };
