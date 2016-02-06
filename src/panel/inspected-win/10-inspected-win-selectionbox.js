@@ -26,9 +26,10 @@ InspectedWin3js.SelectionBox.prototype.update	= function(){
 	}else{
 		if( this._boxHelper.parent === undefined ){
 			var scene = InspectedWin3js.getInspectedScene()
-			scene.add(this._boxHelper)			
+			if( scene !== null )	scene.add(this._boxHelper)			
 		}
 	}
+	if( this.enabled === false )	return
 	
 	if( InspectedWin3js.selected === null )	return
 
