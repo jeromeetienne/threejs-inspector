@@ -7,7 +7,7 @@ var Config = function () {
 	var name = 'threejs-inspector';
 
 	var storage = {
-		'autoRefresh': false,
+		'selectionBoxEnabled': false,
 		'rafEnabled'	: false,
 		'rafFps'	: 30,
 	}

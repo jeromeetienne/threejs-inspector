@@ -13,7 +13,21 @@ PanelWin3js.PanelSettings	= function(){
 
 
 	//////////////////////////////////////////////////////////////////////////////////
-	//		handle autoRefresh
+	//		handle selectionBoxEnabled
+	//////////////////////////////////////////////////////////////////////////////////
+
+	var selectionBoxEnabledRow	= new UI.CheckboxRow()
+	selectionBoxEnabledRow.setTitle('Show a bounding box on the selected object')
+	selectionBoxEnabledRow.setLabel('Selection Box').onChange(function(){
+		editor.config.setKey('selectionBoxEnabled', selectionBoxEnabledRow.getValue())
+		
+		update()
+	})
+	selectionBoxEnabledRow.setValue(editor.config.getKey('selectionBoxEnabled'))
+	container.add( selectionBoxEnabledRow )
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		handle rafThrottler
 	//////////////////////////////////////////////////////////////////////////////////
 
 	var rafEnabledRow	= new UI.CheckboxRow()
@@ -48,7 +62,19 @@ PanelWin3js.PanelSettings	= function(){
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
 	
-	function update(){		
+	function update(){
+
+		//////////////////////////////////////////////////////////////////////////////////
+		//		honot rafEnabledRow
+		//////////////////////////////////////////////////////////////////////////////////
+		PanelWin3js.plainFunction(function(selectionBoxEnabled){
+			var selectionBox	= InspectedWin3js.selectionBox
+			selectionBox.enabled	= selectionBoxEnabled
+		}, [selectionBoxEnabledRow.getValue()]);
+
+		//////////////////////////////////////////////////////////////////////////////////
+		//		honot rafEnabledRow
+		//////////////////////////////////////////////////////////////////////////////////
 		PanelWin3js.plainFunction(function(rafEnabled, fps){
 			var rafThrottler	= InspectedWin3js.rafThrottler
 			// console.log('in panel-ui-settings.js: setting rafThrottler to', rafEnabled ? ('enable at '+fps+' fps') : 'disable')

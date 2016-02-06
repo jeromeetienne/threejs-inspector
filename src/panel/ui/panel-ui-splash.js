@@ -96,7 +96,9 @@ PanelWin3js.PanelSplash	= function(){
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
-	domElement.addEventListener('click', function(){
+	domElement.addEventListener('click', doLaunch)
+	setTimeout(doLaunch, 10)
+	function doLaunch(){
 		console.log('in panel-ui-splash.js: click on inspect button. Injecting inspectedWinScript')
 		
 		PanelWin3js.injectInspectedWinScripts()
@@ -123,10 +125,8 @@ PanelWin3js.PanelSplash	= function(){
 			PanelWin3js.plainFunction(function(uuid){
 		                InspectedWin3js.captureScene()
 			})
-		}
-		
-		
-	})
+		}	
+	}
 	
 	return container
 };

@@ -2,6 +2,7 @@ console.log('in 50-injected_script-main.js: running start')
 
 // create a RafThrottler 
 InspectedWin3js.rafThrottler	= new RafThrottler();
+InspectedWin3js.selectionBox	= new InspectedWin3js.SelectionBox();
 
 //////////////////////////////////////////////////////////////////////////////////
 //                Comments

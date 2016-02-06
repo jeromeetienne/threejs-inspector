@@ -110,6 +110,7 @@ PanelWin3js.injectInspectedWinScripts	= function(){
 		cache += readFile('inspected-win/10-inspected-win-classnames.js')
 		cache += readFile('inspected-win/10-inspected-win-instrument3js.js')
 		cache += readFile('inspected-win/10-inspected-win-object3dtojson.js')
+		cache += readFile('inspected-win/10-inspected-win-selectionbox.js')
 		cache += readFile('inspected-win/50-inspected-win-main.js')
 		cache += readFile('inspected-win/99-inspected-win-suffix.js')
 		PanelWin3js.injectInspectedWinScripts.cache = cache
