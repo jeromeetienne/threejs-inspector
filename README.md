@@ -13,6 +13,8 @@ by the excelent @thespite. Check it out!
   - typically ```window.scene = scene;``` 
 - press 'refresh' button to refresh the scene
 
+YES we are looking for a better way to do it :)
+
 ## How to install three.js inspector locally
 
 You can install the extensions directly from the chrome store
