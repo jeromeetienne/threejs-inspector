@@ -39,7 +39,7 @@ Follow those steps:
 - added a 'Examples' tab to easily access three.js examples
   - nice for discovery and learning
 - Added notification when devtools is open and three.js inspector is reloaded
-  - thus developper knows and don't assume the inspector will working
+  - thus developper knows and don't assume the inspector will be working
   - But it is very useful when developping three.js inspector :)
   - This case doesn't happen for the actual user
 
