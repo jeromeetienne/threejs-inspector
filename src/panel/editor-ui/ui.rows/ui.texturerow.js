@@ -288,8 +288,10 @@ UI.TextureRow = function(){
 
 			var url = event.currentTarget.result
 			console.log('file loaded. url length', url.length)
-			uiTexture.setValue(url)
-			dispatchOnChange()
+			UI.Texture.GenerateValidDataUrl(url, function(newUrl){
+				uiTexture.setValue(newUrl)
+				dispatchOnChange()				
+			})
 		};
 		reader.readAsDataURL( event.dataTransfer.files[ 0 ] );
 

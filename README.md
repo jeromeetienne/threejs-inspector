@@ -8,8 +8,14 @@ It is a fork from
 [WebGL GLSL Shader Editor Extension for Google Chrome](https://github.com/spite/ShaderEditorExtension)
 by the excelent @thespite. Check it out! 
 
+## How to be sure the extension find your scene
+- export your THREE.Scene as a ```scene``` global variable
+  - typically ```window.scene = scene;``` 
+- press 'refresh' button to refresh the scene
 
-## How to install
+YES we are looking for a better way to do it :)
+
+## How to install three.js inspector locally
 
 You can install the extensions directly from the chrome store
 
@@ -24,6 +30,32 @@ Follow those steps:
 - Click on "Load unpacked extension"...
 - Select the folder /src in the checked out project
 
+## History 1.9.11
+- Added inspection for uniforms when using THREE.ShaderMaterial
+- inspector able to display canvas/video texture
+
+## History 1.9.10
+- Fixed bug in texture drapdrop/file: just a typo in a varname
+- added a 'Examples' tab to easily access three.js examples
+  - nice for discovery and learning
+- Added notification when devtools is open and three.js inspector is reloaded
+  - thus developper knows and don't assume the inspector will be working
+  - But it is very useful when developping three.js inspector :)
+  - This case doesn't happen for the actual user
+
+## History 1.9.8
+- recapture the scene automatically if object are added to it
+  - overloading Object3D.prototype.add/Object3D.prototype.remove
+- Handle large image texture 
+  - no more issue with "too long url"
+
+## History 1.9.6
+- better detection of the inspected window
+  - detect when the inspected window is reloaded, and reinject the script
+- added a timer to count the time since the last scene update
+- detect when running in production and disable debug feature when not in development
+- reenabled shadermaterial with uniforms tuning
+- reenable texture image tunning, export+drag drop from desktop
 
 ## History 1.9.0
 
@@ -122,3 +154,13 @@ will be more manageable. Dont hesitate to report any issue on github.
   - if shift is pressed, it goes 10 times faster
   - it meta is pressed, it goes 100 times faster
   - if shift+meta are pressed, it goes 1000 times faster
+
+### How To Release
+- search ```/src``` for the previous version number
+- change the version number to even patch number e.g. 1.2.2
+- do ```make packageExtension``` to build the src.zip
+- upload the src.zip at https://chrome.google.com/webstore/developer/edit/dnhjfclbfhcbcdfpjaeacomhbdfjbebi?hl=en
+- click 'Publish Changes'
+- do ```make cleanExtension``` to build the src.zip
+- make the patch number as odd in ```/src```, by replacing all instance of version number
+- add a line in README.md Changelog

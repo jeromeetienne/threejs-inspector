@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<script src='vendor/three.js/build/three.min.js'></script>
+<script src='vendor/three.js/build/three.js'></script>
 <script src='vendor/three.js/examples/js/controls/OrbitControls.js'></script>
 <div style='position: absolute; top: 0px; width: 100%;font-family:arial; font-weight: bolder; padding-top: 5px;'>
 	<a href="https://github.com/jeromeetienne/threejs-boilerplate" target="_blank">Boilerplate</a>
@@ -59,13 +59,13 @@
 	})
 
 
-	// // add a torus	
-	// var geometry	= new THREE.SphereGeometry(0.5);
-	// var material	= new THREE.MeshPhongMaterial(); 
-	// var mesh2	= new THREE.Mesh( geometry, material );
-	// mesh2.name	= 'sphere'
-	// mesh2.position.x= 1
-	// mesh.add( mesh2 );
+	// add a torus	
+	var geometry	= new THREE.SphereGeometry(0.5);
+	var material	= new THREE.MeshPhongMaterial(); 
+	var mesh2	= new THREE.Mesh( geometry, material );
+	mesh2.name	= 'sphere'
+	mesh2.position.x= 1
+	scene.add( mesh2 );
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page

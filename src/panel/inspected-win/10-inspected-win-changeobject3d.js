@@ -5,7 +5,7 @@
  * @param {String} data - property name e.g. "position.x"
  */
 InspectedWin3js.ChangeProperty = function( object3dUUID, property, value ) {
-	// console.log('in 10-injected_script-changeobject3d.js: ChangeProperty', arguments)
+	console.log('in 10-injected_script-changeobject3d.js: ChangeProperty', property, 'of ', object3dUUID, 'to', value)
         
         // @TODO change the API of this function....
 

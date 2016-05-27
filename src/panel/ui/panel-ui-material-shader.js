@@ -6,11 +6,12 @@ var PanelWin3js	= PanelWin3js	|| {}
  * @constructor
  */
 PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
+	console.log('in panel-ui-material-shader.js: creating for faceMaterialIndex', faceMaterialIndex)
+
 	var editor	= PanelWin3js.editor
 	var signals	= editor.signals
 
 	var container	= new UI.Panel()
-
 	//////////////////////////////////////////////////////////////////////////////////
 	//		handle tab-geometry
 	//////////////////////////////////////////////////////////////////////////////////
@@ -33,14 +34,14 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 	
 	function onPopupMenuChange(value){
 		var material = faceMaterialIndex === -1 ? editor.selected.material : editor.selected.material.materials[faceMaterialIndex]
-		var injectFunction = InspectDevTools.functionOnObject3d
+		var injectFunction = PanelWin3js.functionOnObject3d
 
 
 		if( value === 'viewVertexShader' ){
 			injectFunction(function(object3d, vertexShader){
 				// console.log('View Vertex Shader')
 				// console.log(vertexShader)
-
+				// 
 				var blob = new Blob( [ vertexShader ], { type: 'text/plain' } );
 				var objectURL = URL.createObjectURL( blob );
 				window.open( objectURL, '_blank' );
@@ -68,11 +69,12 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 	//////////////////////////////////////////////////////////////////////////////////
 
 	function updateUI(faceMaterialIndex) {
+		console.log('in panel-ui-material-shader.js: updateUI')
 		var material = faceMaterialIndex === -1 ? editor.selected.material : editor.selected.material.materials[faceMaterialIndex]
 		var propertyPrefix = faceMaterialIndex === -1 ? 'material' : 'material.materials['+faceMaterialIndex+']'
 
-		var injectProperty = InspectDevTools.propertyOnObject3d;
-		var injectFunction = InspectDevTools.functionOnObject3d
+		var injectProperty = PanelWin3js.propertyOnObject3d;
+		var injectFunction = PanelWin3js.functionOnObject3d
 
 		// typeRow.updateUI( 'Uniforms' )
 
@@ -85,7 +87,7 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 		if( material.uniforms !== undefined ){
 			Object.keys( material.uniforms ).forEach(function(name){
 				var data = material.uniforms[name]
-				// console.log('materialShader', faceMaterialIndex)
+				console.log('in panel-ui-material-shader.js: uniform', name, data)
 				// console.dir(data)
 				if( data.type === 'f' ){
 					var numberRow = new UI.NumberRow()
@@ -130,7 +132,7 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 						}, [colorRow.value.getHexValue(), name, faceMaterialIndex]);
 					})
 				}else if( data.type === 't' ){
-					var mapRow = new PanelTexture(propertyPrefix+'.uniforms.'+name+'.value')
+					var mapRow = new PanelWin3js.PanelTexture(propertyPrefix+'.uniforms.'+name+'.value')
 					mapRow.textureRow.setLabel(name)
 					container.add( mapRow );
 					mapRow.updateUI(data.value)

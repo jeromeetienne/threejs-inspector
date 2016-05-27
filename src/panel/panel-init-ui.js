@@ -39,7 +39,7 @@ PanelWin3js.initLeftSideBar = function(){
 	//		Handle Inspect button hack
 	//////////////////////////////////////////////////////////////////////////////////
 	var domElement	= document.createElement('button')
-	domElement.innerHTML	= 'Inspect'	
+	domElement.innerHTML	= 'Refresh'	
 	domElement.style.position = 'absolute'
 	domElement.style.top = '0px'
 	domElement.style.right = '0px'
@@ -52,7 +52,7 @@ PanelWin3js.initLeftSideBar = function(){
 		PanelWin3js.injectInspectedWinScripts()
 		// capture the scene if possible
 		PanelWin3js.plainFunction(function(uuid){
-	                InspectedWin3js.captureScene(scene)
+	                InspectedWin3js.captureScene()
 		})	
 	})
 }
@@ -74,6 +74,7 @@ PanelWin3js.initRightSideBar = function(){
 	tabContainer.addTab('OBJECT3D', object3dTab)
 	object3dTab.add( new PanelWin3js.PanelObject3D() )
 	object3dTab.add( new PanelWin3js.PanelNoObject3D() )
+	object3dTab.add( new PanelWin3js.PanelObject3DActions() )
 	
 	
 	//////////////////////////////////////////////////////////////////////////////////
@@ -91,4 +92,9 @@ PanelWin3js.initRightSideBar = function(){
 	tabContainer.addTab('MATERIAL', materialTab)
 	materialTab.add( new PanelWin3js.PanelNoMaterial() )
 	materialTab.add( new PanelWin3js.PanelMaterial(-1) )
+	
+
+	var examplesTab	= new UI.TabsHelper.createTab()
+	tabContainer.addTab('EXAMPLES', examplesTab)
+	examplesTab.add( new PanelWin3js.PanelExamples() )
 }

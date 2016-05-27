@@ -1,72 +1,65 @@
 ### TODO
+- keep selected when updating treeview
+  - before updating the treeview, backup the selected uuid
+  - on completion of updating, if the selected-uuid is still present in the new treeview
+  - select it in the treeview only. aka DO NOT emulate an actual user click, just set the selected
+- support keyboard binding in treeview
+  - how to get to the 'next item' or 'previous item'
+- selection in treeview should be visible in the 3d
+  - bounding box attached to the scene
+  - 10-inspected-win-selectbbox.js
+- material.map.image.url undefined when canvas as texture
+  - issue with http://127.0.0.1:3000/examples/webgl_materials_video.html
+  - sourceUrl from inspected-win to inspector panel works ok
+  - inspector-panel to inspected-win works well IIF texture.image is an image
+  - what if the texture.image is a canvas or a video ?
+- SPEED: add a message counter in the source
+  - apparently the update are super slow...
+  - maybe there are a lot of message shared between window
+  - if so, one can reduce the number of message by packing them together
+  - it seems more like a number of eval from panel to inspected page
+  - the capture scene could pack the message too
+- could we controls the camera ? 
+  - aka remove the other controllers and put mine...
+- ability to edit shaders in shadermaterial
+  - it would be fun to play with
+  - maybe i could use the iframe viewer system like in space3
+- DONE if connection between panel and background cnx got closed, seen from Panel
+  - then the extension got reloaded
+  - TODO do something in this case to warn the user
+- DONE make it run in http://threejs.org page
+  - window.frames[0].frameElement.contentWindow.THREE
+  - possible solution
+    - what about a detection of the page ? if detected point on the 
+    - add a tab in the right sidebar with a list of all examples
+- DONE support for large texture
+  - especially in drag drop
+  - issue with the url size... maybe to scale it down via canvas ?
+  - reduce resolution until .toDataURL string is less than 2mbyte
+  - This is a async process so do it on reception of the upload
+- DONE detect when the scene is updated, and update the treeview
+  - early version in src/panel/inspected-win/10-inspected-win-instrument3js.js
+- DONE on scene refresh, be sure the inspected object3d is still present
+  - if so update it
+- DONE add a 'NO SCENE' in the left panel
+  - how to know there are no scene ?
+- DONE find an automatic way to identify when you run in -dev or in prod
+  - change things based on it... 
+  - simple principle: even patch number are dev version, odd patch number
+  - maybe thanks to the url ?
+- DONE add the date in the three.js inspector
+
+### old TODO
 - bug in treeview
   - it is does empty on http://127.0.0.1:3000/examples/webgl_geometry_cube.html
   - debug treeView.empty() in standalone page
+- check how the previous extension is doing the detection
+  - see what you can learn from it
+- remove the debug console.log when releasing
+- if scene isnt found, notify it with an alert in inspected window
 
-### How to merge it into extension
-- 2 repositories threejs-doctor and threejs-inspector
-- DONE move old threejs-doctor into threejs-inspector-old, move it to public
-- move extension-devtools into threejs-doctor private
-- do a push force on threejs-inspector repository
-- update the extension in chrome store
-
-
-### About Detection
-- on panel load, have a splash with a button which captureScene
-  - display panel-ui-splash with a single button.
-  - on click, inject scripts
-  - on injectedScript, hide splash and create panels.
-- have a capture button on the UI in the open panel
-- have captureScene to clear the treeView to start with
-  - ```InspectedWin3js.postMessageToPanel('clearObject3DTreeView')```
-  - it works
-- it should provide a consitent basic detection system
-
-### Cleanup
-
-- reimport the raf throttler
-  - thus you got interest in reimporting the config too
-- when to switch to threejs-doctor and to update threejs-inspector
-  - When detection + raf throttler is done
-- address the three.js detection mechanism. currently manual with button
-- what to do when the inspected page is reloaded ?
-
-- test on most recent version of three.js
-- use object3dJson var name when applicable
-- test on alexandra mac book air
-  - configure it for coding
-  - iterm + git + github auth rsa key + screen switch
-  - seems to work
-
-### Detection of the three.js in the page
-- see about the splash screen
-- we want mainly the scene for now
-  - we can provide a explicit API for that. the inspectedWin.* API will do it
-- this inspectedWin.sendSceneToPanel(scene) API... can be used to 
-- address the three.js detection mechanism. currently manual with button
-  - no emergency
-  - you dont know any good solution for now
-  - what about binding THREE.WebGLRenderer.prototype.render ?
-  - what i want is periodic update of the scene.
-    - then i update the treeview in the panel
-  - so we got t
-
-### TODO
-
-
-
-- DONE split the injected_script.js
-  - how to handle the detection of the previous inclusion ?
-- DONE bring material/geometry panel. then clean up
-- FIXED there are 3 versions of font awesome
-- DONE port this injection mechanism. to enable the action from panel to object3d properties
-```
-var injectProperty = InspectDevTools.propertyOnObject3d
-var injectFunction = InspectDevTools.functionOnObject3d
-```
-- DONE port the selection mechanism
-  - inspectedWin.selected = object3dJson
-  - panelWin.editor.selected = object3dJson
-  - editor.signals.object3dSelected, ui panels listens on that
-  - ui panels for object3d, material, geometry
-  
+### About detection
+- on page reload, test if can inspect scene
+- on panel show, test if can inspect scene
+- on button press, test if can inspect scene
+- on timer interval, test if can inspect scene
