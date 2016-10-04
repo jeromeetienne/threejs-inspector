@@ -57,8 +57,13 @@ InspectedWin3js.getObjectByUuid = function(uuid){
 }
 
 InspectedWin3js.getInspectedScene = function(){
-        if( window.scene instanceof THREE.Scene === false ) return null
-        return window.scene;
+        var scene = window.scene
+        if (!scene) {
+          var aFrameScene = document.querySelector('a-scene')
+          if (aFrameScene) scene = aFrameScene.object3D
+        }
+        if( scene instanceof THREE.Scene === false ) return null
+        return scene;
 }
 
 /**
