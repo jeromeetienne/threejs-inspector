@@ -52,8 +52,7 @@ InspectedWin3js.postMessageToPanel     = function(type, data){
 
 
 InspectedWin3js.getObjectByUuid = function(uuid){
-        // FIXME use scene as a global
-        return scene.getObjectByProperty('uuid', uuid)
+        return InspectedWin3js.getInspectedScene().getObjectByProperty('uuid', uuid)
 }
 
 InspectedWin3js.getInspectedScene = function(){
