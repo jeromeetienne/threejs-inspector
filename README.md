@@ -33,6 +33,7 @@ Follow those steps:
 - Select the folder /src in the checked out project
 
 ## History 1.9.11
+- Support of AFrame page (thanks @msfeldstein)
 - Added inspection for uniforms when using THREE.ShaderMaterial
 - inspector able to display canvas/video texture
 
