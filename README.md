@@ -11,6 +11,8 @@ by the excelent @thespite. Check it out!
 ## How to be sure the extension find your scene
 - export your THREE.Scene as a ```scene``` global variable
   - typically ```window.scene = scene;``` 
+- export THREE as a ```THREE``` global variable when using module bundler
+  - typically ```window.THREE = THREE```
 - press 'refresh' button to refresh the scene
 
 YES we are looking for a better way to do it :)
