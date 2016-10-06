@@ -45,7 +45,7 @@ PanelWin3js.PanelGeometrySphere	= function(object3d){
 
 		// injectFunction
 		injectFunction(function(object3d, radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength){
-			// console.log('reinit torus knot', arguments)
+			// InspectedWin3js.log('reinit torus knot', arguments)
 			delete object3d.__webglInit; // TODO: Remove hack (WebGLRenderer refactoring)
 
 			object3d.geometry.dispose();

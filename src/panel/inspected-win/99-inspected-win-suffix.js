@@ -3,5 +3,5 @@
         //                Comments
         //////////////////////////////////////////////////////////////////////////////////
 
-        console.log('in 50-injected_script-suffix.js: running')
+        InspectedWin3js.log('in 50-injected_script-suffix.js: running')
 })()

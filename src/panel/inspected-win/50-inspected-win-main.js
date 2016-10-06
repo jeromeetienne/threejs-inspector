@@ -1,4 +1,4 @@
-console.log('in 50-injected_script-main.js: running start')
+InspectedWin3js.log('in 50-injected_script-main.js: running start')
 
 // create a RafThrottler 
 InspectedWin3js.rafThrottler	= new RafThrottler();
@@ -15,7 +15,7 @@ InspectedWin3js.selected = null
 
 
 InspectedWin3js.selectUuid = function(uuid){
-        console.log('in 50-injected_script-main.js: selectUuid', uuid)
+        InspectedWin3js.log('in 50-injected_script-main.js: selectUuid', uuid)
         
         if( uuid ===  null ){
                 InspectedWin3js.selected = null
@@ -104,7 +104,7 @@ InspectedWin3js.treeviewObject3dToJSON  = function(object3d){
  * capture a scene and send it to inspector panel
  */
 InspectedWin3js.captureScene    = function(){
-        console.log('in 50-inspected-win-main.js: capture scene')
+        InspectedWin3js.log('in 50-inspected-win-main.js: capture scene')
         // TODO it could be a long message with all object
         // - this would reduce message latency
         InspectedWin3js.postMessageToPanel('clearObject3DTreeView')

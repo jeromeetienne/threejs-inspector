@@ -15,7 +15,7 @@ InspectedWin3js.instrumentThreejs	= function(){
 	function onSceneChange(){
 		clearTimeout(timeout)
 		timeout = setTimeout(function(){
-			console.log('update treeview now')
+			InspectedWin3js.log('update treeview now')
 			InspectedWin3js.captureScene()
 		}, 100)
 	}
@@ -26,12 +26,12 @@ InspectedWin3js.instrumentThreejs	= function(){
 
 	// post process on object3d.add()
 	THREE.Object3D.prototype.add = InspectedWin3js.functionAddPostProcess( THREE.Object3D.prototype.add, function(returnValue, args) {
-		console.log('object3d added', this)
+		InspectedWin3js.log('object3d added', this)
 		onSceneChange()
 	} );
 	// post process on object3d.remove()
 	THREE.Object3D.prototype.remove = InspectedWin3js.functionAddPostProcess( THREE.Object3D.prototype.remove, function(returnValue, args) {
-		console.log('object3d removed', this)
+		InspectedWin3js.log('object3d removed', this)
 		onSceneChange()
 	} );
 	return

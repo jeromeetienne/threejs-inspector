@@ -18,7 +18,7 @@ InspectedWin3js.getThreeJSClassName		= function( object ) {
  * extract all constructors functions name from three.js
  */
 InspectedWin3js.extractThreeJSClassNames	= function() {
-        console.log('in 10-injected-script-classnames.js: extract three.js classnames')
+        InspectedWin3js.log('in 10-injected-script-classnames.js: extract three.js classnames')
 	for( var property in THREE ){
 		if( typeof THREE[ property ] !== 'function' )	continue
 		// NOTE: unshift is key here to get proper inheritance

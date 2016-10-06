@@ -170,7 +170,7 @@ InspectedWin3js.object3dToJSON  = function(object3d){
 						type : uniform.type,
 						value : uniform.value,
 					}
-					console.log('uniform', name, data.uniforms[name])
+					InspectedWin3js.log('uniform', name, data.uniforms[name])
 				}else if( uniform.type === 'v2' ){
 					data.uniforms[name]	= {
 						type : uniform.type,
@@ -216,7 +216,7 @@ InspectedWin3js.object3dToJSON  = function(object3d){
 			})
 		}
 		
-		// console.log('materialToJSON', data)
+		// InspectedWin3js.log('materialToJSON', data)
 		return data
 	}
 	function textureToJSON(texture){
@@ -256,7 +256,7 @@ InspectedWin3js.object3dToJSON  = function(object3d){
 		
 		if(texture.anisotropy !== undefined )	data.anisotropy	= texture.anisotropy
 		
-		// console.log('textureToJSON', data)
+		// InspectedWin3js.log('textureToJSON', data)
 		return data
 	}
 }

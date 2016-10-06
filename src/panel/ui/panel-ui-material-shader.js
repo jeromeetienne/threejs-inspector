@@ -49,9 +49,6 @@ PanelWin3js.PanelMaterialShader	= function(faceMaterialIndex){
 			}, [material.vertexShader]);		
 		}else if( value === 'viewFragmentShader' ){
 			injectFunction(function(object3d, fragmentShader){
-				// console.log('View Fragment Shader')
-				// console.log(fragmentShader)
-
 				var blob = new Blob( [ fragmentShader ], { type: 'text/plain' } );
 				var objectURL = URL.createObjectURL( blob );
 				window.open( objectURL, '_blank' );
