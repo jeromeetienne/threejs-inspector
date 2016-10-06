@@ -52,13 +52,17 @@ InspectedWin3js.postMessageToPanel     = function(type, data){
 
 
 InspectedWin3js.getObjectByUuid = function(uuid){
-        // FIXME use scene as a global
-        return scene.getObjectByProperty('uuid', uuid)
+        return InspectedWin3js.getInspectedScene().getObjectByProperty('uuid', uuid)
 }
 
 InspectedWin3js.getInspectedScene = function(){
-        if( window.scene instanceof THREE.Scene === false ) return null
-        return window.scene;
+        var scene = window.scene
+        if (!scene) {
+          var aFrameScene = document.querySelector('a-scene')
+          if (aFrameScene) scene = aFrameScene.object3D
+        }
+        if( scene instanceof THREE.Scene === false ) return null
+        return scene;
 }
 
 /**
