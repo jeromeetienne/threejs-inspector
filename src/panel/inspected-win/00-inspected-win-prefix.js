@@ -39,13 +39,13 @@
 	// export namespace globally
 	window.InspectedWin3js = InspectedWin3js
 	
-	InspectedWin3js.REVISION	= '1.9.11'
+	InspectedWin3js.REVISION	= '1.9.12'
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Comments
 	//////////////////////////////////////////////////////////////////////////////////
 	// determine which environment we run in thanks to the version number
-	// - simple principle: even patch number are dev version, odd patch number are production versions
+	// - simple principle: odd patch number are dev version, even patch number are production versions
 	InspectedWin3js.ENVIRONMENT	= parseInt(InspectedWin3js.REVISION.split('.').pop()) % 2 ? 'dev' : 'prod'
 	
 	// remove InspectedWin3js.log in production
