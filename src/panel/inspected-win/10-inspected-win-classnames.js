@@ -3,9 +3,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 InspectedWin3js._threeJSClassNames = [];
 
-InspectedWin3js.getThreeJSClassName		= function( object ) {
+InspectedWin3js.getThreeJSClassName		= function( obj ) {
 	for( var j in InspectedWin3js._threeJSClassNames ) {
-		if( object instanceof THREE[ InspectedWin3js._threeJSClassNames[ j ] ] ) {
+		if( obj.constructor.name === InspectedWin3js._threeJSClassNames[j]) {
 			var result = InspectedWin3js._threeJSClassNames[j]
 			return result;
 		}
